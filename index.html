@@ -13,97 +13,108 @@
         }
 
         body {
-            background: #fafaf9;
-            color: #1c1917;
+            background: #f8fafc;
+            color: #0f172a;
         }
 
-        /* Mobile-First Approach */
-        .container {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        /* Professional Header */
+        /* Professional Header - No Emojis */
         .header {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgb(255 255 255 / 10%);
+            backdrop-filter: blur(1px);
             -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            padding: 0.8rem 1rem;
+            /* border-bottom: 1px solid #e2e8f0; */
+            padding: 1rem 0;
+        }
+
+        .header.scrolled {
+            background: #ffffff;                      /* solid white */
+            /* Optional: add shadow for depth */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
 
         .header-content {
             max-width: 1400px;
             margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+        }
+
         .logo {
             font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #1c1917 0%, #eab308 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            color: #0f172a;
             text-decoration: none;
             letter-spacing: -0.5px;
         }
 
+        .logo-accent {
+            color: #eab308;
+        }
+
         .nav-actions {
             display: flex;
-            gap: 0.8rem;
+            gap: 1rem;
             align-items: center;
         }
 
         .nav-btn {
-            background: white;
-            color: #1c1917;
-            padding: 0.6rem 1.2rem;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
+            padding: 0.6rem 0.2rem;
+            border-radius: 6px;
+            font-weight: 500;
             font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            text-decoration: none;
             transition: all 0.2s;
-            border: 1px solid #e7e5e4;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            color: #ffffff;
+        }
+
+        .scrolled .nav-btn {
+            color: #010014;
+        }
+
+        .nav-btn:hover {
+            color: #eab308;
+            background: #f1f5f9;
         }
 
         .nav-btn.primary {
             background: #eab308;
-            color: #1c1917;
-            border: none;
+            color: #0f172a;
+            font-weight: 600;
         }
 
-        .nav-btn:active {
-            transform: scale(0.96);
+        .nav-btn.primary:hover {
+            background: #facc15;
+            color: #0f172a;
         }
 
-        .orders-count {
+        .badge {
             background: #eab308;
-            color: #1c1917;
-            border-radius: 30px;
-            padding: 0.2rem 0.6rem;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-left: 0.3rem;
+            color: #0f172a;
+            border-radius: 4px;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
         }
 
-        /* Hero Section - Mobile Optimized */
+        /* Hero Section - Professional */
         .hero {
             position: relative;
-            min-height: 500px;
-            height: 90vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), 
-                        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            min-height: 600px;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.574), rgba(0, 0, 0, 0.537)), 
+                        url('/images/hero1.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -111,341 +122,443 @@
             justify-content: center;
             text-align: center;
             color: white;
-            border-radius: 0 0 30px 30px;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            margin-top: -70px;
         }
 
         .hero-content {
-            padding: 2rem 1.5rem;
             max-width: 800px;
+            padding: 0 2rem;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             line-height: 1.2;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            color: #eab308;
         }
 
         .hero p {
-            font-size: 1rem;
-            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
             opacity: 0.9;
             line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .order-btn-hero {
+        .hero-btn {
             background: #eab308;
-            color: #1c1917;
+            color: #0f172a;
             border: none;
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 50px;
+            padding: 1rem 3rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s;
-            width: 100%;
-            max-width: 300px;
-            margin: 0 auto;
+            text-decoration: none;
             display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-btn:hover {
+            background: #facc15;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(234, 179, 8, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #64748b;
             text-decoration: none;
         }
 
-        .order-btn-hero:active {
-            transform: scale(0.98);
-            background: #facc15;
+        .breadcrumb a:hover {
+            color: #eab308;
         }
 
-        @media (min-width: 768px) {
-            .hero h1 {
-                font-size: 4rem;
-            }
-            .hero p {
-                font-size: 1.2rem;
-            }
+        .breadcrumb .separator {
+            color: #cbd5e1;
         }
 
-        /* Category Filter - Horizontal Scroll */
-        .category-section {
-            margin: 2rem 0 1.5rem;
-        }
-
-        .category-header {
+        /* Section Header */
+        .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
-            padding: 0 0.5rem;
-        }
-
-        .category-header h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #1c1917;
-        }
-
-        .category-header span {
-            color: #eab308;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .category-scroll {
-            display: flex;
-            gap: 0.8rem;
-            overflow-x: auto;
-            padding: 0.5rem 0.2rem 1rem;
-            scrollbar-width: thin;
-            -webkit-overflow-scrolling: touch;
-            scroll-snap-type: x mandatory;
-        }
-
-        .category-scroll::-webkit-scrollbar {
-            height: 3px;
-        }
-
-        .category-scroll::-webkit-scrollbar-track {
-            background: #e7e5e4;
-            border-radius: 10px;
-        }
-
-        .category-scroll::-webkit-scrollbar-thumb {
-            background: #eab308;
-            border-radius: 10px;
-        }
-
-        .category-item {
-            background: white;
-            border: 1px solid #e7e5e4;
-            padding: 0.7rem 1.5rem;
-            border-radius: 40px;
-            font-weight: 600;
-            color: #57534e;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 0.9rem;
-            white-space: nowrap;
-            scroll-snap-align: start;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-        }
-
-        .category-item:active {
-            transform: scale(0.96);
-            background: #f5f5f4;
-        }
-
-        .category-item.active {
-            background: #eab308;
-            border-color: #eab308;
-            color: #1c1917;
-            font-weight: 700;
-        }
-
-        /* Menu Section */
-        .menu-section {
-            margin: 2rem 0;
-        }
-
-        .menu-section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            padding-left: 0.5rem;
-            border-left: 4px solid #eab308;
-            font-weight: 700;
-        }
-
-        .food-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
             gap: 1rem;
         }
 
-        @media (min-width: 480px) {
+        .section-header h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #0f172a;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header h2 span {
+            color: #eab308;
+        }
+
+        .view-all {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .view-all:hover {
+            color: #eab308;
+            border-bottom-color: #eab308;
+        }
+
+        /* Category Filter */
+        .category-filter {
+            margin: 2rem 0 3rem;
+        }
+
+        .filter-scroll {
+            display: flex;
+            gap: 0.8rem;
+            overflow-x: auto;
+            padding: 0.5rem 0 1rem;
+            scrollbar-width: thin;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .filter-scroll::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        .filter-scroll::-webkit-scrollbar-track {
+            background: #e2e8f0;
+        }
+
+        .filter-scroll::-webkit-scrollbar-thumb {
+            background: #eab308;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #e2e8f0;
+            background: white;
+            color: #475569;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            border-color: #eab308;
+            color: #0f172a;
+        }
+
+        .filter-btn.active {
+            background: #eab308;
+            border-color: #eab308;
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        /* Food Grid */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (min-width: 640px) {
             .food-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 1.2rem;
             }
         }
 
         @media (min-width: 1024px) {
             .food-grid {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 1.8rem;
+                gap: 2rem;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .food-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
 
         /* Food Card - Professional Design */
         .food-card {
             background: white;
-            border-radius: 20px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
             cursor: pointer;
-            border: 1px solid #f0f0f0;
+            border: 1px solid #f1f5f9;
         }
 
-        .food-card:active {
-            transform: scale(0.98);
-            box-shadow: 0 8px 20px rgba(234, 179, 8, 0.15);
+        .food-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -10px rgba(234, 179, 8, 0.1);
+            border-color: #eab308;
         }
 
-        .food-img {
-            height: 180px;
+        .food-image {
+            height: 200px;
             background-size: cover;
             background-position: center;
             position: relative;
         }
 
-        .food-badge {
+        .food-rating {
             position: absolute;
             top: 1rem;
             right: 1rem;
-            background: rgba(234, 179, 8, 0.95);
-            color: #1c1917;
+            background: rgba(255, 255, 255, 0.9);
+            color: #b8aa0b;
             padding: 0.3rem 0.8rem;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 0.8rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.85rem;
             backdrop-filter: blur(4px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
         }
 
-        .food-card-content {
-            padding: 1.2rem;
+        .food-content {
+            padding: 1.5rem;
         }
 
-        .food-title {
+        .food-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
 
-        .food-card-content h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #1c1917;
-        }
-
-        .price {
-            font-weight: 800;
-            color: #eab308;
+        .food-name {
             font-size: 1.2rem;
-            background: #1c1917;
-            padding: 0.2rem 0.8rem;
-            border-radius: 30px;
-            color: white;
-            letter-spacing: -0.5px;
+            font-weight: 600;
+            color: #0f172a;
         }
 
-        .description {
-            color: #57534e;
-            font-size: 0.85rem;
-            line-height: 1.4;
-            margin-bottom: 0.8rem;
+        .food-price {
+            font-weight: 700;
+            color: #eab308;
+            font-size: 1.3rem;
+        }
+
+        .food-description {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
-        .food-meta {
+        .food-details {
             display: flex;
-            gap: 1rem;
-            color: #a8a29e;
-            font-size: 0.8rem;
-            border-top: 1px solid #f0f0f0;
-            padding-top: 0.8rem;
+            gap: 1.5rem;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 1rem;
         }
 
-        .food-meta span {
+        .food-detail {
             display: flex;
             align-items: center;
             gap: 0.3rem;
         }
 
-        /* Features Section */
-        .features {
-            margin: 3rem 0;
+        /* Features Grid */
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            padding: 0 0.5rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 4rem 0;
+            padding: 2rem 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        @media (min-width: 768px) {
-            .features {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 2rem;
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 1.5rem 0;
             }
         }
 
-        .feature-item {
-            background: white;
-            padding: 1.5rem 1rem;
-            border-radius: 20px;
+        .feature {
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            border: 1px solid #f0f0f0;
         }
 
         .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 0.8rem;
+            width: 48px;
+            height: 48px;
+            background: #fefce8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: #eab308;
+            font-size: 1.3rem;
         }
 
-        .feature-item h3 {
+        .feature h3 {
             font-size: 1rem;
+            font-weight: 600;
+            color: #0f172a;
             margin-bottom: 0.3rem;
-            color: #1c1917;
-            font-weight: 700;
         }
 
-        .feature-item p {
-            color: #57534e;
-            font-size: 0.8rem;
+        .feature p {
+            color: #64748b;
+            font-size: 0.85rem;
         }
 
-        /* Staff Link - Professional */
+        /* Staff Portal Link */
         .staff-link {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #1c1917;
+            bottom: 30px;
+            right: 30px;
+            background: #0f172a;
             color: white;
             padding: 0.8rem 1.5rem;
-            border-radius: 40px;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.85rem;
-            opacity: 0.9;
+            font-size: 0.9rem;
             transition: all 0.2s;
             z-index: 100;
             border: 1px solid #eab308;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .staff-link:active {
-            transform: scale(0.96);
+        .staff-link:hover {
             background: #eab308;
-            color: #1c1917;
+            color: #0f172a;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .staff-link {
+                bottom: 20px;
+                right: 20px;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Bottom Navigation - Mobile Only */
+        .bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 0.8rem 1.5rem;
+            border-top: 1px solid #e2e8f0;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .bottom-nav {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+            
+            body {
+                padding-bottom: 70px;
+            }
+            
+            .staff-link {
+                bottom: 90px;
+            }
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #94a3b8;
+            font-size: 0.7rem;
+            gap: 0.2rem;
+            transition: color 0.2s;
+        }
+
+        .nav-item.active {
+            color: #eab308;
+        }
+
+        .nav-item span:first-child {
+            font-size: 1.2rem;
         }
 
         /* Loading State */
-        .loading {
+        .loading-state {
             text-align: center;
-            padding: 3rem;
-            color: #a8a29e;
+            padding: 4rem;
+            grid-column: 1/-1;
         }
 
-        .loading-spinner {
+        .spinner {
             width: 40px;
             height: 40px;
-            border: 3px solid #f0f0f0;
+            border: 3px solid #f1f5f9;
             border-top: 3px solid #eab308;
             border-radius: 50%;
             animation: spin 1s linear infinite;
@@ -457,79 +570,33 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Bottom Navigation for Mobile */
-        .bottom-nav {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            padding: 0.8rem 1.5rem;
-            border-top: 1px solid #f0f0f0;
-            z-index: 1000;
-        }
-
-        @media (max-width: 768px) {
-            .bottom-nav {
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-            }
-            
-            .staff-link {
-                bottom: 80px;
-            }
-            
-            body {
-                padding-bottom: 70px;
-            }
-        }
-
-        .bottom-nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: #57534e;
-            font-size: 0.75rem;
-            gap: 0.2rem;
-        }
-
-        .bottom-nav-item.active {
-            color: #eab308;
-        }
-
-        .bottom-nav-item span:first-child {
-            font-size: 1.3rem;
-        }
-
         /* Empty State */
         .empty-state {
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 4rem;
             background: white;
-            border-radius: 20px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
             grid-column: 1/-1;
         }
 
         .empty-state h3 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 0.5rem;
-            color: #1c1917;
+            color: #0f172a;
         }
 
         .empty-state p {
-            color: #57534e;
+            color: #64748b;
             margin-bottom: 1.5rem;
         }
 
-        .reset-btn {
+        .reset-filter {
             background: #eab308;
-            color: #1c1917;
+            color: #0f172a;
             border: none;
             padding: 0.8rem 2rem;
-            border-radius: 40px;
+            border-radius: 6px;
             font-weight: 600;
             font-size: 0.9rem;
             cursor: pointer;
@@ -540,16 +607,16 @@
     <!-- Professional Header -->
     <header class="header">
         <div class="header-content">
-            <a href="index.html" class="logo">FlavorFlow</a>
+            <a href="index.html" class="logo">
+                Flavor<span class="logo-accent">Flow</span>
+            </a>
             <div class="nav-actions">
                 <a href="my-orders.html" class="nav-btn">
-                    <span>📋</span>
-                    <span class="hide-mobile">My Orders</span>
-                    <span class="orders-count" id="orders-count">0</span>
+                    My Orders
+                    <span class="badge" id="orders-count">0</span>
                 </a>
                 <a href="order-details.html" class="nav-btn primary">
-                    <span>🍽️</span>
-                    <span class="hide-mobile">Order Now</span>
+                    Reserve Table
                 </a>
             </div>
         </div>
@@ -558,152 +625,162 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>FlavorFlow</h1>
-            <p>Experience the finest culinary journey with our handcrafted meals made from the freshest ingredients.</p>
-            <a href="order-details.html" class="order-btn-hero">ORDER NOW</a>
+            <h1>Experience <span>Flavor</span> Like Never Before</h1>
+            <p>Handcrafted dishes prepared by Michelin-starred chefs using the finest seasonal ingredients from local farms.</p>
+            <a href="order-details.html" class="hero-btn">Reserve Your Table</a>
         </div>
     </section>
 
-    <!-- Category Filter -->
+    <!-- Main Content -->
     <div class="container">
-        <div class="category-section">
-            <div class="category-header">
-                <h3>Browse Categories</h3>
-                <span>Swipe →</span>
-            </div>
-            <div class="category-scroll" id="category-scroll">
-                <button class="category-item active" data-category="all">All</button>
-                <button class="category-item" data-category="indian">Indian</button>
-                <button class="category-item" data-category="chinese">Chinese</button>
-                <button class="category-item" data-category="italian">Italian</button>
-                <button class="category-item" data-category="continental">Continental</button>
-                <button class="category-item" data-category="desserts">Desserts</button>
-                <button class="category-item" data-category="beverages">Beverages</button>
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="separator">/</span>
+            <span>Menu</span>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <div class="filter-scroll">
+                <button class="filter-btn active" data-category="all">All Dishes</button>
+                <button class="filter-btn" data-category="indian">Indian</button>
+                <button class="filter-btn" data-category="chinese">Chinese</button>
+                <button class="filter-btn" data-category="italian">Italian</button>
+                <button class="filter-btn" data-category="continental">Continental</button>
+                <button class="filter-btn" data-category="desserts">Desserts</button>
+                <button class="filter-btn" data-category="beverages">Beverages</button>
             </div>
         </div>
 
         <!-- Menu Section -->
-        <section class="menu-section">
-            <h2>Signature Collection</h2>
+        <section>
+            <div class="section-header">
+                <h2>Signature <span>Collection</span></h2>
+                <a href="#" class="view-all">View Full Menu →</a>
+            </div>
+            
             <div class="food-grid" id="food-grid-container">
                 <!-- Food items will be loaded via JS -->
-                <div class="loading">
-                    <div class="loading-spinner"></div>
-                    <p>Loading delicious food...</p>
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading our signature dishes...</p>
                 </div>
             </div>
         </section>
 
-        <!-- Features Section -->
-        <section class="features">
-            <div class="feature-item">
-                <div class="feature-icon">🌿</div>
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🌱</div>
                 <h3>Fresh Ingredients</h3>
-                <p>Local farms daily</p>
+                <p>Sourced daily from local farms</p>
             </div>
-            <div class="feature-item">
+            <div class="feature">
                 <div class="feature-icon">👨‍🍳</div>
                 <h3>Expert Chefs</h3>
-                <p>Michelin-starred</p>
+                <p>Michelin-starred culinary team</p>
             </div>
-            <div class="feature-item">
-                <div class="feature-icon">⚡</div>
+            <div class="feature">
+                <div class="feature-icon">⏱️</div>
                 <h3>Quick Service</h3>
-                <p>30-min guarantee</p>
+                <p>30-minute guarantee</p>
             </div>
-            <div class="feature-item">
+            <div class="feature">
                 <div class="feature-icon">🌙</div>
-                <h3>Open Late</h3>
-                <p>Until 2 AM</p>
+                <h3>Late Night</h3>
+                <p>Open until 2 AM</p>
             </div>
-        </section>
+        </div>
     </div>
 
-    <!-- Staff Link -->
+    <!-- Staff Portal Link -->
     <a href="cook.html" class="staff-link" target="_blank">
-        <span>👨‍🍳</span> Kitchen Staff Panel
+        Kitchen Staff Portal →
     </a>
 
-    <!-- Bottom Navigation for Mobile -->
+    <!-- Bottom Navigation (Mobile) -->
     <nav class="bottom-nav">
-        <a href="index.html" class="bottom-nav-item active">
-            <span>🏠</span>
+        <a href="index.html" class="nav-item active">
+            <span>⌂</span>
             <span>Home</span>
         </a>
-        <a href="my-orders.html" class="bottom-nav-item">
+        <a href="my-orders.html" class="nav-item">
             <span>📋</span>
             <span>Orders</span>
         </a>
-        <a href="order-details.html" class="bottom-nav-item">
-            <span>🍽️</span>
-            <span>Order</span>
+        <a href="order-details.html" class="nav-item">
+            <span>🪑</span>
+            <span>Reserve</span>
         </a>
-        <a href="cook.html" class="bottom-nav-item">
+        <a href="cook.html" class="nav-item">
             <span>👨‍🍳</span>
             <span>Kitchen</span>
         </a>
     </nav>
 
     <script>
-        // Comprehensive Menu Data with local images
+
+        const header = document.querySelector('.header');
+  
+        window.addEventListener('scroll', () => {
+            // Change threshold to 1 or 50 depending on when you want the change
+            if (window.scrollY > 0) {          // or > 50 for delay
+            header.classList.add('scrolled');
+            document.body.classList.add("scrolled")
+            
+            } else {
+                header.classList.remove('scrolled');
+                document.body.classList.remove("scrolled")
+                
+            }
+        });
+
+
+        // Menu Data
         const MENU_ITEMS = [
-            // Indian Cuisine
-            { id: 'f1', name: 'Butter Chicken', price: 450, category: 'indian', description: 'Tender chicken in rich, creamy tomato gravy with butter and aromatic spices', image: 'images/butter_chicken.jpeg', time: '25-30 min', spicy: 'Medium', rating: '4.9' },
-            { id: 'f2', name: 'Hyderabadi Biryani', price: 420, category: 'indian', description: 'Fragrant basmati rice cooked with spiced meat, saffron, and fried onions', image: 'images/biryani.jpeg', time: '30-35 min', spicy: 'Hot', rating: '5.0' },
-            { id: 'f3', name: 'Paneer Tikka', price: 380, category: 'indian', description: 'Grilled cottage cheese marinated in spiced yogurt and tandoori masala', image: 'images/paneer-tikka-skewers.jpg', time: '20-25 min', spicy: 'Mild', rating: '4.7' },
-            { id: 'f4', name: 'Dal Makhani', price: 320, category: 'indian', description: 'Creamy black lentils simmered overnight with butter and cream', image: 'images/dalmakhni.jpeg', time: '20-25 min', spicy: 'Mild', rating: '4.6' },
-            { id: 'f5', name: 'Tandoori Chicken', price: 480, category: 'indian', description: 'Whole chicken marinated in yogurt and spices, roasted in clay oven', image: 'images/tanduri_chicken.jpeg', time: '35-40 min', spicy: 'Hot', rating: '4.8' },
-            { id: 'f6', name: 'Palak Paneer', price: 350, category: 'indian', description: 'Fresh cottage cheese in smooth spinach gravy with garlic and cream', image: 'images/palak_tofu_paneer_1.jpg', time: '20-25 min', spicy: 'Mild', rating: '4.5' },
-            { id: 'f7', name: 'Rogan Josh', price: 520, category: 'indian', description: 'Kashmiri lamb curry with fennel, ginger, and aromatic spices', image: 'images/rogan_josh.jpeg', time: '35-40 min', spicy: 'Hot', rating: '4.9' },
-            
-            // Chinese Cuisine
-            { id: 'f8', name: 'Manchow Soup', price: 220, category: 'chinese', description: 'Hot and spicy vegetable soup with fried noodles', image: 'images/manchow_soup.webp', time: '10-15 min', spicy: 'Medium', rating: '4.4' },
-            { id: 'f9', name: 'Schezwan Noodles', price: 280, category: 'chinese', description: 'Stir-fried noodles with vegetables in spicy Schezwan sauce', image: 'images/schezwan_noodles.jpeg', time: '15-20 min', spicy: 'Hot', rating: '4.7' },
-            { id: 'f10', name: 'Chilli Chicken', price: 320, category: 'chinese', description: 'Crispy chicken tossed in tangy chilli sauce with bell peppers', image: 'images/chilli_chicken.jpg', time: '20-25 min', spicy: 'Hot', rating: '4.8' },
-            { id: 'f11', name: 'Spring Rolls', price: 210, category: 'chinese', description: 'Crispy rolls stuffed with vegetables and glass noodles', image: 'images/spring-rolls.jpg', time: '15-20 min', spicy: 'Mild', rating: '4.5' },
-            { id: 'f12', name: 'Kung Pao Chicken', price: 380, category: 'chinese', description: 'Diced chicken with peanuts and vegetables in spicy Szechuan sauce', image: 'images/Kung-Pao-Chicken.jpg', time: '20-25 min', spicy: 'Hot', rating: '4.7' },
-            
-            // Italian Cuisine
-            { id: 'f13', name: 'Margherita Pizza', price: 390, category: 'italian', description: 'Classic pizza with tomato sauce, fresh mozzarella, and basil', image: 'images/pizza.jpeg', time: '20-25 min', spicy: 'Mild', rating: '4.8' },
-            { id: 'f14', name: 'Pasta Carbonara', price: 420, category: 'italian', description: 'Creamy pasta with eggs, pecorino cheese, and crispy pancetta', image: 'images/pasta.jpeg', time: '20-25 min', spicy: 'Mild', rating: '4.9' },
-            { id: 'f15', name: 'Lasagna', price: 480, category: 'italian', description: 'Layered pasta with rich meat sauce, béchamel, and melted cheese', image: 'images/lasagna.jpeg', time: '30-35 min', spicy: 'Mild', rating: '4.8' },
-            { id: 'f16', name: 'Mushroom Risotto', price: 450, category: 'italian', description: 'Creamy arborio rice with mushrooms and parmesan cheese', image: 'images/risotto.jpeg', time: '25-30 min', spicy: 'Mild', rating: '4.6' },
-            
-            // Continental
-            { id: 'f17', name: 'Grilled Salmon', price: 680, category: 'continental', description: 'Fresh Atlantic salmon with lemon butter sauce and seasonal vegetables', image: 'images/grilled_salmon.jpeg', time: '25-30 min', spicy: 'Mild', rating: '4.9' },
-            { id: 'f18', name: 'Ribeye Steak', price: 890, category: 'continental', description: 'Premium grilled steak with mushroom sauce and mashed potatoes', image: 'images/steak.jpeg', time: '30-35 min', spicy: 'Mild', rating: '5.0' },
-            { id: 'f19', name: 'Caesar Salad', price: 280, category: 'continental', description: 'Crisp romaine lettuce with parmesan, croutons, and Caesar dressing', image: 'images/caeser_salad.jpeg', time: '10-15 min', spicy: 'Mild', rating: '4.5' },
-            { id: 'f20', name: 'Fish & Chips', price: 390, category: 'continental', description: 'Beer-battered cod with crispy fries and tartar sauce', image: 'images/fish-em-chips-noruega.jpg', time: '20-25 min', spicy: 'Mild', rating: '4.6' },
-            
-            // Desserts
-            { id: 'f21', name: 'Gulab Jamun', price: 180, category: 'desserts', description: 'Soft milk solids dumplings soaked in rose-cardamom syrup', image: 'images/gulab-jamun.jpg', time: '10-15 min', spicy: 'Sweet', rating: '4.9' },
-            { id: 'f22', name: 'Tiramisu', price: 320, category: 'desserts', description: 'Classic Italian dessert with coffee-soaked ladyfingers and mascarpone', image: 'images/tiramishu.jpeg', time: '10-15 min', spicy: 'Sweet', rating: '4.8' },
-            { id: 'f23', name: 'Chocolate Lava', price: 280, category: 'desserts', description: 'Warm chocolate cake with molten center and vanilla ice cream', image: 'images/chocolate_lave.jpeg', time: '15-20 min', spicy: 'Sweet', rating: '4.9' },
-            
-            // Beverages
-            { id: 'f24', name: 'Masala Chai', price: 120, category: 'beverages', description: 'Traditional Indian tea with cardamom, ginger, and aromatic spices', image: 'images/masala_chai.jpeg', time: '5-10 min', spicy: 'Mild', rating: '4.8' },
-            { id: 'f25', name: 'Mango Lassi', price: 150, category: 'beverages', description: 'Sweet yogurt drink with fresh mango pulp and cardamom', image: 'images/mango-lassi.jpg', time: '5-10 min', spicy: 'Sweet', rating: '4.9' },
-            { id: 'f26', name: 'Fresh Lime Soda', price: 110, category: 'beverages', description: 'Refreshing lime juice with sparkling water, mint, and black salt', image: 'images/fresh_lime.jpeg', time: '5-10 min', spicy: 'Mild', rating: '4.5' },
-            { id: 'f27', name: 'Cold Coffee', price: 180, category: 'beverages', description: 'Chilled coffee with vanilla ice cream and chocolate syrup', image: 'images/cold_coffe.jpeg', time: '5-10 min', spicy: 'Sweet', rating: '4.7' }
+            { id: 'f1', name: 'Butter Chicken', price: 450, category: 'indian', description: 'Tender chicken in rich, creamy tomato gravy with butter and aromatic spices', image: 'images/butter_chicken.jpeg', time: '25-30 min', spice: 'Medium', rating: '4.9' },
+            { id: 'f2', name: 'Hyderabadi Biryani', price: 420, category: 'indian', description: 'Fragrant basmati rice with spiced meat, saffron, and fried onions', image: 'images/biryani.jpeg', time: '30-35 min', spice: 'Hot', rating: '5.0' },
+            { id: 'f3', name: 'Paneer Tikka', price: 380, category: 'indian', description: 'Grilled cottage cheese marinated in spiced yogurt and tandoori masala', image: 'images/paneer-tikka-skewers.jpg', time: '20-25 min', spice: 'Mild', rating: '4.7' },
+            { id: 'f4', name: 'Dal Makhani', price: 320, category: 'indian', description: 'Creamy black lentils simmered overnight with butter and cream', image: 'images/dalmakhni.jpeg', time: '20-25 min', spice: 'Mild', rating: '4.6' },
+            { id: 'f5', name: 'Tandoori Chicken', price: 480, category: 'indian', description: 'Whole chicken marinated in yogurt and spices, roasted in clay oven', image: 'images/tanduri_chicken.jpeg', time: '35-40 min', spice: 'Hot', rating: '4.8' },
+            { id: 'f6', name: 'Palak Paneer', price: 350, category: 'indian', description: 'Fresh cottage cheese in smooth spinach gravy with garlic and cream', image: 'images/palak_tofu_paneer_1.jpg', time: '20-25 min', spice: 'Mild', rating: '4.5' },
+            { id: 'f7', name: 'Rogan Josh', price: 520, category: 'indian', description: 'Kashmiri lamb curry with fennel, ginger, and aromatic spices', image: 'images/rogan_josh.jpeg', time: '35-40 min', spice: 'Hot', rating: '4.9' },
+            { id: 'f8', name: 'Manchow Soup', price: 220, category: 'chinese', description: 'Hot and spicy vegetable soup with fried noodles', image: 'images/manchow_soup.webp', time: '10-15 min', spice: 'Medium', rating: '4.4' },
+            { id: 'f9', name: 'Schezwan Noodles', price: 280, category: 'chinese', description: 'Stir-fried noodles with vegetables in spicy Schezwan sauce', image: 'images/schezwan_noodles.jpeg', time: '15-20 min', spice: 'Hot', rating: '4.7' },
+            { id: 'f10', name: 'Chilli Chicken', price: 320, category: 'chinese', description: 'Crispy chicken tossed in tangy chilli sauce with bell peppers', image: 'images/chilli_chicken.jpg', time: '20-25 min', spice: 'Hot', rating: '4.8' },
+            { id: 'f11', name: 'Spring Rolls', price: 210, category: 'chinese', description: 'Crispy rolls stuffed with vegetables and glass noodles', image: 'images/spring-rolls.jpg', time: '15-20 min', spice: 'Mild', rating: '4.5' },
+            { id: 'f12', name: 'Kung Pao Chicken', price: 380, category: 'chinese', description: 'Diced chicken with peanuts and vegetables in Szechuan sauce', image: 'images/Kung-Pao-Chicken.jpg', time: '20-25 min', spice: 'Hot', rating: '4.7' },
+            { id: 'f13', name: 'Margherita Pizza', price: 390, category: 'italian', description: 'Classic pizza with tomato sauce, fresh mozzarella, and basil', image: 'images/pizza.jpeg', time: '20-25 min', spice: 'Mild', rating: '4.8' },
+            { id: 'f14', name: 'Pasta Carbonara', price: 420, category: 'italian', description: 'Creamy pasta with eggs, pecorino cheese, and crispy pancetta', image: 'images/pasta.jpeg', time: '20-25 min', spice: 'Mild', rating: '4.9' },
+            { id: 'f15', name: 'Lasagna', price: 480, category: 'italian', description: 'Layered pasta with rich meat sauce, béchamel, and melted cheese', image: 'images/lasagna.jpeg', time: '30-35 min', spice: 'Mild', rating: '4.8' },
+            { id: 'f16', name: 'Mushroom Risotto', price: 450, category: 'italian', description: 'Creamy arborio rice with mushrooms and parmesan cheese', image: 'images/risotto.jpeg', time: '25-30 min', spice: 'Mild', rating: '4.6' },
+            { id: 'f17', name: 'Grilled Salmon', price: 680, category: 'continental', description: 'Fresh Atlantic salmon with lemon butter sauce and seasonal vegetables', image: 'images/grilled_salmon.jpeg', time: '25-30 min', spice: 'Mild', rating: '4.9' },
+            { id: 'f18', name: 'Ribeye Steak', price: 890, category: 'continental', description: 'Premium grilled steak with mushroom sauce and mashed potatoes', image: 'images/steak.jpeg', time: '30-35 min', spice: 'Mild', rating: '5.0' },
+            { id: 'f19', name: 'Caesar Salad', price: 280, category: 'continental', description: 'Crisp romaine lettuce with parmesan, croutons, and Caesar dressing', image: 'images/caeser_salad.jpeg', time: '10-15 min', spice: 'Mild', rating: '4.5' },
+            { id: 'f20', name: 'Fish & Chips', price: 390, category: 'continental', description: 'Beer-battered cod with crispy fries and tartar sauce', image: 'images/fish-em-chips-noruega.jpg', time: '20-25 min', spice: 'Mild', rating: '4.6' },
+            { id: 'f21', name: 'Gulab Jamun', price: 180, category: 'desserts', description: 'Soft milk solids dumplings soaked in rose-cardamom syrup', image: 'images/gulab-jamun.jpg', time: '10-15 min', spice: 'Sweet', rating: '4.9' },
+            { id: 'f22', name: 'Tiramisu', price: 320, category: 'desserts', description: 'Classic Italian dessert with coffee-soaked ladyfingers and mascarpone', image: 'images/tiramishu.jpeg', time: '10-15 min', spice: 'Sweet', rating: '4.8' },
+            { id: 'f23', name: 'Chocolate Lava', price: 280, category: 'desserts', description: 'Warm chocolate cake with molten center and vanilla ice cream', image: 'images/chocolate_lave.jpeg', time: '15-20 min', spice: 'Sweet', rating: '4.9' },
+            { id: 'f24', name: 'Masala Chai', price: 120, category: 'beverages', description: 'Traditional Indian tea with cardamom, ginger, and aromatic spices', image: 'images/masala_chai.jpeg', time: '5-10 min', spice: 'Mild', rating: '4.8' },
+            { id: 'f25', name: 'Mango Lassi', price: 150, category: 'beverages', description: 'Sweet yogurt drink with fresh mango pulp and cardamom', image: 'images/mango-lassi.jpg', time: '5-10 min', spice: 'Sweet', rating: '4.9' },
+            { id: 'f26', name: 'Fresh Lime Soda', price: 110, category: 'beverages', description: 'Refreshing lime juice with sparkling water and mint', image: 'images/fresh_lime.jpeg', time: '5-10 min', spice: 'Mild', rating: '4.5' },
+            { id: 'f27', name: 'Cold Coffee', price: 180, category: 'beverages', description: 'Chilled coffee with vanilla ice cream and chocolate syrup', image: 'images/cold_coffe.jpeg', time: '5-10 min', spice: 'Sweet', rating: '4.7' }
         ];
 
         let isLoading = true;
         let currentCategory = 'all';
 
-        // Update order count
         function updateOrderCount() {
             const orders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
             document.getElementById('orders-count').textContent = orders.length;
         }
 
-        // Load menu
-        function loadLandingMenu(category = 'all') {
+        function loadMenu(category = 'all') {
             const container = document.getElementById('food-grid-container');
             if (!container) return;
 
-            if (isLoading) {
-                return;
-            }
+            if (isLoading) return;
 
             const filteredItems = category === 'all' 
                 ? MENU_ITEMS 
@@ -712,9 +789,9 @@
             if (filteredItems.length === 0) {
                 container.innerHTML = `
                     <div class="empty-state">
-                        <h3>No items found</h3>
-                        <p>Try selecting a different category</p>
-                        <button class="reset-btn" onclick="resetCategory()">View All Items</button>
+                        <h3>No dishes available</h3>
+                        <p>Please try a different category</p>
+                        <button class="reset-filter" onclick="resetCategory()">View All Dishes</button>
                     </div>
                 `;
                 return;
@@ -722,84 +799,63 @@
 
             container.innerHTML = filteredItems.map(item => `
                 <div class="food-card" onclick="selectItem('${item.id}')">
-                    <div class="food-img" style="background-image: url('${item.image}')">
-                        <span class="food-badge">${item.rating} ★</span>
+                    <div class="food-image" style="background-image: url('${item.image}')">
+                        <span class="food-rating">★ ${item.rating}</span>
                     </div>
-                    <div class="food-card-content">
-                        <div class="food-title">
-                            <h3>${item.name}</h3>
-                            <span class="price">₹${item.price}</span>
+                    <div class="food-content">
+                        <div class="food-header">
+                            <span class="food-name">${item.name}</span>
+                            <span class="food-price">₹${item.price}</span>
                         </div>
-                        <p class="description">${item.description}</p>
-                        <div class="food-meta">
-                            <span>⏱️ ${item.time}</span>
-                            <span>🌶️ ${item.spicy}</span>
+                        <p class="food-description">${item.description}</p>
+                        <div class="food-details">
+                            <span class="food-detail">⏱️ ${item.time}</span>
+                            <span class="food-detail">🌶️ ${item.spice}</span>
                         </div>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Reset category
         window.resetCategory = function() {
-            document.querySelectorAll('.category-item').forEach(btn => {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.dataset.category === 'all') {
                     btn.classList.add('active');
                 }
             });
             currentCategory = 'all';
-            loadLandingMenu('all');
+            loadMenu('all');
         }
 
-        // Handle item selection
         window.selectItem = function(itemId) {
             sessionStorage.setItem('preselectedItem', itemId);
             window.location.href = 'order-details.html';
         }
 
-        // Category filter functionality
-        document.querySelectorAll('.category-item').forEach(btn => {
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                document.querySelectorAll('.category-item').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 currentCategory = this.dataset.category;
-                loadLandingMenu(currentCategory);
+                loadMenu(currentCategory);
             });
         });
 
         // Initialize
         setTimeout(() => {
             isLoading = false;
-            loadLandingMenu();
+            loadMenu();
         }, 500);
         
         updateOrderCount();
         
-        // Store menu in localStorage
         if (!localStorage.getItem('restaurantMenu')) {
             localStorage.setItem('restaurantMenu', JSON.stringify(MENU_ITEMS));
         }
 
-        // Update order count every 3 seconds
         setInterval(updateOrderCount, 3000);
-
-        // Hide mobile text on small screens
-        const style = document.createElement('style');
-        style.textContent = `
-            @media (max-width: 480px) {
-                .hide-mobile {
-                    display: none;
-                }
-                .nav-btn {
-                    padding: 0.6rem 1rem;
-                }
-                .logo {
-                    font-size: 1.2rem;
-                }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>

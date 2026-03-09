@@ -17,7 +17,7 @@
             color: #0f172a;
         }
 
-        /* Professional Header */
+        /* Professional Header - No Emojis */
         .header {
             background: white;
             border-bottom: 1px solid #e2e8f0;
@@ -47,56 +47,32 @@
             font-weight: 700;
             color: #0f172a;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            letter-spacing: -0.5px;
         }
 
-        .logo-dot {
-            width: 8px;
-            height: 8px;
-            background: #eab308;
-            border-radius: 50%;
-            display: inline-block;
+        .logo-accent {
+            color: #eab308;
         }
 
         .header-actions {
             display: flex;
-            gap: 0.8rem;
+            gap: 1rem;
             align-items: center;
         }
 
         .header-btn {
-            padding: 0.6rem 1.2rem;
-            border-radius: 100px;
+            padding: 0.6rem 0.2rem;
+            border-radius: 6px;
             font-weight: 500;
             font-size: 0.9rem;
             text-decoration: none;
             transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            white-space: nowrap;
-        }
-
-        @media (max-width: 480px) {
-            .header-btn span:not(.badge) {
-                display: none;
-            }
-            .header-btn {
-                padding: 0.6rem 1rem;
-            }
-        }
-
-        .header-btn.outline {
-            border: 1px solid #e2e8f0;
             color: #475569;
-            background: white;
         }
 
-        .header-btn.outline:hover {
+        .header-btn:hover {
+            color: #eab308;
             background: #f8fafc;
-            border-color: #94a3b8;
         }
 
         .header-btn.primary {
@@ -105,20 +81,25 @@
             font-weight: 600;
         }
 
+        .header-btn.primary:hover {
+            background: #facc15;
+            color: #0f172a;
+        }
+
         .badge {
             background: #eab308;
             color: #0f172a;
-            border-radius: 100px;
-            padding: 0.2rem 0.6rem;
-            font-size: 0.8rem;
+            border-radius: 4px;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.75rem;
             font-weight: 600;
-            margin-left: 0.3rem;
+            margin-left: 0.5rem;
         }
 
         /* Main Container */
         .container {
             max-width: 1200px;
-            margin: 1.5rem auto;
+            margin: 2rem auto;
             padding: 0 1.5rem;
         }
 
@@ -129,319 +110,224 @@
             }
         }
 
-        /* Progress Bar */
-        .progress-section {
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             margin-bottom: 2rem;
-            overflow-x: auto;
-            padding: 0.5rem 0;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .progress-steps {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            min-width: 500px;
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .progress-steps::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: #e2e8f0;
-            transform: translateY(-50%);
-            z-index: 1;
-        }
-
-        .step {
-            background: white;
-            border: 2px solid #e2e8f0;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            color: #94a3b8;
-            position: relative;
-            z-index: 2;
-            background: white;
-            flex-shrink: 0;
-        }
-
-        .step.active {
-            background: #eab308;
-            border-color: #eab308;
-            color: #0f172a;
-        }
-
-        .step-label {
-            position: absolute;
-            top: 45px;
-            font-size: 0.75rem;
             color: #64748b;
-            white-space: nowrap;
-        }
-
-        /* Features Bar - Scrollable on Mobile */
-        .features-bar {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: white;
-            border-radius: 100px;
-            border: 1px solid #e2e8f0;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-        }
-
-        @media (max-width: 768px) {
-            .features-bar {
-                border-radius: 30px;
-                padding: 0.8rem;
-                gap: 0.8rem;
-            }
-        }
-
-        .features-bar::-webkit-scrollbar {
-            height: 3px;
-        }
-
-        .features-bar::-webkit-scrollbar-track {
-            background: #e2e8f0;
-        }
-
-        .features-bar::-webkit-scrollbar-thumb {
-            background: #eab308;
-            border-radius: 10px;
-        }
-
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            color: #475569;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .feature-icon {
-            width: 36px;
-            height: 36px;
-            background: #fefce8;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #eab308;
-            font-size: 1.1rem;
-        }
-
-        .feature-text {
-            font-weight: 500;
             font-size: 0.9rem;
         }
 
-        /* Main Content Grid - Mobile First */
-        .content-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+        .breadcrumb a {
+            color: #64748b;
+            text-decoration: none;
         }
 
-        @media (min-width: 1024px) {
-            .content-grid {
-                display: grid;
-                grid-template-columns: 2fr 1fr;
-                gap: 2rem;
-                align-items: start;
-            }
+        .breadcrumb a:hover {
+            color: #eab308;
         }
 
-        /* Table Categories - Mobile Optimized */
-        .table-selection-section {
-            background: white;
-            border-radius: 30px;
-            padding: 1.5rem;
-            border: 1px solid #e2e8f0;
-            width: 100%;
-            overflow: hidden;
+        .breadcrumb .separator {
+            color: #cbd5e1;
+        }
+
+        .breadcrumb .active {
+            color: #0f172a;
+            font-weight: 500;
+        }
+
+        /* Page Title */
+        .page-title {
+            margin-bottom: 2rem;
+        }
+
+        .page-title h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-title p {
+            color: #64748b;
+            font-size: 1rem;
         }
 
         @media (max-width: 768px) {
-            .table-selection-section {
-                padding: 1.2rem;
+            .page-title h1 {
+                font-size: 1.5rem;
             }
         }
 
-        .section-header {
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #eab308;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Main Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Table Selection Panel */
+        .selection-panel {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            background: #f8fafc;
+        }
+
+        .panel-header h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.25rem;
+        }
+
+        .panel-header p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Category Tabs */
+        .category-tabs {
+            display: flex;
+            border-bottom: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        .category-tab {
+            flex: 1;
+            padding: 1rem;
+            background: none;
+            border: none;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .category-tab:hover {
+            color: #eab308;
+        }
+
+        .category-tab.active {
+            color: #eab308;
+            border-bottom-color: #eab308;
+            font-weight: 600;
+        }
+
+        /* Table Grid Container */
+        .table-grid-container {
+            padding: 1.5rem;
+        }
+
+        .category-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            gap: 1rem;
         }
 
-        .section-header h2 {
-            font-size: 1.3rem;
+        .category-info h3 {
+            font-size: 1rem;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            color: #0f172a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .section-header h2 span {
-            color: #eab308;
-        }
-
-        .capacity-info {
+        .capacity-badge {
             background: #f1f5f9;
-            padding: 0.4rem 1rem;
-            border-radius: 100px;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
             font-size: 0.85rem;
             color: #475569;
         }
 
-        /* Category Tabs - Horizontal Scroll */
-        .category-tabs {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            overflow-x: auto;
-            padding: 0.2rem 0 1rem;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-        }
-
-        .category-tabs::-webkit-scrollbar {
-            height: 3px;
-        }
-
-        .category-tab {
-            padding: 0.7rem 1.5rem;
-            border-radius: 100px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 1px solid #e2e8f0;
-            background: white;
-            color: #475569;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .category-tab:active {
-            transform: scale(0.96);
-        }
-
-        .category-tab.active {
-            background: #eab308;
-            border-color: #eab308;
-            color: #0f172a;
-            font-weight: 600;
-        }
-
-        /* Category Sections */
-        .category-section {
-            display: none;
-            width: 100%;
-        }
-
-        .category-section.active {
-            display: block;
-        }
-
-        /* Category Header */
-        .category-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #e2e8f0;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .category-info h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #0f172a;
-            margin-bottom: 0.3rem;
-        }
-
-        .category-info p {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        .category-price {
-            background: #f1f5f9;
-            padding: 0.5rem 1.2rem;
-            border-radius: 100px;
-            font-weight: 600;
-            color: #0f172a;
-            font-size: 1rem;
-            white-space: nowrap;
-        }
-
-        /* Table Grid - Fully Responsive */
         .table-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-            gap: 0.8rem;
-            width: 100%;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.75rem;
         }
 
         @media (max-width: 480px) {
             .table-grid {
-                grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-                gap: 0.6rem;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 0.5rem;
             }
         }
 
         .table-item {
             aspect-ratio: 1;
-            background: #f8fafc;
+            background: white;
             border: 2px solid #e2e8f0;
-            border-radius: 16px;
+            border-radius: 8px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.2s;
-            font-weight: 600;
+            transition: all 0.15s ease;
+            font-weight: 500;
             color: #475569;
             position: relative;
-            width: 100%;
-            padding: 0.3rem;
-        }
-
-        @media (max-width: 480px) {
-            .table-item {
-                border-radius: 12px;
-            }
-        }
-
-        .table-item:active {
-            transform: scale(0.96);
         }
 
         .table-item:hover {
             border-color: #eab308;
-            background: #fefce8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(234, 179, 8, 0.1);
         }
 
         .table-item.selected {
@@ -455,129 +341,141 @@
             border-color: #cbd5e1;
             color: #94a3b8;
             cursor: not-allowed;
-            opacity: 0.6;
-            position: relative;
-            overflow: hidden;
+            opacity: 0.7;
         }
 
-        .table-item.booked::after {
-            content: '×';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1.5rem;
-            color: #ef4444;
-            opacity: 0.5;
+        .table-item.booked:hover {
+            transform: none;
+            box-shadow: none;
         }
 
         .table-number {
-            font-size: 1rem;
-            font-weight: 700;
-        }
-
-        @media (max-width: 480px) {
-            .table-number {
-                font-size: 0.9rem;
-            }
+            font-size: 1.1rem;
+            font-weight: 600;
         }
 
         .table-capacity {
-            font-size: 0.65rem;
-            color: inherit;
+            font-size: 0.7rem;
             opacity: 0.8;
         }
 
-        /* Booking Summary Card - Mobile Optimized */
+        /* Loading Indicator for Auto-redirect */
+        .redirect-toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #0f172a;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+            border-left: 4px solid #eab308;
+        }
+
+        .redirect-toast .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #eab308;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Summary Card */
         .summary-card {
             background: white;
-            border-radius: 30px;
-            padding: 1.5rem;
+            border-radius: 12px;
             border: 1px solid #e2e8f0;
-            width: 100%;
+            padding: 1.5rem;
+            position: sticky;
+            top: 100px;
         }
 
-        @media (min-width: 1024px) {
+        @media (max-width: 1024px) {
             .summary-card {
-                position: sticky;
-                top: 100px;
+                position: static;
             }
         }
 
-        @media (max-width: 768px) {
-            .summary-card {
-                padding: 1.2rem;
-            }
-        }
-
-        .summary-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .summary-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0f172a;
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid #e2e8f0;
         }
 
-        .summary-header h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #0f172a;
-        }
-
-        .summary-header span {
-            color: #eab308;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            padding: 0.3rem 0.8rem;
-            border-radius: 100px;
-            transition: all 0.2s;
-        }
-
-        .summary-header span:hover {
-            background: #fefce8;
-        }
-
-        .summary-header span:active {
-            transform: scale(0.96);
-        }
-
-        .selected-table-info {
-            background: #f8fafc;
-            border-radius: 20px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+        .selected-info {
             text-align: center;
+            padding: 2rem 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
         }
 
-        .selected-table-info .table-icon {
-            font-size: 2.5rem;
+        .selected-info .table-icon {
+            width: 48px;
+            height: 48px;
+            background: #eab308;
+            color: #0f172a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: 600;
+        }
+
+        .selected-info .table-number-large {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.25rem;
+        }
+
+        .selected-info .table-type {
+            color: #64748b;
+            font-size: 0.9rem;
             margin-bottom: 0.5rem;
         }
 
-        .selected-table-info .table-details {
-            font-weight: 600;
-            color: #0f172a;
-            margin-bottom: 0.3rem;
-            font-size: 1.1rem;
+        .selected-info .guest-count {
+            background: #e2e8f0;
+            display: inline-block;
+            padding: 0.25rem 1rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #475569;
         }
 
-        .selected-table-info .table-category {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        .no-selection {
+        .empty-selection {
             text-align: center;
             padding: 2rem 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
             color: #94a3b8;
-        }
-
-        .no-selection .table-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0.5;
         }
 
         .price-breakdown {
@@ -587,114 +485,87 @@
         .price-row {
             display: flex;
             justify-content: space-between;
-            padding: 0.8rem 0;
+            padding: 0.75rem 0;
             color: #475569;
             font-size: 0.95rem;
+            border-bottom: 1px dashed #e2e8f0;
         }
 
         .price-row.total {
             border-top: 2px solid #e2e8f0;
+            border-bottom: none;
             margin-top: 0.5rem;
             padding-top: 1rem;
-            font-weight: 700;
+            font-weight: 600;
             color: #0f172a;
             font-size: 1.1rem;
         }
 
-        .continue-btn {
-            width: 100%;
-            background: #eab308;
-            color: #0f172a;
-            border: none;
-            padding: 1.2rem;
-            border-radius: 100px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.2s;
+        .auto-redirect-note {
+            background: #fefce8;
+            border: 1px solid #eab308;
+            border-radius: 6px;
+            padding: 0.75rem;
             margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #854d0e;
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 0.5rem;
-        }
-
-        .continue-btn:active {
-            transform: scale(0.98);
-        }
-
-        .continue-btn:hover:not(:disabled) {
-            background: #facc15;
-        }
-
-        .continue-btn:disabled {
-            background: #cbd5e1;
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-
-        .cancellation-note {
-            color: #94a3b8;
-            font-size: 0.8rem;
-            text-align: center;
-            margin-top: 1rem;
         }
 
         /* FAQ Section */
         .faq-section {
-            margin-top: 2rem;
+            margin-top: 3rem;
             background: white;
-            border-radius: 30px;
-            padding: 1.5rem;
+            border-radius: 12px;
             border: 1px solid #e2e8f0;
+            padding: 1.5rem;
         }
 
         .faq-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
+            color: #0f172a;
             margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
         .faq-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
         }
 
-        @media (min-width: 768px) {
+        @media (max-width: 640px) {
             .faq-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
             }
         }
 
         .faq-item {
             padding: 1rem;
-            border-radius: 20px;
-            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s;
         }
 
-        .faq-item:active {
-            transform: scale(0.99);
+        .faq-item:hover {
+            border-color: #eab308;
         }
 
         .faq-question {
-            font-weight: 600;
+            font-weight: 500;
             color: #0f172a;
             margin-bottom: 0.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.95rem;
         }
 
         .faq-answer {
             color: #64748b;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             line-height: 1.5;
             max-height: 0;
             overflow: hidden;
@@ -703,123 +574,82 @@
 
         .faq-item.expanded .faq-answer {
             max-height: 200px;
-            margin-top: 0.8rem;
+            margin-top: 0.75rem;
         }
 
         .arrow {
             transition: transform 0.2s;
-            font-size: 0.8rem;
         }
 
         .faq-item.expanded .arrow {
             transform: rotate(180deg);
         }
-
-        /* Loading State */
-        .loading {
-            text-align: center;
-            padding: 3rem;
-            color: #64748b;
-        }
-
-        /* Touch-friendly adjustments */
-        @media (max-width: 768px) {
-            .table-item {
-                min-height: 60px;
-            }
-            
-            .category-tab {
-                padding: 0.6rem 1.2rem;
-            }
-            
-            .continue-btn {
-                padding: 1rem;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Professional Header -->
+    <!-- Professional Header - No Emojis -->
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">
-                FlavorFlow
-                <span class="logo-dot"></span>
+                Flavor<span class="logo-accent">Flow</span>
             </a>
             <div class="header-actions">
-                <a href="my-orders.html" class="header-btn outline">
-                    <span>📋</span>
-                    <span>Orders</span>
+                <a href="my-orders.html" class="header-btn">
+                    My Orders
                     <span class="badge" id="orders-count">0</span>
                 </a>
-                <a href="index.html" class="header-btn outline">
-                    <span>🏠</span>
-                    <span>Home</span>
+                
+                <a href="cook.html" class="header-btn primary">
+                    Kitchen Portal
                 </a>
             </div>
         </div>
     </header>
 
     <div class="container">
-        <!-- Progress Indicator -->
-        <div class="progress-section">
-            <div class="progress-steps">
-                <div class="step active">
-                    1
-                    <span class="step-label">Select Table</span>
-                </div>
-                <div class="step">
-                    2
-                    <span class="step-label">Choose Food</span>
-                </div>
-                <div class="step">
-                    3
-                    <span class="step-label">Review</span>
-                </div>
-                <div class="step">
-                    4
-                    <span class="step-label">Track</span>
-                </div>
-            </div>
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="separator">/</span>
+            <span class="active">Table Selection</span>
         </div>
 
-        <!-- Features Bar - Scrollable -->
-        <div class="features-bar">
-            <div class="feature">
-                <div class="feature-icon">🪑</div>
-                <div class="feature-text">Premium Seating</div>
+        <!-- Page Title -->
+        <div class="page-title">
+            <h1>Select Your Table</h1>
+            <p>Choose from our premium dining sections • Instant confirmation</p>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="total-tables">69</div>
+                <div class="stat-label">Total Tables</div>
             </div>
-            <div class="feature">
-                <div class="feature-icon">🎉</div>
-                <div class="feature-text">Party Ready</div>
+            <div class="stat-card">
+                <div class="stat-value" id="available-tables">56</div>
+                <div class="stat-label">Available</div>
             </div>
-            <div class="feature">
-                <div class="feature-icon">✨</div>
-                <div class="feature-text">Ambiance</div>
+            <div class="stat-card">
+                <div class="stat-value" id="avg-capacity">2-20</div>
+                <div class="stat-label">Guest Capacity</div>
             </div>
-            <div class="feature">
-                <div class="feature-icon">🔔</div>
-                <div class="feature-text">Quick Service</div>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🌿</div>
-                <div class="feature-text">Fresh Food</div>
+            <div class="stat-card">
+                <div class="stat-value" id="cover-start">₹300</div>
+                <div class="stat-label">Starting Cover</div>
             </div>
         </div>
 
         <!-- Main Content Grid -->
         <div class="content-grid">
             <!-- Left Column - Table Selection -->
-            <div class="table-selection-section">
-                <div class="section-header">
-                    <h2>
-                        <span>🪑</span>
-                        Select Your Table
-                    </h2>
-                    <span class="capacity-info">2-20 guests</span>
+            <div class="selection-panel">
+                <div class="panel-header">
+                    <h2>Dining Sections</h2>
+                    <p>Click any available table to proceed</p>
                 </div>
 
-                <!-- Category Tabs - Horizontal Scroll -->
+                <!-- Category Tabs -->
                 <div class="category-tabs" id="categoryTabs">
                     <button class="category-tab active" data-category="ac">AC Dining</button>
                     <button class="category-tab" data-category="non-ac">Non-AC</button>
@@ -827,76 +657,56 @@
                     <button class="category-tab" data-category="candle">Candle Light</button>
                 </div>
 
-                <!-- AC Dining Section -->
-                <div class="category-section active" id="ac-section">
-                    <div class="category-header">
+                <!-- Table Grids -->
+                <div class="table-grid-container">
+                    <!-- AC Dining Section -->
+                    <div class="category-section active" id="ac-section">
                         <div class="category-info">
-                            <h3>AC Dining</h3>
-                            <p>Premium air-conditioned comfort</p>
+                            <h3>AC Dining · Premium Comfort</h3>
+                            <span class="capacity-badge">2-6 Guests</span>
                         </div>
-                        <div class="category-price">₹500</div>
+                        <div class="table-grid" id="ac-grid"></div>
                     </div>
-                    <div class="table-grid" id="ac-grid">
-                        <!-- Populated by JS -->
-                    </div>
-                </div>
 
-                <!-- Non-AC Section -->
-                <div class="category-section" id="non-ac-section">
-                    <div class="category-header">
+                    <!-- Non-AC Section -->
+                    <div class="category-section" id="non-ac-section" style="display: none;">
                         <div class="category-info">
-                            <h3>Non-AC Dining</h3>
-                            <p>Open air seating</p>
+                            <h3>Non-AC · Open Air</h3>
+                            <span class="capacity-badge">2-8 Guests</span>
                         </div>
-                        <div class="category-price">₹300</div>
+                        <div class="table-grid" id="non-ac-grid"></div>
                     </div>
-                    <div class="table-grid" id="non-ac-grid">
-                        <!-- Populated by JS -->
-                    </div>
-                </div>
 
-                <!-- Party Hall Section -->
-                <div class="category-section" id="party-section">
-                    <div class="category-header">
+                    <!-- Party Hall Section -->
+                    <div class="category-section" id="party-section" style="display: none;">
                         <div class="category-info">
-                            <h3>Party Hall</h3>
-                            <p>Private parties & celebrations</p>
+                            <h3>Party Hall · Celebrations</h3>
+                            <span class="capacity-badge">10-20 Guests</span>
                         </div>
-                        <div class="category-price">₹1500</div>
+                        <div class="table-grid" id="party-grid"></div>
                     </div>
-                    <div class="table-grid" id="party-grid">
-                        <!-- Populated by JS -->
-                    </div>
-                </div>
 
-                <!-- Candle Light Section -->
-                <div class="category-section" id="candle-section">
-                    <div class="category-header">
+                    <!-- Candle Light Section -->
+                    <div class="category-section" id="candle-section" style="display: none;">
                         <div class="category-info">
-                            <h3>Candle Light</h3>
-                            <p>Romantic dinner setup</p>
+                            <h3>Candle Light · Romantic</h3>
+                            <span class="capacity-badge">2 Guests</span>
                         </div>
-                        <div class="category-price">₹800</div>
-                    </div>
-                    <div class="table-grid" id="candle-grid">
-                        <!-- Populated by JS -->
+                        <div class="table-grid" id="candle-grid"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column - Booking Summary -->
+            <!-- Right Column - Summary -->
             <div>
                 <div class="summary-card">
-                    <div class="summary-header">
-                        <h3>Your Selection</h3>
-                        <span onclick="clearSelection()">Clear</span>
-                    </div>
+                    <div class="summary-title">Booking Summary</div>
                     
                     <div id="selected-table-display">
-                        <div class="no-selection">
-                            <div class="table-icon">🪑</div>
+                        <div class="empty-selection">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem; opacity: 0.5;">⊟</div>
                             <p>No table selected</p>
-                            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Choose a table to continue</p>
+                            <p style="font-size: 0.85rem; margin-top: 0.5rem;">Click any available table</p>
                         </div>
                     </div>
 
@@ -915,32 +725,25 @@
                         </div>
                     </div>
 
-                    <button class="continue-btn" id="continue-btn" disabled onclick="proceedToMenu()">
-                        Continue to Menu
-                        <span>→</span>
-                    </button>
-
-                    <p class="cancellation-note">
-                        Free cancellation within 10 minutes
-                    </p>
+                    <div class="auto-redirect-note">
+                        <span>⚡</span>
+                        <span>Auto-redirect enabled · You'll be taken to menu immediately after selection</span>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- FAQ Section -->
         <div class="faq-section">
-            <div class="faq-title">
-                <span>❓</span>
-                Frequently Asked Questions
-            </div>
-            <div class="faq-grid" id="faq-grid">
+            <div class="faq-title">Frequently Asked Questions</div>
+            <div class="faq-grid">
                 <div class="faq-item expanded">
                     <div class="faq-question">
-                        How do I select a table?
+                        How does table selection work?
                         <span class="arrow">▼</span>
                     </div>
                     <div class="faq-answer">
-                        Click on any available table number. Selected tables will be highlighted in yellow.
+                        Simply click any available table. You'll be automatically redirected to the menu to complete your order.
                     </div>
                 </div>
                 <div class="faq-item">
@@ -949,28 +752,37 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="faq-answer">
-                        Cover charge includes table service and is adjustable against your food bill.
+                        Cover charge includes table service and is fully adjustable against your final food bill.
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        Can I change my table?
+                        Can I change my selection?
                         <span class="arrow">▼</span>
                     </div>
                     <div class="faq-answer">
-                        Yes, simply click on a different available table before proceeding.
+                        Yes, you can change tables anytime before placing your order by clicking a different table.
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        What if table is booked?
+                        What do grey tables mean?
                         <span class="arrow">▼</span>
                     </div>
                     <div class="faq-answer">
-                        Booked tables show a cross (×) and cannot be selected.
+                        Greyed out tables are currently booked. Please select from the highlighted available tables.
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Auto-redirect Toast Notification -->
+    <div id="redirect-toast" class="redirect-toast" style="display: none;">
+        <div class="spinner"></div>
+        <div>
+            <div style="font-weight: 600; margin-bottom: 0.25rem;">Table Selected</div>
+            <div style="font-size: 0.85rem; opacity: 0.9;">Redirecting to menu...</div>
         </div>
     </div>
 
@@ -1020,6 +832,17 @@
         };
 
         let selectedTable = null;
+        let redirectTimeout = null;
+
+        // Update stats
+        function updateStats() {
+            const allTables = Object.values(tableCategories).flatMap(cat => cat.tables);
+            const totalTables = allTables.length;
+            const availableTables = allTables.filter(t => !t.booked).length;
+            
+            document.getElementById('total-tables').textContent = totalTables;
+            document.getElementById('available-tables').textContent = availableTables;
+        }
 
         // Initialize tables
         function initializeTables() {
@@ -1038,9 +861,27 @@
                     `).join('');
                 }
             }
+            updateStats();
         }
 
-        // Select table
+        // Show redirect toast
+        function showRedirectToast() {
+            const toast = document.getElementById('redirect-toast');
+            toast.style.display = 'flex';
+            
+            // Clear any existing timeout
+            if (redirectTimeout) {
+                clearTimeout(redirectTimeout);
+            }
+        }
+
+        // Hide redirect toast
+        function hideRedirectToast() {
+            const toast = document.getElementById('redirect-toast');
+            toast.style.display = 'none';
+        }
+
+        // Select table - Auto redirect to menu
         window.selectTable = function(category, tableNumber, coverCharge) {
             const tableData = tableCategories[category].tables.find(t => t.number === tableNumber);
             
@@ -1053,9 +894,27 @@
                 coverCharge: coverCharge
             };
 
+            // Update display
             updateSelectedDisplay();
-            enableContinueButton();
             initializeTables();
+            
+            // Show redirect toast
+            showRedirectToast();
+            
+            // Save to localStorage
+            let currentOrder = JSON.parse(localStorage.getItem('currentCustomerOrder')) || {};
+            currentOrder.tableNumber = selectedTable.number;
+            currentOrder.tableCategory = selectedTable.categoryName;
+            currentOrder.coverCharge = selectedTable.coverCharge;
+            currentOrder.tableCapacity = selectedTable.capacity;
+            currentOrder.items = [];
+            currentOrder.status = 'pending';
+            localStorage.setItem('currentCustomerOrder', JSON.stringify(currentOrder));
+
+            // Auto-redirect after 1.5 seconds
+            redirectTimeout = setTimeout(() => {
+                window.location.href = 'food-menu.html';
+            }, 1500);
         }
 
         // Update selected table display
@@ -1068,10 +927,11 @@
                 const total = selectedTable.coverCharge + gst;
 
                 displayDiv.innerHTML = `
-                    <div class="selected-table-info">
-                        <div class="table-icon">🪑</div>
-                        <div class="table-details">Table ${selectedTable.number}</div>
-                        <div class="table-category">${selectedTable.categoryName} • ${selectedTable.capacity} guests</div>
+                    <div class="selected-info">
+                        <div class="table-icon">${selectedTable.number}</div>
+                        <div class="table-number-large">Table ${selectedTable.number}</div>
+                        <div class="table-type">${selectedTable.categoryName}</div>
+                        <div class="guest-count">${selectedTable.capacity} Guests</div>
                     </div>
                 `;
 
@@ -1082,46 +942,13 @@
                 priceBreakdown.style.display = 'block';
             } else {
                 displayDiv.innerHTML = `
-                    <div class="no-selection">
-                        <div class="table-icon">🪑</div>
+                    <div class="empty-selection">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem; opacity: 0.5;">⊟</div>
                         <p>No table selected</p>
-                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Choose a table to continue</p>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Click any available table</p>
                     </div>
                 `;
                 priceBreakdown.style.display = 'none';
-            }
-        }
-
-        // Clear selection
-        window.clearSelection = function() {
-            selectedTable = null;
-            updateSelectedDisplay();
-            disableContinueButton();
-            initializeTables();
-        }
-
-        function enableContinueButton() {
-            const btn = document.getElementById('continue-btn');
-            btn.disabled = false;
-        }
-
-        function disableContinueButton() {
-            const btn = document.getElementById('continue-btn');
-            btn.disabled = true;
-        }
-
-        // Proceed to menu
-        window.proceedToMenu = function() {
-            if (selectedTable) {
-                let currentOrder = JSON.parse(localStorage.getItem('currentCustomerOrder')) || {};
-                currentOrder.tableNumber = selectedTable.number;
-                currentOrder.tableCategory = selectedTable.categoryName;
-                currentOrder.coverCharge = selectedTable.coverCharge;
-                currentOrder.tableCapacity = selectedTable.capacity;
-                currentOrder.items = [];
-                currentOrder.status = 'pending';
-                localStorage.setItem('currentCustomerOrder', JSON.stringify(currentOrder));
-                window.location.href = 'food-menu.html';
             }
         }
 
@@ -1133,14 +960,14 @@
 
                 const category = this.dataset.category;
                 document.querySelectorAll('.category-section').forEach(section => {
-                    section.classList.remove('active');
+                    section.style.display = 'none';
                 });
                 
                 const sectionId = category === 'non-ac' ? 'non-ac-section' : 
                                  category === 'ac' ? 'ac-section' :
                                  category === 'party' ? 'party-section' : 'candle-section';
                 
-                document.getElementById(sectionId).classList.add('active');
+                document.getElementById(sectionId).style.display = 'block';
             });
         });
 
@@ -1159,6 +986,7 @@
 
         // Initialize
         initializeTables();
+        updateSelectedDisplay();
         updateOrderCount();
         setInterval(updateOrderCount, 3000);
     </script>

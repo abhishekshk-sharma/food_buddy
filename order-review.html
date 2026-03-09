@@ -9,11 +9,12 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
-            background: #f5f5f4;
+            background: #f8fafc;
+            color: #0f172a;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -21,36 +22,115 @@
             padding: 1rem;
         }
 
-        .review-card {
+        /* Professional Header (for consistency) */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             background: white;
-            max-width: 600px;
-            width: 100%;
-            padding: 2.5rem;
-            border-radius: 48px;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            border-bottom: 1px solid #e2e8f0;
+            padding: 1rem 2rem;
+            z-index: 100;
         }
 
-        h1 {
-            font-size: 2.2rem;
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            text-decoration: none;
+        }
+
+        .logo-accent {
+            color: #eab308;
+        }
+
+        /* Main Review Card */
+        .review-card {
+            background: white;
+            max-width: 700px;
+            width: 100%;
+            margin: 5rem auto 2rem;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            border: 1px solid #f1f5f9;
+        }
+
+        @media (max-width: 768px) {
+            .review-card {
+                padding: 1.5rem;
+                margin-top: 5rem;
+            }
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0f172a;
             margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header h1 span {
+            color: #eab308;
+        }
+
+        .page-header p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: #1c1917;
-        }
-
-        .subtitle {
-            color: #57534e;
             margin-bottom: 2rem;
+            color: #64748b;
+            font-size: 0.85rem;
+            justify-content: center;
         }
 
-        /* Table Info Card */
-        .table-info-card {
-            background: linear-gradient(135deg, #fef9e7 0%, #fef3c7 100%);
-            border-radius: 30px;
+        .breadcrumb a {
+            color: #64748b;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: #eab308;
+        }
+
+        .breadcrumb .separator {
+            color: #cbd5e1;
+        }
+
+        .breadcrumb .active {
+            color: #0f172a;
+            font-weight: 500;
+        }
+
+        /* Table Information Card */
+        .table-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
             padding: 1.5rem;
             margin-bottom: 2rem;
-            border: 2px solid #eab308;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -58,27 +138,32 @@
             gap: 1rem;
         }
 
-        .table-details h3 {
-            color: #854d0e;
-            font-size: 1rem;
+        .table-info h3 {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             margin-bottom: 0.3rem;
         }
 
-        .table-details p {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #1c1917;
-        }
-
-        .table-badge {
-            background: #1c1917;
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 40px;
+        .table-info p {
+            font-size: 1.2rem;
             font-weight: 600;
+            color: #0f172a;
         }
 
-        /* Items List */
+        .table-category {
+            background: #0f172a;
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border: 1px solid #eab308;
+        }
+
+        /* Items Section */
         .items-section {
             margin-bottom: 2rem;
         }
@@ -88,34 +173,39 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .section-header h2 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            color: #1c1917;
+            color: #0f172a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .item-count {
-            background: #eab308;
-            color: #1c1917;
+            background: #f1f5f9;
+            color: #475569;
             padding: 0.2rem 1rem;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 0.9rem;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.85rem;
         }
 
         .items-list {
-            background: #f5f5f4;
-            border-radius: 30px;
-            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1.2rem;
+            border: 1px solid #f1f5f9;
         }
 
         .item-row {
             display: flex;
             justify-content: space-between;
             padding: 0.8rem 0;
-            border-bottom: 1px dashed #d6d3d1;
+            border-bottom: 1px dashed #e2e8f0;
         }
 
         .item-row:last-child {
@@ -124,7 +214,7 @@
 
         .item-name {
             font-weight: 500;
-            color: #1c1917;
+            color: #0f172a;
         }
 
         .item-price {
@@ -142,39 +232,48 @@
             align-items: center;
             gap: 0.5rem;
             margin-bottom: 0.8rem;
-            color: #1c1917;
+            color: #0f172a;
             font-weight: 600;
+            font-size: 0.95rem;
         }
 
-        .instructions-label span {
-            font-size: 1.2rem;
+        .instructions-icon {
+            width: 28px;
+            height: 28px;
+            background: #f1f5f9;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #eab308;
+            font-size: 0.9rem;
         }
 
         .instructions-input {
             width: 100%;
             padding: 1.2rem;
-            border: 2px solid #e7e5e4;
-            border-radius: 30px;
-            font-size: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.95rem;
             transition: all 0.2s;
             resize: none;
             font-family: 'Inter', sans-serif;
-            background: #fafaf9;
+            background: #f8fafc;
         }
 
         .instructions-input:focus {
             outline: none;
             border-color: #eab308;
             background: white;
-            box-shadow: 0 0 0 4px rgba(234, 179, 8, 0.1);
+            box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.1);
         }
 
         .char-count {
             display: flex;
             justify-content: flex-end;
             margin-top: 0.5rem;
-            font-size: 0.85rem;
-            color: #a8a29e;
+            font-size: 0.8rem;
+            color: #94a3b8;
         }
 
         .char-count.warning {
@@ -187,11 +286,11 @@
 
         /* Preview Card */
         .preview-card {
-            background: #fafaf9;
-            border-radius: 20px;
-            padding: 1rem;
-            margin: 1rem 0;
-            border: 2px dashed #eab308;
+            background: #fefce8;
+            border: 1px solid #eab308;
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin: 1.5rem 0;
             display: none;
         }
 
@@ -204,24 +303,32 @@
             align-items: center;
             gap: 0.5rem;
             color: #854d0e;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.8rem;
+        }
+
+        .preview-title span:first-child {
+            font-size: 1rem;
         }
 
         .preview-text {
-            color: #1c1917;
+            color: #0f172a;
             font-style: italic;
             background: white;
-            padding: 0.8rem;
-            border-radius: 16px;
+            padding: 1rem;
+            border-radius: 8px;
             border-left: 4px solid #eab308;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         /* Total Section */
         .total-section {
-            background: #1c1917;
-            border-radius: 30px;
+            background: #0f172a;
+            border-radius: 12px;
             padding: 1.5rem;
             margin: 2rem 0;
             color: white;
@@ -231,140 +338,205 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 1.3rem;
+        }
+
+        .total-label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .total-amount {
+            font-size: 2rem;
             font-weight: 700;
-        }
-
-        .total-row span:last-child {
             color: #eab308;
-            font-size: 1.8rem;
         }
 
-        /* Action Buttons */
+        /* Place Order Button */
         .place-order-btn {
             background: #eab308;
-            color: #1c1917;
+            color: #0f172a;
             border: none;
             padding: 1.2rem;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            border-radius: 60px;
+            border-radius: 8px;
             width: 100%;
             cursor: pointer;
             transition: all 0.2s;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .place-order-btn:hover {
             background: #facc15;
-            transform: scale(1.02);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(234, 179, 8, 0.2);
         }
 
+        /* Action Links */
         .action-links {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 1rem;
             flex-wrap: wrap;
             gap: 1rem;
         }
 
         .edit-link {
-            color: #57534e;
+            color: #64748b;
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 0.3rem;
             padding: 0.5rem 1rem;
-            border-radius: 30px;
+            border-radius: 4px;
             transition: all 0.2s;
+            font-size: 0.9rem;
         }
 
         .edit-link:hover {
-            background: #f5f5f4;
+            background: #f1f5f9;
             color: #eab308;
         }
 
         .view-orders-link {
-            background: #1c1917;
+            background: #0f172a;
             color: white;
-            padding: 0.8rem 1.8rem;
-            border-radius: 40px;
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            border: 2px solid #eab308;
+            border: 1px solid #eab308;
             transition: all 0.2s;
         }
 
         .view-orders-link:hover {
             background: #eab308;
-            color: #1c1917;
+            color: #0f172a;
+        }
+
+        .order-badge {
+            background: #eab308;
+            color: #0f172a;
+            border-radius: 4px;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.3rem;
         }
 
         /* Tip Section */
         .tip-section {
             background: #f0f9ff;
-            border-radius: 20px;
+            border: 1px solid #bae6fd;
+            border-radius: 8px;
             padding: 1rem;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
             display: flex;
             align-items: center;
             gap: 1rem;
-            border: 1px solid #bae6fd;
         }
 
         .tip-icon {
             background: #0ea5e9;
             color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-weight: 600;
         }
 
         .tip-text {
             color: #0369a1;
             font-size: 0.9rem;
+            line-height: 1.4;
+            flex: 1;
         }
 
-        @media (max-width: 480px) {
+        /* Responsive */
+        @media (max-width: 768px) {
             .review-card {
-                padding: 1.5rem;
+                margin-top: 5rem;
             }
             
-            .table-info-card {
+            .table-card {
                 flex-direction: column;
                 text-align: center;
             }
             
-            .total-row span:last-child {
-                font-size: 1.4rem;
+            .total-amount {
+                font-size: 1.5rem;
+            }
+            
+            .action-links {
+                flex-direction: column-reverse;
+            }
+            
+            .edit-link, .view-orders-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .review-card {
+                padding: 1.2rem;
+            }
+            
+            .total-section {
+                padding: 1rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Professional Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                Flavor<span class="logo-accent">Flow</span>
+            </a>
+            <div class="nav-links" style="display: flex; gap: 1rem;">
+                <a href="my-orders.html" style="color: #475569; text-decoration: none; font-size: 0.9rem;">My Orders</a>
+                
+            </div>
+        </div>
+    </header>
+
     <div class="review-card">
-        <h1>✨ Review Order</h1>
-        <p class="subtitle">Please check your order details before placing</p>
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="separator">/</span>
+            <a href="food-menu.html">Menu</a>
+            <span class="separator">/</span>
+            <span class="active">Review Order</span>
+        </div>
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Review <span>Order</span></h1>
+            <p>Please verify your order details before placing</p>
+        </div>
         
         <!-- Table Information Card -->
-        <div class="table-info-card">
-            <div class="table-details">
+        <div class="table-card">
+            <div class="table-info">
                 <h3>Table Assignment</h3>
                 <p id="table-display">Table -- • --</p>
             </div>
-            <div class="table-badge" id="table-category">AC Dining</div>
+            <div class="table-category" id="table-category">AC Dining</div>
         </div>
 
         <!-- Order Items -->
@@ -381,7 +553,7 @@
         <!-- Special Instructions Section -->
         <div class="instructions-section">
             <div class="instructions-label">
-                <span>📝</span>
+                <div class="instructions-icon">✎</div>
                 <span>Special Instructions (Optional)</span>
             </div>
             <textarea 
@@ -397,8 +569,8 @@
         <!-- Live Preview Card -->
         <div class="preview-card" id="preview-card">
             <div class="preview-title">
-                <span>👀</span>
-                <span>Kitchen will see:</span>
+                <span>⌕</span>
+                <span>Kitchen Preview</span>
             </div>
             <div class="preview-text" id="preview-text">
                 Your special instructions will appear here
@@ -408,32 +580,30 @@
         <!-- Total Amount -->
         <div class="total-section">
             <div class="total-row">
-                <span>Total Amount</span>
-                <span id="total-amount">₹0</span>
+                <span class="total-label">Total Amount</span>
+                <span class="total-amount" id="total-amount">₹0</span>
             </div>
         </div>
 
         <!-- Place Order Button -->
         <button class="place-order-btn" id="place-order-btn">
-            <span>✅</span>
             PLACE ORDER
-            <span>→</span>
         </button>
         
         <!-- Action Links -->
         <div class="action-links">
             <a href="food-menu.html" class="edit-link">
-                <span>←</span> Edit Items
+                ← Edit Items
             </a>
             <a href="my-orders.html" class="view-orders-link" id="view-orders-link">
-                <span>📋</span> My Orders
-                <span class="badge" id="orders-count">0</span>
+                My Orders
+                <span class="order-badge" id="orders-count">0</span>
             </a>
         </div>
 
         <!-- Tip Section -->
         <div class="tip-section">
-            <div class="tip-icon">💡</div>
+            <div class="tip-icon">i</div>
             <div class="tip-text">
                 Special instructions will be highlighted in the kitchen panel for faster service
             </div>
