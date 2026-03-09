@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>FlavorFlow | Premium Restaurant Experience</title>
     <style>
         * {
@@ -17,247 +17,314 @@
             color: #1c1917;
         }
 
-        /* Floating Action Bar */
-        .action-bar {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            display: flex;
-            gap: 1rem;
+        /* Mobile-First Approach */
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
 
-        .action-btn {
-            background: #1c1917;
-            color: white;
-            padding: 0.8rem 1.8rem;
+        /* Professional Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 0.8rem 1rem;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1c1917 0%, #eab308 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: white;
+            color: #1c1917;
+            padding: 0.6rem 1.2rem;
             border-radius: 40px;
             text-decoration: none;
             font-weight: 600;
-            border: 2px solid #eab308;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
             transition: all 0.2s;
-            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.3);
+            border: 1px solid #e7e5e4;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
 
-        .action-btn:hover {
+        .nav-btn.primary {
             background: #eab308;
             color: #1c1917;
-            transform: scale(1.05);
+            border: none;
+        }
+
+        .nav-btn:active {
+            transform: scale(0.96);
         }
 
         .orders-count {
             background: #eab308;
             color: #1c1917;
             border-radius: 30px;
-            padding: 0.2rem 0.8rem;
-            font-size: 0.9rem;
-            margin-left: 0.5rem;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-left: 0.3rem;
         }
 
-        /* Hero Section with Parallax */
+        /* Hero Section - Mobile Optimized */
         .hero {
             position: relative;
-            height: 85vh;
-            min-height: 600px;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
+            min-height: 500px;
+            height: 90vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), 
                         url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
             color: white;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 150px;
-            background: linear-gradient(to top, #fafaf9, transparent);
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 2rem;
         }
 
         .hero-content {
-            max-width: 900px;
-            padding: 2rem;
-            position: relative;
-            z-index: 2;
+            padding: 2rem 1.5rem;
+            max-width: 800px;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 10vw, 5.5rem);
+            font-size: 2.5rem;
             font-weight: 800;
-            letter-spacing: -0.02em;
             margin-bottom: 1rem;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            background: linear-gradient(135deg, #fff 0%, #eab308 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .hero p {
-            font-size: 1.4rem;
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-            opacity: 0.95;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
             line-height: 1.6;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .order-btn-hero {
             background: #eab308;
             color: #1c1917;
             border: none;
-            padding: 1.2rem 4rem;
-            font-size: 1.4rem;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            border-radius: 60px;
+            border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 20px 30px -5px rgba(234, 179, 8, 0.3);
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255,255,255,0.2);
-            position: relative;
-            overflow: hidden;
+            transition: all 0.2s;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            display: inline-block;
+            text-decoration: none;
         }
 
-        .order-btn-hero:hover {
+        .order-btn-hero:active {
+            transform: scale(0.98);
             background: #facc15;
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 30px 40px -5px rgba(234, 179, 8, 0.5);
         }
 
-        /* Category Filter */
-        .category-filter {
-            max-width: 1200px;
-            margin: 3rem auto 2rem;
-            padding: 0 2rem;
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Category Filter - Horizontal Scroll */
+        .category-section {
+            margin: 2rem 0 1.5rem;
+        }
+
+        .category-header {
             display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0 0.5rem;
         }
 
-        .category-btn {
+        .category-header h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1c1917;
+        }
+
+        .category-header span {
+            color: #eab308;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .category-scroll {
+            display: flex;
+            gap: 0.8rem;
+            overflow-x: auto;
+            padding: 0.5rem 0.2rem 1rem;
+            scrollbar-width: thin;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x mandatory;
+        }
+
+        .category-scroll::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        .category-scroll::-webkit-scrollbar-track {
+            background: #e7e5e4;
+            border-radius: 10px;
+        }
+
+        .category-scroll::-webkit-scrollbar-thumb {
+            background: #eab308;
+            border-radius: 10px;
+        }
+
+        .category-item {
             background: white;
-            border: 2px solid #e7e5e4;
-            padding: 0.8rem 2rem;
+            border: 1px solid #e7e5e4;
+            padding: 0.7rem 1.5rem;
             border-radius: 40px;
             font-weight: 600;
             color: #57534e;
             cursor: pointer;
             transition: all 0.2s;
-            font-size: 1rem;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            scroll-snap-align: start;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
 
-        .category-btn:hover {
-            border-color: #eab308;
-            color: #1c1917;
+        .category-item:active {
+            transform: scale(0.96);
+            background: #f5f5f4;
         }
 
-        .category-btn.active {
+        .category-item.active {
             background: #eab308;
             border-color: #eab308;
             color: #1c1917;
+            font-weight: 700;
         }
 
         /* Menu Section */
-        .menu-showcase {
-            max-width: 1400px;
-            margin: 2rem auto 4rem;
-            padding: 0 2rem;
+        .menu-section {
+            margin: 2rem 0;
         }
 
-        .menu-showcase h2 {
-            font-size: 2.8rem;
-            margin-bottom: 3rem;
-            border-left: 8px solid #eab308;
-            padding-left: 2rem;
+        .menu-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-left: 0.5rem;
+            border-left: 4px solid #eab308;
             font-weight: 700;
-            background: linear-gradient(135deg, #1c1917 0%, #57534e 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         .food-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: 1fr;
+            gap: 1rem;
         }
 
+        @media (min-width: 480px) {
+            .food-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.2rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .food-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.8rem;
+            }
+        }
+
+        /* Food Card - Professional Design */
         .food-card {
             background: white;
-            border-radius: 5px;
+            border-radius: 20px;
             overflow: hidden;
-            /* box-shadow: 0 15px 35px -15px rgba(0,0,0,0.15); */
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            /* border: 1px solid #e7e5e4; */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
             cursor: pointer;
-            position: relative;
+            border: 1px solid #f0f0f0;
         }
 
-        .food-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 30px 45px -15px rgba(234, 179, 8, 0.3);
-            border-color: #eab308;
+        .food-card:active {
+            transform: scale(0.98);
+            box-shadow: 0 8px 20px rgba(234, 179, 8, 0.15);
         }
 
         .food-img {
-            height: 220px;
+            height: 180px;
             background-size: cover;
             background-position: center;
             position: relative;
-            transition: transform 0.6s;
-        }
-
-        .food-card:hover .food-img {
-            transform: scale(1.05);
-        }
-
-        .food-img::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
         }
 
         .food-badge {
             position: absolute;
             top: 1rem;
             right: 1rem;
-            background: #eab308;
+            background: rgba(234, 179, 8, 0.95);
             color: #1c1917;
-            padding: 0.3rem 1rem;
+            padding: 0.3rem 0.8rem;
             border-radius: 30px;
             font-weight: 700;
-            font-size: 0.9rem;
-            z-index: 2;
+            font-size: 0.8rem;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .food-card-content {
-            padding: 1.8rem 1.8rem 2rem;
+            padding: 1.2rem;
         }
 
         .food-title {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
         }
 
         .food-card-content h3 {
-            font-size: 1.4rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: #1c1917;
         }
@@ -265,27 +332,32 @@
         .price {
             font-weight: 800;
             color: #eab308;
-            font-size: 1.6rem;
+            font-size: 1.2rem;
             background: #1c1917;
-            padding: 0.2rem 1rem;
-            border-radius: 40px;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
             color: white;
+            letter-spacing: -0.5px;
         }
 
         .description {
             color: #57534e;
-            line-height: 1.5;
-            margin-bottom: 1.2rem;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin-bottom: 0.8rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .food-meta {
             display: flex;
             gap: 1rem;
             color: #a8a29e;
-            font-size: 0.9rem;
-            border-top: 1px dashed #e7e5e4;
-            padding-top: 1rem;
+            font-size: 0.8rem;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 0.8rem;
         }
 
         .food-meta span {
@@ -296,183 +368,327 @@
 
         /* Features Section */
         .features {
-            max-width: 1200px;
-            margin: 6rem auto;
-            padding: 0 2rem;
+            margin: 3rem 0;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            text-align: center;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding: 0 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .features {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 2rem;
+            }
         }
 
         .feature-item {
-            padding: 2rem;
             background: white;
-            border-radius: 40px;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+            padding: 1.5rem 1rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid #f0f0f0;
         }
 
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
         }
 
         .feature-item h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
             color: #1c1917;
+            font-weight: 700;
         }
 
         .feature-item p {
             color: #57534e;
+            font-size: 0.8rem;
         }
 
-        .cook-panel-link {
+        /* Staff Link - Professional */
+        .staff-link {
             position: fixed;
             bottom: 20px;
             right: 20px;
             background: #1c1917;
             color: white;
-            padding: 0.8rem 1.8rem;
+            padding: 0.8rem 1.5rem;
             border-radius: 40px;
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.9rem;
-            opacity: 0.7;
+            font-size: 0.85rem;
+            opacity: 0.9;
             transition: all 0.2s;
             z-index: 100;
-            border: 2px solid #eab308;
+            border: 1px solid #eab308;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
-        .cook-panel-link:hover {
-            opacity: 1;
-            transform: scale(1.05);
+        .staff-link:active {
+            transform: scale(0.96);
             background: #eab308;
             color: #1c1917;
         }
 
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #a8a29e;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #f0f0f0;
+            border-top: 3px solid #eab308;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Bottom Navigation for Mobile */
+        .bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 0.8rem 1.5rem;
+            border-top: 1px solid #f0f0f0;
+            z-index: 1000;
+        }
+
         @media (max-width: 768px) {
-            .action-bar {
-                top: 10px;
-                right: 10px;
-                flex-direction: column;
+            .bottom-nav {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
             }
             
-            .hero {
-                height: 70vh;
-                min-height: 500px;
+            .staff-link {
+                bottom: 80px;
             }
             
-            .food-grid {
-                grid-template-columns: 1fr;
+            body {
+                padding-bottom: 70px;
             }
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #57534e;
+            font-size: 0.75rem;
+            gap: 0.2rem;
+        }
+
+        .bottom-nav-item.active {
+            color: #eab308;
+        }
+
+        .bottom-nav-item span:first-child {
+            font-size: 1.3rem;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: white;
+            border-radius: 20px;
+            grid-column: 1/-1;
+        }
+
+        .empty-state h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #1c1917;
+        }
+
+        .empty-state p {
+            color: #57534e;
+            margin-bottom: 1.5rem;
+        }
+
+        .reset-btn {
+            background: #eab308;
+            color: #1c1917;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <!-- Floating Action Bar with My Orders -->
-    <div class="action-bar">
-        <a href="my-orders.html" class="action-btn" id="my-orders-btn">
-            <span>📋</span> My Orders
-            <span class="orders-count" id="orders-count">0</span>
-        </a>
-        <a href="order-details.html" class="action-btn" style="background: #eab308; color: #1c1917; border-color: #1c1917;">
-            <span>🛵</span> Order Now
-        </a>
-    </div>
+    <!-- Professional Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">FlavorFlow</a>
+            <div class="nav-actions">
+                <a href="my-orders.html" class="nav-btn">
+                    <span>📋</span>
+                    <span class="hide-mobile">My Orders</span>
+                    <span class="orders-count" id="orders-count">0</span>
+                </a>
+                <a href="order-details.html" class="nav-btn primary">
+                    <span>🍽️</span>
+                    <span class="hide-mobile">Order Now</span>
+                </a>
+            </div>
+        </div>
+    </header>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>FlavorFlow</h1>
-            <p>Where every dish tells a story. Experience the finest culinary journey with our handcrafted meals made from the freshest ingredients.</p>
-            <button class="order-btn-hero" onclick="window.location.href='order-details.html'">ORDER NOW</button>
+            <p>Experience the finest culinary journey with our handcrafted meals made from the freshest ingredients.</p>
+            <a href="order-details.html" class="order-btn-hero">ORDER NOW</a>
         </div>
     </section>
 
-    <div class="category-filter">
-        <button class="category-btn active" data-category="all">All</button>
-        <button class="category-btn" data-category="indian">Indian</button>
-        <button class="category-btn" data-category="chinese">Chinese</button>
-        <button class="category-btn" data-category="italian">Italian</button>
-        <button class="category-btn" data-category="continental">Continental</button>
-        <button class="category-btn" data-category="desserts">Desserts</button>
-        <button class="category-btn" data-category="beverages">Beverages</button>
+    <!-- Category Filter -->
+    <div class="container">
+        <div class="category-section">
+            <div class="category-header">
+                <h3>Browse Categories</h3>
+                <span>Swipe →</span>
+            </div>
+            <div class="category-scroll" id="category-scroll">
+                <button class="category-item active" data-category="all">All</button>
+                <button class="category-item" data-category="indian">Indian</button>
+                <button class="category-item" data-category="chinese">Chinese</button>
+                <button class="category-item" data-category="italian">Italian</button>
+                <button class="category-item" data-category="continental">Continental</button>
+                <button class="category-item" data-category="desserts">Desserts</button>
+                <button class="category-item" data-category="beverages">Beverages</button>
+            </div>
+        </div>
+
+        <!-- Menu Section -->
+        <section class="menu-section">
+            <h2>Signature Collection</h2>
+            <div class="food-grid" id="food-grid-container">
+                <!-- Food items will be loaded via JS -->
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading delicious food...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="feature-item">
+                <div class="feature-icon">🌿</div>
+                <h3>Fresh Ingredients</h3>
+                <p>Local farms daily</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">👨‍🍳</div>
+                <h3>Expert Chefs</h3>
+                <p>Michelin-starred</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">⚡</div>
+                <h3>Quick Service</h3>
+                <p>30-min guarantee</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🌙</div>
+                <h3>Open Late</h3>
+                <p>Until 2 AM</p>
+            </div>
+        </section>
     </div>
 
-    <main class="menu-showcase">
-        <h2>Our Signature Collection</h2>
-        <div class="food-grid" id="food-grid-container">
-            <!-- Food items will be loaded via JS -->
-        </div>
-    </main>
+    <!-- Staff Link -->
+    <a href="cook.html" class="staff-link" target="_blank">
+        <span>👨‍🍳</span> Kitchen Staff Panel
+    </a>
 
-    <section class="features">
-        <div class="feature-item">
-            <div class="feature-icon">🌿</div>
-            <h3>Fresh Ingredients</h3>
-            <p>Sourced daily from local farms</p>
-        </div>
-        <div class="feature-item">
-            <div class="feature-icon">👨‍🍳</div>
-            <h3>Expert Chefs</h3>
-            <p>Michelin-starred culinary team</p>
-        </div>
-        <div class="feature-item">
-            <div class="feature-icon">⚡</div>
-            <h3>Quick Service</h3>
-            <p>30-min delivery guarantee</p>
-        </div>
-        <div class="feature-item">
-            <div class="feature-icon">🌙</div>
-            <h3>Open Late</h3>
-            <p>Until 2 AM on weekends</p>
-        </div>
-    </section>
-
-    <a href="cook.html" class="cook-panel-link" target="_blank">👨‍🍳 Kitchen Panel (Staff)</a>
+    <!-- Bottom Navigation for Mobile -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="bottom-nav-item active">
+            <span>🏠</span>
+            <span>Home</span>
+        </a>
+        <a href="my-orders.html" class="bottom-nav-item">
+            <span>📋</span>
+            <span>Orders</span>
+        </a>
+        <a href="order-details.html" class="bottom-nav-item">
+            <span>🍽️</span>
+            <span>Order</span>
+        </a>
+        <a href="cook.html" class="bottom-nav-item">
+            <span>👨‍🍳</span>
+            <span>Kitchen</span>
+        </a>
+    </nav>
 
     <script>
-        // Comprehensive Menu Data with 25+ items
+        // Comprehensive Menu Data with local images
         const MENU_ITEMS = [
             // Indian Cuisine
-            { id: 'f1', name: 'Butter Chicken', price: 450, emoji: '🍗', category: 'indian', description: 'Tender chicken in rich, creamy tomato gravy with butter and aromatic spices', image: '/images/butter_chicken.jpeg', time: '25-30 min', spicy: '🌶️ Medium', rating: '4.9' },
-            { id: 'f2', name: 'Biryani', price: 420, emoji: '🍚', category: 'indian', description: 'Fragrant basmati rice cooked with spiced meat/vegetables, saffron, and fried onions', image: '/images/biryani.jpeg', time: '30-35 min', spicy: '🌶️🌶️ Hot', rating: '5.0' },
-            { id: 'f3', name: 'Paneer Tikka', price: 380, emoji: '🧀', category: 'indian', description: 'Grilled cottage cheese marinated in spiced yogurt and tandoori masala', image: '/images/paneer-tikka-skewers.jpg', time: '20-25 min', spicy: '🌶️ Mild', rating: '4.7' },
-            { id: 'f4', name: 'Dal Makhani', price: 320, emoji: '🥘', category: 'indian', description: 'Creamy black lentils simmered overnight with butter and cream', image: '/images/dalmakhni.jpeg', time: '20-25 min', spicy: '🌶️ Mild', rating: '4.6' },
-            { id: 'f5', name: 'Tandoori Chicken', price: 480, emoji: '🍗', category: 'indian', description: 'Whole chicken marinated in yogurt and spices, roasted in clay oven', image: '/images/tanduri_chicken.jpeg', time: '35-40 min', spicy: '🌶️🌶️ Hot', rating: '4.8' },
-            { id: 'f6', name: 'Palak Paneer', price: 350, emoji: '🥬', category: 'indian', description: 'Fresh cottage cheese in smooth spinach gravy with garlic and cream', image: '/images/palak_tofu_paneer_1.jpg', time: '20-25 min', spicy: '🌶️ Mild', rating: '4.5' },
-            { id: 'f7', name: 'Rogan Josh', price: 520, emoji: '🍖', category: 'indian', description: 'Kashmiri lamb curry with fennel, ginger, and aromatic spices', image: '/images/rogan_josh.jpeg', time: '35-40 min', spicy: '🌶️🌶️ Hot', rating: '4.9' },
+            { id: 'f1', name: 'Butter Chicken', price: 450, category: 'indian', description: 'Tender chicken in rich, creamy tomato gravy with butter and aromatic spices', image: 'images/butter_chicken.jpeg', time: '25-30 min', spicy: 'Medium', rating: '4.9' },
+            { id: 'f2', name: 'Hyderabadi Biryani', price: 420, category: 'indian', description: 'Fragrant basmati rice cooked with spiced meat, saffron, and fried onions', image: 'images/biryani.jpeg', time: '30-35 min', spicy: 'Hot', rating: '5.0' },
+            { id: 'f3', name: 'Paneer Tikka', price: 380, category: 'indian', description: 'Grilled cottage cheese marinated in spiced yogurt and tandoori masala', image: 'images/paneer-tikka-skewers.jpg', time: '20-25 min', spicy: 'Mild', rating: '4.7' },
+            { id: 'f4', name: 'Dal Makhani', price: 320, category: 'indian', description: 'Creamy black lentils simmered overnight with butter and cream', image: 'images/dalmakhni.jpeg', time: '20-25 min', spicy: 'Mild', rating: '4.6' },
+            { id: 'f5', name: 'Tandoori Chicken', price: 480, category: 'indian', description: 'Whole chicken marinated in yogurt and spices, roasted in clay oven', image: 'images/tanduri_chicken.jpeg', time: '35-40 min', spicy: 'Hot', rating: '4.8' },
+            { id: 'f6', name: 'Palak Paneer', price: 350, category: 'indian', description: 'Fresh cottage cheese in smooth spinach gravy with garlic and cream', image: 'images/palak_tofu_paneer_1.jpg', time: '20-25 min', spicy: 'Mild', rating: '4.5' },
+            { id: 'f7', name: 'Rogan Josh', price: 520, category: 'indian', description: 'Kashmiri lamb curry with fennel, ginger, and aromatic spices', image: 'images/rogan_josh.jpeg', time: '35-40 min', spicy: 'Hot', rating: '4.9' },
             
             // Chinese Cuisine
-            { id: 'f8', name: 'Manchow Soup', price: 220, emoji: '🥣', category: 'chinese', description: 'Hot and spicy vegetable/chicken soup with fried noodles', image: '/images/manchow_soup.webp', time: '10-15 min', spicy: '🌶️ Medium', rating: '4.4' },
-            { id: 'f9', name: 'Schezwan Noodles', price: 280, emoji: '🍜', category: 'chinese', description: 'Stir-fried noodles with vegetables in spicy Schezwan sauce', image: '/images/schezwan_noodles.jpeg', time: '15-20 min', spicy: '🌶️🌶️ Hot', rating: '4.7' },
-            { id: 'f10', name: 'Chilli Chicken', price: 320, emoji: '🍗', category: 'chinese', description: 'Crispy chicken tossed in tangy chilli sauce with bell peppers', image: '/images/chilli_chicken.jpg', time: '20-25 min', spicy: '🌶️🌶️ Hot', rating: '4.8' },
-            { id: 'f11', name: 'Spring Rolls', price: 210, emoji: '🥟', category: 'chinese', description: 'Crispy rolls stuffed with vegetables and glass noodles', image: '/images/spring-rolls.jpg', time: '15-20 min', spicy: '🌶️ Mild', rating: '4.5' },
-            { id: 'f12', name: 'Kung Pao Chicken', price: 380, emoji: '🍗', category: 'chinese', description: 'Diced chicken with peanuts and vegetables in spicy Szechuan sauce', image: '/images/Kung-Pao-Chicken.jpg', time: '20-25 min', spicy: '🌶️🌶️ Hot', rating: '4.7' },
+            { id: 'f8', name: 'Manchow Soup', price: 220, category: 'chinese', description: 'Hot and spicy vegetable soup with fried noodles', image: 'images/manchow_soup.webp', time: '10-15 min', spicy: 'Medium', rating: '4.4' },
+            { id: 'f9', name: 'Schezwan Noodles', price: 280, category: 'chinese', description: 'Stir-fried noodles with vegetables in spicy Schezwan sauce', image: 'images/schezwan_noodles.jpeg', time: '15-20 min', spicy: 'Hot', rating: '4.7' },
+            { id: 'f10', name: 'Chilli Chicken', price: 320, category: 'chinese', description: 'Crispy chicken tossed in tangy chilli sauce with bell peppers', image: 'images/chilli_chicken.jpg', time: '20-25 min', spicy: 'Hot', rating: '4.8' },
+            { id: 'f11', name: 'Spring Rolls', price: 210, category: 'chinese', description: 'Crispy rolls stuffed with vegetables and glass noodles', image: 'images/spring-rolls.jpg', time: '15-20 min', spicy: 'Mild', rating: '4.5' },
+            { id: 'f12', name: 'Kung Pao Chicken', price: 380, category: 'chinese', description: 'Diced chicken with peanuts and vegetables in spicy Szechuan sauce', image: 'images/Kung-Pao-Chicken.jpg', time: '20-25 min', spicy: 'Hot', rating: '4.7' },
             
             // Italian Cuisine
-            { id: 'f13', name: 'Margherita Pizza', price: 390, emoji: '🍕', category: 'italian', description: 'Classic pizza with tomato sauce, fresh mozzarella, and basil', image: '/images/pizza.jpeg', time: '20-25 min', spicy: '🌶️ Mild', rating: '4.8' },
-            { id: 'f14', name: 'Pasta Carbonara', price: 420, emoji: '🍝', category: 'italian', description: 'Creamy pasta with eggs, pecorino cheese, and crispy pancetta', image: '/images/pasta.jpeg', time: '20-25 min', spicy: '🌶️ Mild', rating: '4.9' },
-            { id: 'f15', name: 'Lasagna', price: 480, emoji: '🍝', category: 'italian', description: 'Layered pasta with rich meat sauce, béchamel, and melted cheese', image: '/images/lasagna.jpeg', time: '30-35 min', spicy: '🌶️ Mild', rating: '4.8' },
-            { id: 'f16', name: 'Risotto', price: 450, emoji: '🥘', category: 'italian', description: 'Creamy arborio rice with mushrooms and parmesan cheese', image: '/images/risotto.jpeg', time: '25-30 min', spicy: '🌶️ Mild', rating: '4.6' },
+            { id: 'f13', name: 'Margherita Pizza', price: 390, category: 'italian', description: 'Classic pizza with tomato sauce, fresh mozzarella, and basil', image: 'images/pizza.jpeg', time: '20-25 min', spicy: 'Mild', rating: '4.8' },
+            { id: 'f14', name: 'Pasta Carbonara', price: 420, category: 'italian', description: 'Creamy pasta with eggs, pecorino cheese, and crispy pancetta', image: 'images/pasta.jpeg', time: '20-25 min', spicy: 'Mild', rating: '4.9' },
+            { id: 'f15', name: 'Lasagna', price: 480, category: 'italian', description: 'Layered pasta with rich meat sauce, béchamel, and melted cheese', image: 'images/lasagna.jpeg', time: '30-35 min', spicy: 'Mild', rating: '4.8' },
+            { id: 'f16', name: 'Mushroom Risotto', price: 450, category: 'italian', description: 'Creamy arborio rice with mushrooms and parmesan cheese', image: 'images/risotto.jpeg', time: '25-30 min', spicy: 'Mild', rating: '4.6' },
             
             // Continental
-            { id: 'f17', name: 'Grilled Salmon', price: 680, emoji: '🐟', category: 'continental', description: 'Fresh Atlantic salmon with lemon butter sauce and seasonal vegetables', image: '/images/grilled_salmon.jpeg', time: '25-30 min', spicy: '🌶️ Mild', rating: '4.9' },
-            { id: 'f18', name: 'Steak', price: 890, emoji: '🥩', category: 'continental', description: 'Premium grilled steak with mushroom sauce and mashed potatoes', image: '/images/steak.jpeg', time: '30-35 min', spicy: '🌶️ Mild', rating: '5.0' },
-            { id: 'f19', name: 'Caesar Salad', price: 280, emoji: '🥗', category: 'continental', description: 'Crisp romaine lettuce with parmesan, croutons, and Caesar dressing', image: '/images/caeser_salad.jpeg', time: '10-15 min', spicy: '🌶️ Mild', rating: '4.5' },
-            { id: 'f20', name: 'Fish & Chips', price: 390, emoji: '🐟', category: 'continental', description: 'Beer-battered cod with crispy fries and tartar sauce', image: '/images/fish-em-chips-noruega.jpg', time: '20-25 min', spicy: '🌶️ Mild', rating: '4.6' },
+            { id: 'f17', name: 'Grilled Salmon', price: 680, category: 'continental', description: 'Fresh Atlantic salmon with lemon butter sauce and seasonal vegetables', image: 'images/grilled_salmon.jpeg', time: '25-30 min', spicy: 'Mild', rating: '4.9' },
+            { id: 'f18', name: 'Ribeye Steak', price: 890, category: 'continental', description: 'Premium grilled steak with mushroom sauce and mashed potatoes', image: 'images/steak.jpeg', time: '30-35 min', spicy: 'Mild', rating: '5.0' },
+            { id: 'f19', name: 'Caesar Salad', price: 280, category: 'continental', description: 'Crisp romaine lettuce with parmesan, croutons, and Caesar dressing', image: 'images/caeser_salad.jpeg', time: '10-15 min', spicy: 'Mild', rating: '4.5' },
+            { id: 'f20', name: 'Fish & Chips', price: 390, category: 'continental', description: 'Beer-battered cod with crispy fries and tartar sauce', image: 'images/fish-em-chips-noruega.jpg', time: '20-25 min', spicy: 'Mild', rating: '4.6' },
             
             // Desserts
-            { id: 'f21', name: 'Gulab Jamun', price: 180, emoji: '🍡', category: 'desserts', description: 'Soft milk solids dumplings soaked in rose-cardamom syrup', image: '/images/gulab-jamun.jpg', time: '10-15 min', spicy: 'Sweet', rating: '4.9' },
-            { id: 'f22', name: 'Tiramisu', price: 320, emoji: '🍰', category: 'desserts', description: 'Classic Italian dessert with coffee-soaked ladyfingers and mascarpone', image: '/images/tiramishu.jpeg', time: '10-15 min', spicy: 'Sweet', rating: '4.8' },
-            { id: 'f23', name: 'Chocolate Lava', price: 280, emoji: '🍫', category: 'desserts', description: 'Warm chocolate cake with molten center and vanilla ice cream', image: '/images/chocolate_lave.jpeg', time: '15-20 min', spicy: 'Sweet', rating: '4.9' },
+            { id: 'f21', name: 'Gulab Jamun', price: 180, category: 'desserts', description: 'Soft milk solids dumplings soaked in rose-cardamom syrup', image: 'images/gulab-jamun.jpg', time: '10-15 min', spicy: 'Sweet', rating: '4.9' },
+            { id: 'f22', name: 'Tiramisu', price: 320, category: 'desserts', description: 'Classic Italian dessert with coffee-soaked ladyfingers and mascarpone', image: 'images/tiramishu.jpeg', time: '10-15 min', spicy: 'Sweet', rating: '4.8' },
+            { id: 'f23', name: 'Chocolate Lava', price: 280, category: 'desserts', description: 'Warm chocolate cake with molten center and vanilla ice cream', image: 'images/chocolate_lave.jpeg', time: '15-20 min', spicy: 'Sweet', rating: '4.9' },
             
             // Beverages
-            { id: 'f24', name: 'Masala Chai', price: 120, emoji: '☕', category: 'beverages', description: 'Traditional Indian tea with cardamom, ginger, and aromatic spices', image: '/images/masala_chai.jpeg', time: '5-10 min', spicy: '🌶️ Mild', rating: '4.8' },
-            { id: 'f25', name: 'Mango Lassi', price: 150, emoji: '🥭', category: 'beverages', description: 'Sweet yogurt drink with fresh mango pulp and cardamom', image: '/images/mango-lassi.jpg', time: '5-10 min', spicy: 'Sweet', rating: '4.9' },
-            { id: 'f26', name: 'Fresh Lime Soda', price: 110, emoji: '🥤', category: 'beverages', description: 'Refreshing lime juice with sparkling water, mint, and black salt', image: '/images/fresh_lime.jpeg', time: '5-10 min', spicy: 'Mild', rating: '4.5' },
-            { id: 'f27', name: 'Cold Coffee', price: 180, emoji: '☕', category: 'beverages', description: 'Chilled coffee with vanilla ice cream and chocolate syrup', image: '/images/cold_coffe.jpeg', time: '5-10 min', spicy: 'Sweet', rating: '4.7' }
+            { id: 'f24', name: 'Masala Chai', price: 120, category: 'beverages', description: 'Traditional Indian tea with cardamom, ginger, and aromatic spices', image: 'images/masala_chai.jpeg', time: '5-10 min', spicy: 'Mild', rating: '4.8' },
+            { id: 'f25', name: 'Mango Lassi', price: 150, category: 'beverages', description: 'Sweet yogurt drink with fresh mango pulp and cardamom', image: 'images/mango-lassi.jpg', time: '5-10 min', spicy: 'Sweet', rating: '4.9' },
+            { id: 'f26', name: 'Fresh Lime Soda', price: 110, category: 'beverages', description: 'Refreshing lime juice with sparkling water, mint, and black salt', image: 'images/fresh_lime.jpeg', time: '5-10 min', spicy: 'Mild', rating: '4.5' },
+            { id: 'f27', name: 'Cold Coffee', price: 180, category: 'beverages', description: 'Chilled coffee with vanilla ice cream and chocolate syrup', image: 'images/cold_coffe.jpeg', time: '5-10 min', spicy: 'Sweet', rating: '4.7' }
         ];
+
+        let isLoading = true;
+        let currentCategory = 'all';
 
         // Update order count
         function updateOrderCount() {
@@ -480,14 +696,29 @@
             document.getElementById('orders-count').textContent = orders.length;
         }
 
-        // Load menu onto the landing page
+        // Load menu
         function loadLandingMenu(category = 'all') {
             const container = document.getElementById('food-grid-container');
             if (!container) return;
 
+            if (isLoading) {
+                return;
+            }
+
             const filteredItems = category === 'all' 
                 ? MENU_ITEMS 
                 : MENU_ITEMS.filter(item => item.category === category);
+
+            if (filteredItems.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No items found</h3>
+                        <p>Try selecting a different category</p>
+                        <button class="reset-btn" onclick="resetCategory()">View All Items</button>
+                    </div>
+                `;
+                return;
+            }
 
             container.innerHTML = filteredItems.map(item => `
                 <div class="food-card" onclick="selectItem('${item.id}')">
@@ -502,41 +733,73 @@
                         <p class="description">${item.description}</p>
                         <div class="food-meta">
                             <span>⏱️ ${item.time}</span>
-                            <span>${item.spicy}</span>
+                            <span>🌶️ ${item.spicy}</span>
                         </div>
                     </div>
                 </div>
             `).join('');
         }
 
+        // Reset category
+        window.resetCategory = function() {
+            document.querySelectorAll('.category-item').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.category === 'all') {
+                    btn.classList.add('active');
+                }
+            });
+            currentCategory = 'all';
+            loadLandingMenu('all');
+        }
+
         // Handle item selection
         window.selectItem = function(itemId) {
-            // Store selected item in session for quick order
             sessionStorage.setItem('preselectedItem', itemId);
             window.location.href = 'order-details.html';
         }
 
         // Category filter functionality
-        document.querySelectorAll('.category-btn').forEach(btn => {
+        document.querySelectorAll('.category-item').forEach(btn => {
             btn.addEventListener('click', function() {
-                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.category-item').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                const category = this.dataset.category;
-                loadLandingMenu(category);
+                currentCategory = this.dataset.category;
+                loadLandingMenu(currentCategory);
             });
         });
 
         // Initialize
-        loadLandingMenu();
+        setTimeout(() => {
+            isLoading = false;
+            loadLandingMenu();
+        }, 500);
+        
         updateOrderCount();
         
-        // Store menu in localStorage for other pages
+        // Store menu in localStorage
         if (!localStorage.getItem('restaurantMenu')) {
             localStorage.setItem('restaurantMenu', JSON.stringify(MENU_ITEMS));
         }
 
         // Update order count every 3 seconds
         setInterval(updateOrderCount, 3000);
+
+        // Hide mobile text on small screens
+        const style = document.createElement('style');
+        style.textContent = `
+            @media (max-width: 480px) {
+                .hide-mobile {
+                    display: none;
+                }
+                .nav-btn {
+                    padding: 0.6rem 1rem;
+                }
+                .logo {
+                    font-size: 1.2rem;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
