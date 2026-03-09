@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders | FlavorFlow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #f5f5f4;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1c1917 0%, #eab308 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .home-link {
+            background: #1c1917;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: 2px solid #eab308;
+        }
+
+        .home-link:hover {
+            background: #eab308;
+            color: #1c1917;
+            transform: scale(1.05);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            border-left: 8px solid #eab308;
+            padding-left: 2rem;
+        }
+
+        .orders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .order-card {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px -15px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .order-card:hover {
+            transform: translateY(-8px);
+            border-color: #eab308;
+            box-shadow: 0 25px 45px -15px rgba(234, 179, 8, 0.3);
+        }
+
+        .order-status-bar {
+            height: 8px;
+            background: linear-gradient(90deg, #eab308 0%, #facc15 100%);
+        }
+
+        .order-content {
+            padding: 2rem;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .order-id {
+            font-family: monospace;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #eab308;
+            background: #1c1917;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+        }
+
+        .order-table {
+            background: #f5f5f4;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+
+        .order-items {
+            margin: 1rem 0;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            color: #57534e;
+            padding: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+
+        .order-total {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #eab308;
+            margin: 1rem 0;
+            border-top: 2px dashed #e7e5e4;
+            padding-top: 1rem;
+        }
+
+        .order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .order-time {
+            color: #a8a29e;
+            font-size: 0.9rem;
+        }
+
+        .status-badge {
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-preparing {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status-ready {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .no-orders {
+            text-align: center;
+            padding: 4rem;
+            background: white;
+            border-radius: 48px;
+            grid-column: 1/-1;
+        }
+
+        .no-orders h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1c1917;
+        }
+
+        .no-orders p {
+            color: #57534e;
+            margin-bottom: 2rem;
+        }
+
+        .order-now-btn {
+            background: #eab308;
+            color: #1c1917;
+            padding: 1rem 3rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+
+        .order-now-btn:hover {
+            background: #facc15;
+            transform: scale(1.05);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 4rem;
+            color: #57534e;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .orders-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">FlavorFlow</a>
+            <a href="index.html" class="home-link">🏠 Home</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>📋 My Orders</h1>
+        
+        <div id="orders-container" class="orders-grid">
+            <div class="loading">Loading your orders...</div>
+        </div>
+    </div>
+
+    <script>
+        function loadCustomerOrders() {
+            const container = document.getElementById('orders-container');
+            
+            // Get all orders from kitchen (these are all orders ever placed)
+            const allOrders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
+            
+            // For demo purposes, we're showing all orders
+            // In a real app, you'd filter by customer ID/phone
+            // Here we'll show all orders for demonstration
+            const customerOrders = allOrders.sort((a, b) => {
+                return new Date(b.placedTime) - new Date(a.placedTime);
+            });
+
+            if (customerOrders.length === 0) {
+                container.innerHTML = `
+                    <div class="no-orders">
+                        <h2>No orders yet</h2>
+                        <p>Looks like you haven't placed any orders with us.</p>
+                        <a href="order-details.html" class="order-now-btn">🍽️ Order Now</a>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = customerOrders.map(order => {
+                // Determine status
+                let statusClass = 'status-pending';
+                let statusText = 'Pending';
+                
+                if (order.estimatedTime && order.estimatedTime !== '...') {
+                    statusClass = 'status-preparing';
+                    statusText = `Preparing (Ready in ${order.estimatedTime})`;
+                }
+                
+                if (order.status === 'ready') {
+                    statusClass = 'status-ready';
+                    statusText = 'Ready for pickup';
+                }
+
+                // Show first 3 items preview
+                const itemsPreview = order.items.slice(0, 3).map(item => `
+                    <div class="order-item">
+                        <span>${item.name}</span>
+                        <span>₹${item.price}</span>
+                    </div>
+                `).join('');
+
+                const moreItems = order.items.length > 3 ? 
+                    `<div class="order-item" style="color: #a8a29e;">+${order.items.length - 3} more items</div>` : '';
+
+                return `
+                    <div class="order-card" onclick="viewOrder('${order.id}')">
+                        <div class="order-status-bar"></div>
+                        <div class="order-content">
+                            <div class="order-header">
+                                <span class="order-id">${order.id}</span>
+                                <span class="order-table">Table ${order.tableNumber}</span>
+                            </div>
+                            <div class="order-items">
+                                ${itemsPreview}
+                                ${moreItems}
+                            </div>
+                            <div class="order-total">₹${order.total}</div>
+                            <div class="order-footer">
+                                <span class="order-time">${order.placedTime || 'Just now'}</span>
+                                <span class="status-badge ${statusClass}">${statusText}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function viewOrder(orderId) {
+            // Get the specific order from kitchen orders
+            const allOrders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
+            const order = allOrders.find(o => o.id === orderId);
+            
+            if (order) {
+                // Set this as the active customer order for viewing
+                localStorage.setItem('activeCustomerOrder', JSON.stringify(order));
+                window.location.href = `order-status.html?id=${orderId}`;
+            }
+        }
+
+        // Load orders on page load
+        loadCustomerOrders();
+
+        // Refresh every 5 seconds to show updates
+        setInterval(loadCustomerOrders, 5000);
+    </script>
+</body>
+</html>

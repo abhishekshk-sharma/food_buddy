@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Order | FlavorFlow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #f5f5f4;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .review-card {
+            background: white;
+            max-width: 550px;
+            width: 100%;
+            padding: 2.5rem;
+            border-radius: 48px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .subtitle {
+            color: #57534e;
+            margin-bottom: 2rem;
+        }
+
+        .detail-row {
+            background: #f5f5f4;
+            padding: 1rem;
+            border-radius: 30px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .items-list {
+            margin-bottom: 1.5rem;
+            border: 1px solid #e7e5e4;
+            border-radius: 30px;
+            padding: 1.5rem;
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #e7e5e4;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 1.5rem 0;
+            padding-top: 1rem;
+            border-top: 3px solid #1c1917;
+        }
+
+        .place-order-btn {
+            background: #eab308;
+            color: #1c1917;
+            border: none;
+            padding: 1.2rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            border-radius: 60px;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-bottom: 1rem;
+        }
+
+        .place-order-btn:hover {
+            background: #facc15;
+            transform: scale(1.02);
+        }
+
+        .action-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .edit-link {
+            color: #57534e;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .edit-link:hover {
+            color: #eab308;
+        }
+
+        .view-orders-link {
+            background: #1c1917;
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px solid #eab308;
+            transition: all 0.2s;
+        }
+
+        .view-orders-link:hover {
+            background: #eab308;
+            color: #1c1917;
+            transform: scale(1.05);
+        }
+
+        .orders-count {
+            background: #eab308;
+            color: #1c1917;
+            border-radius: 30px;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="review-card">
+        <h1>✅ Review Order</h1>
+        <p class="subtitle">Please confirm your order details</p>
+        
+        <div class="detail-row">
+            <span>Table Number:</span>
+            <span id="review-table" style="font-weight: 700;">--</span>
+        </div>
+
+        <div class="items-list" id="review-items">
+            <!-- JS will populate -->
+        </div>
+
+        <div class="total-row" id="review-total">
+            <span>Total Amount</span>
+            <span>₹0</span>
+        </div>
+
+        <button class="place-order-btn" id="place-order-btn">✅ PLACE ORDER</button>
+        
+        <div class="action-links">
+            <a href="food-menu.html" class="edit-link">← Edit Items</a>
+            <a href="my-orders.html" class="view-orders-link" id="view-orders-link">
+                <span>📋</span> View My Orders
+                <span class="orders-count" id="orders-count">0</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Update order count
+        function updateOrderCount() {
+            const orders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
+            const countElement = document.getElementById('orders-count');
+            if (countElement) {
+                countElement.textContent = orders.length;
+            }
+        }
+
+        // Load order from storage
+        const currentOrder = JSON.parse(localStorage.getItem('currentCustomerOrder')) || {};
+        
+        // Check if order exists and has items
+        if (!currentOrder.items || currentOrder.items.length === 0) {
+            alert('No order found. Redirecting to menu.');
+            window.location.href = 'food-menu.html';
+        }
+
+        // Display table
+        document.getElementById('review-table').textContent = currentOrder.tableNumber || '1';
+
+        // Display items
+        const itemsContainer = document.getElementById('review-items');
+        itemsContainer.innerHTML = currentOrder.items.map(item => `
+            <div class="item-row">
+                <span>${item.name}</span>
+                <span>₹${item.price}</span>
+            </div>
+        `).join('');
+
+        // Display total
+        const totalSpan = document.getElementById('review-total').querySelector('span:last-child');
+        totalSpan.textContent = `₹${currentOrder.total?.toFixed(2) || '0'}`;
+
+        // Handle Place Order
+        document.getElementById('place-order-btn').addEventListener('click', function() {
+            // Create a final order object with timestamp and unique ID
+            const finalOrder = {
+                id: 'ORD-' + Date.now() + '-' + Math.floor(Math.random() * 1000),
+                tableNumber: currentOrder.tableNumber,
+                items: currentOrder.items,
+                total: currentOrder.total,
+                status: 'pending',
+                placedTime: new Date().toLocaleString(),
+                estimatedTime: '...',
+                customerAcknowledged: false
+            };
+
+            // Get existing orders from localStorage
+            const allOrders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
+            allOrders.push(finalOrder);
+            localStorage.setItem('kitchenOrders', JSON.stringify(allOrders));
+
+            // Save as active order for immediate viewing
+            localStorage.setItem('activeCustomerOrder', JSON.stringify(finalOrder));
+
+            // Clear the temporary order
+            localStorage.removeItem('currentCustomerOrder');
+
+            // Show success message
+            alert('Order placed successfully! Redirecting to order status...');
+            
+            // Redirect to status page with order ID
+            window.location.href = `order-status.html?id=${finalOrder.id}`;
+        });
+
+        // Initial update
+        updateOrderCount();
+    </script>
+</body>
+</html>

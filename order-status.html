@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Status | FlavorFlow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #f5f5f4;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1c1917 0%, #eab308 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-link {
+            background: #1c1917;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover {
+            background: #eab308;
+            color: #1c1917;
+        }
+
+        .nav-link.highlight {
+            background: #eab308;
+            color: #1c1917;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #57534e;
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: #e7e5e4;
+            color: #eab308;
+        }
+
+        .status-card {
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: #1c1917;
+        }
+
+        .order-id {
+            background: #1c1917;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-family: monospace;
+            font-weight: 600;
+            border: 2px solid #eab308;
+        }
+
+        .timer-section {
+            background: linear-gradient(135deg, #fef9e7 0%, #fef3c7 100%);
+            border: 3px solid #eab308;
+            border-radius: 60px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .timer-label {
+            color: #92400e;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .timer-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1c1917;
+        }
+
+        .items-section {
+            background: #f5f5f4;
+            border-radius: 30px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .items-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: #1c1917;
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #d6d3d1;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #1c1917;
+        }
+
+        .status-badge {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 1rem 0;
+        }
+
+        .status-badge.preparing {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .refresh-note {
+            color: #a8a29e;
+            font-size: 0.9rem;
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Action Buttons - Fixed and Visible */
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+            min-width: 160px;
+        }
+
+        .action-btn.primary {
+            background: #eab308;
+            color: #1c1917;
+        }
+
+        .action-btn.primary:hover {
+            background: #facc15;
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px -5px rgba(234, 179, 8, 0.3);
+        }
+
+        .action-btn.secondary {
+            background: #1c1917;
+            color: white;
+        }
+
+        .action-btn.secondary:hover {
+            background: #292524;
+            transform: scale(1.05);
+            border-color: #eab308;
+        }
+
+        .action-btn.outline {
+            background: transparent;
+            color: #1c1917;
+            border: 2px solid #1c1917;
+        }
+
+        .action-btn.outline:hover {
+            background: #1c1917;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .timer-value {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+        }
+
+        @media(max-width: 400px){
+            .nav-link{
+                    gap: 1px;
+                    margin-left: -26px;
+            }
+        }
+
+        
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">FlavorFlow</a>
+            <div class="nav-links">
+                <a href="my-orders.html" class="nav-link highlight">
+                    <span>📋</span> My Orders
+                </a>
+                <a href="order-details.html" class="nav-link">
+                    <span>🛵</span> Order Now
+                </a>
+                <a href="index.html" class="nav-link">
+                    <span>🏠</span> Home
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <a href="my-orders.html" class="back-link">
+            <span>←</span> Back to My Orders
+        </a>
+        
+        <div class="status-card">
+            <h1>🍽️ Order Status</h1>
+            
+            <div style="text-align: center;">
+                <span class="order-id" id="order-id-display">ORD-12345</span>
+            </div>
+
+            <!-- Timer Section -->
+            <div class="timer-section">
+                <div class="timer-label">Estimated Preparation Time</div>
+                <div class="timer-value" id="estimated-time">--</div>
+            </div>
+
+            <!-- Items Section -->
+            <div class="items-section">
+                <h3>
+                    <span>📋</span>
+                    <span>Your Order (Table <span id="table-number">--</span>)</span>
+                </h3>
+                <div id="items-container"></div>
+                <div class="total-row" id="total-container">
+                    <span>Total Amount</span>
+                    <span>₹0</span>
+                </div>
+            </div>
+
+            <!-- Status Badge -->
+            <div style="text-align: center;">
+                <span class="status-badge" id="status-badge">Pending</span>
+            </div>
+
+            <!-- Refresh Note -->
+            <div class="refresh-note">
+                <span class="dot"></span>
+                <span>Auto-refreshes every 5 seconds </span>
+                
+            </div>
+
+            <!-- Action Buttons - These will always be visible -->
+            <div class="action-buttons">
+                <a href="order-details.html" class="action-btn primary">
+                    <span>🔄</span> <span class="span1">New Order</span>
+                </a>
+                <a href="my-orders.html" class="action-btn secondary">
+                    <span>📋</span> <span class="span1">My Orders</span>
+                </a>
+                <a href="index.html" class="action-btn outline">
+                    <span>🏠</span> <span class="span1">Home</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        
+
+        const mq = window.matchMedia("(max-width: 500px)");
+
+        function updateNav() {
+            // Check current state (on load + whenever it changes)
+            const links = document.querySelectorAll(".span1");
+
+            if (mq.matches) {
+                // alert("not matched")
+                // Screen ≤ 500px → hide / clear / modify links
+                links.forEach(link => {
+                    // Option 1: Completely hide each link
+                    link.style.display = "none";
+
+                    // Option 2: Clear text content (if that's what you wanted)
+                    // link.textContent = "";
+
+                    // Option 3: Remove value if it's an input (very unlikely for nav links)
+                    // if (link.tagName === 'INPUT') link.value = "";
+                });
+            } else {
+                // Screen > 500px → show / restore links
+                links.forEach(link => {
+                    link.style.display = "";          // reset to default (usually block/inline)
+                    // or link.style.display = "block"; / "inline-block" depending on your CSS
+                });
+            }
+        }
+
+        // Run once when page loads
+        updateNav();
+
+        // Listen for screen size changes (resize, orientation change, etc.)
+        mq.addEventListener("change", updateNav);
+
+
+        function getOrderIdFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+
+        function loadOrderStatus() {
+            const orderId = getOrderIdFromUrl();
+            
+            // Get order from kitchen orders
+            const allOrders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
+            let order = allOrders.find(o => o.id === orderId);
+
+            // If not found by ID, try active order
+            if (!order) {
+                order = JSON.parse(localStorage.getItem('activeCustomerOrder'));
+            }
+
+            if (!order) {
+                // Show error state with buttons
+                document.querySelector('.status-card').innerHTML = `
+                    <h2 style="color: #ef4444; margin-bottom: 1rem;">Order Not Found</h2>
+                    <p style="color: #57534e; margin-bottom: 2rem;">We couldn't find your order. Please place a new order.</p>
+                    <div class="action-buttons">
+                        <a href="order-details.html" class="action-btn primary">Place New Order</a>
+                        <a href="my-orders.html" class="action-btn secondary">View My Orders</a>
+                        <a href="index.html" class="action-btn outline">Go Home</a>
+                    </div>
+                `;
+                return;
+            }
+
+            displayOrder(order);
+        }
+
+        function displayOrder(order) {
+            // Update basic info
+            document.getElementById('order-id-display').textContent = order.id;
+            document.getElementById('table-number').textContent = order.tableNumber || '1';
+            
+            // Update estimated time
+            const timeValue = document.getElementById('estimated-time');
+            timeValue.textContent = order.estimatedTime && order.estimatedTime !== '...' ? order.estimatedTime : 'Waiting for kitchen';
+            
+            // Update items
+            const itemsContainer = document.getElementById('items-container');
+            itemsContainer.innerHTML = order.items.map(item => `
+                <div class="item-row">
+                    <span>${item.name}</span>
+                    <span>₹${item.price}</span>
+                </div>
+            `).join('');
+            
+            // Update total
+            const totalContainer = document.getElementById('total-container');
+            totalContainer.querySelector('span:last-child').textContent = `₹${order.total}`;
+            
+            // Update status badge
+            const statusBadge = document.getElementById('status-badge');
+            if (order.estimatedTime && order.estimatedTime !== '...') {
+                statusBadge.textContent = `Preparing · Ready in ${order.estimatedTime}`;
+                statusBadge.classList.add('preparing');
+            } else {
+                statusBadge.textContent = 'Pending · Waiting for kitchen';
+                statusBadge.classList.remove('preparing');
+            }
+        }
+
+        // Load initial status
+        loadOrderStatus();
+
+        // Refresh every 5 seconds
+        setInterval(loadOrderStatus, 5000);
+    </script>
+</body>
+</html>

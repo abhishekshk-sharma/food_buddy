@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Food | FlavorFlow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #f5f5f4;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 60px;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #1c1917 0%, #eab308 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .table-badge {
+            background: #1c1917;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 2px solid #eab308;
+        }
+
+        .category-filter {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .category-btn {
+            background: white;
+            border: 2px solid #e7e5e4;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #57534e;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .category-btn:hover {
+            border-color: #eab308;
+            color: #1c1917;
+        }
+
+        .category-btn.active {
+            background: #eab308;
+            border-color: #eab308;
+            color: #1c1917;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 7rem;
+        }
+
+        .menu-item-card {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .menu-item-card.selected {
+            border-color: #eab308;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(234, 179, 8, 0.3);
+        }
+
+        .item-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .item-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #eab308;
+            color: #1c1917;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-weight: 700;
+            z-index: 2;
+        }
+
+        .item-content {
+            padding: 1.5rem;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .item-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1c1917;
+        }
+
+        .item-price {
+            font-weight: 800;
+            color: #eab308;
+            font-size: 1.4rem;
+            background: #1c1917;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            color: white;
+        }
+
+        .item-description {
+            color: #57534e;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .item-meta {
+            display: flex;
+            gap: 1rem;
+            color: #a8a29e;
+            font-size: 0.9rem;
+            border-top: 1px dashed #e7e5e4;
+            padding-top: 1rem;
+        }
+
+        .select-indicator {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: #22c55e;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .menu-item-card.selected .select-indicator {
+            opacity: 1;
+        }
+
+        .order-summary {
+            background: white;
+            border-radius: 40px 40px 0 0;
+            padding: 2rem;
+            border-top: 4px solid #eab308;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            box-shadow: 0 -10px 30px -10px rgba(0,0,0,0.2);
+            z-index: 100;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .summary-info {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .summary-title {
+            font-weight: 600;
+            color: #57534e;
+            margin-bottom: 0.5rem;
+        }
+
+        .selected-count {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1c1917;
+        }
+
+        .selected-items-preview {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .preview-item {
+            background: #f5f5f4;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .preview-item span {
+            color: #eab308;
+            font-weight: 700;
+        }
+
+        .summary-total {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #eab308;
+            min-width: 150px;
+            text-align: right;
+        }
+
+        .order-btn {
+            background: #eab308;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .order-btn:hover {
+            background: #facc15;
+            transform: scale(1.05);
+        }
+
+        .order-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .order-summary {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .summary-total {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📋 Choose Your Feast</h1>
+            <div class="table-badge" id="table-display">Table: --</div>
+            <!-- Add this in the header next to the table badge -->
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <div class="table-badge" id="table-display">Table: --</div>
+                <a href="my-orders.html" style="background: #1c1917; color: white; padding: 0.8rem 1.5rem; border-radius: 40px; text-decoration: none; font-weight: 600; border: 2px solid #eab308; display: flex; align-items: center; gap: 0.5rem;">
+                    <span>📋</span> My Orders
+                </a>
+            </div>
+        </header>
+
+        <div class="category-filter">
+            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn" data-category="indian">Indian</button>
+            <button class="category-btn" data-category="chinese">Chinese</button>
+            <button class="category-btn" data-category="italian">Italian</button>
+            <button class="category-btn" data-category="continental">Continental</button>
+            <button class="category-btn" data-category="desserts">Desserts</button>
+            <button class="category-btn" data-category="beverages">Beverages</button>
+        </div>
+
+        <div class="menu-grid" id="menu-grid">
+            <!-- JS will load items here -->
+        </div>
+
+        <div class="order-summary" id="order-summary">
+            <div class="summary-info">
+                <div class="summary-title">Your Selection</div>
+                <div class="selected-count" id="selected-count">0 items selected</div>
+                <div class="selected-items-preview" id="selected-items-preview"></div>
+            </div>
+            <div class="summary-total" id="total-amount">₹0</div>
+            <button class="order-btn" id="review-order-btn" disabled>REVIEW ORDER</button>
+        </div>
+    </div>
+
+    <script>
+        // Get menu from localStorage or use default
+        const menu = JSON.parse(localStorage.getItem('restaurantMenu')) || [];
+        
+        // Get current order data
+        let currentOrder = JSON.parse(localStorage.getItem('currentCustomerOrder')) || { tableNumber: 'N/A', items: [] };
+        
+        // Display table number
+        document.getElementById('table-display').textContent = `Table: ${currentOrder.tableNumber || '1'}`;
+
+        // State for selected items
+        let selectedItems = currentOrder.items ? [...currentOrder.items] : [];
+
+        // Filter state
+        let currentCategory = 'all';
+
+        function filterItems(category) {
+            currentCategory = category;
+            renderMenu();
+        }
+
+        function renderMenu() {
+            const grid = document.getElementById('menu-grid');
+            
+            const filteredItems = currentCategory === 'all' 
+                ? menu 
+                : menu.filter(item => item.category === currentCategory);
+
+            grid.innerHTML = filteredItems.map(item => {
+                const isSelected = selectedItems.some(i => i.id === item.id);
+                return `
+                    <div class="menu-item-card ${isSelected ? 'selected' : ''}" data-id="${item.id}">
+                        <div class="item-image" style="background-image: url('${item.image}')">
+                            <span class="item-badge">${item.rating || '4.5'} ★</span>
+                            <div class="select-indicator">✓</div>
+                        </div>
+                        <div class="item-content">
+                            <div class="item-header">
+                                <h3>${item.name}</h3>
+                                <span class="item-price">₹${item.price}</span>
+                            </div>
+                            <p class="item-description">${item.description}</p>
+                            <div class="item-meta">
+                                <span>⏱️ ${item.time || '20-25 min'}</span>
+                                <span>${item.spicy || '🌶️ Mild'}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Add click listeners
+            document.querySelectorAll('.menu-item-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    const id = this.dataset.id;
+                    const item = menu.find(m => m.id === id);
+                    
+                    const index = selectedItems.findIndex(i => i.id === id);
+                    if (index === -1) {
+                        selectedItems.push({ ...item, quantity: 1 });
+                    } else {
+                        selectedItems.splice(index, 1);
+                    }
+                    
+                    renderMenu(); // Re-render to update selected state
+                    updateSummary();
+                });
+            });
+        }
+
+        function updateSummary() {
+            const countSpan = document.getElementById('selected-count');
+            const previewDiv = document.getElementById('selected-items-preview');
+            const totalSpan = document.getElementById('total-amount');
+            const orderBtn = document.getElementById('review-order-btn');
+
+            if (selectedItems.length === 0) {
+                countSpan.textContent = '0 items selected';
+                previewDiv.innerHTML = '';
+                totalSpan.textContent = '₹0';
+                orderBtn.disabled = true;
+                return;
+            }
+
+            let total = 0;
+            countSpan.textContent = `${selectedItems.length} item${selectedItems.length > 1 ? 's' : ''} selected`;
+            
+            // Create preview chips
+            previewDiv.innerHTML = selectedItems.slice(0, 3).map(item => {
+                total += item.price;
+                return `
+                    <div class="preview-item">
+                        ${item.name} <span>₹${item.price}</span>
+                    </div>
+                `;
+            }).join('');
+
+            if (selectedItems.length > 3) {
+                previewDiv.innerHTML += `<div class="preview-item">+${selectedItems.length - 3} more</div>`;
+            } else {
+                // Calculate total for all items
+                total = selectedItems.reduce((sum, item) => sum + item.price, 0);
+            }
+
+            totalSpan.textContent = `₹${total}`;
+            orderBtn.disabled = false;
+        }
+
+        // Category filter listeners
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                filterItems(this.dataset.category);
+            });
+        });
+
+        // Handle review order
+        document.getElementById('review-order-btn').addEventListener('click', function() {
+            if (selectedItems.length === 0) {
+                alert('Please select at least one item.');
+                return;
+            }
+
+            const total = selectedItems.reduce((sum, item) => sum + item.price, 0);
+
+            currentOrder.items = selectedItems;
+            currentOrder.total = total;
+            currentOrder.status = 'pending-review';
+            localStorage.setItem('currentCustomerOrder', JSON.stringify(currentOrder));
+
+            window.location.href = 'order-review.html';
+        });
+
+        // Initial render
+        renderMenu();
+        updateSummary();
+    </script>
+</body>
+</html>
