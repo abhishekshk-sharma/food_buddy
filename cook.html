@@ -323,6 +323,55 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.3; }
         }
+
+        /* Add to cook.html styles */
+.special-instructions-card {
+    background: #422006;
+    border-left: 4px solid #eab308;
+    border-radius: 16px;
+    padding: 1rem;
+    margin-top: 1rem;
+    animation: pulse 2s infinite;
+}
+
+.instructions-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.instructions-icon {
+    font-size: 1.2rem;
+}
+
+.instructions-label {
+    color: #eab308;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.instructions-content {
+    color: white;
+    font-style: italic;
+    padding: 0.5rem;
+    background: rgba(234, 179, 8, 0.1);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 4px rgba(234, 179, 8, 0.2);
+    }
+}
     </style>
 </head>
 <body>
@@ -493,7 +542,25 @@
                         <div class="order-time">🕐 ${order.placedTime || 'Just now'}</div>
                         
                         <div class="items-list">
-                            ${itemsHTML}
+                            ${order.items.map(item => `
+                                <div class="item-row">
+                                    <span>${item.name}</span>
+                                    <span>₹${item.price}</span>
+                                </div>
+                            `).join('')}
+                            
+                            <!-- Special Instructions Highlighted Section -->
+                            ${order.specialInstructions && order.specialInstructions !== 'No special instructions' ? `
+                                <div class="special-instructions-card">
+                                    <div class="instructions-header">
+                                        <span class="instructions-icon">📝</span>
+                                        <span class="instructions-label">Special Instructions</span>
+                                    </div>
+                                    <div class="instructions-content">
+                                        "${order.specialInstructions}"
+                                    </div>
+                                </div>
+                            ` : ''}
                         </div>
                         
                         <div class="total">Total: ₹${order.total}</div>

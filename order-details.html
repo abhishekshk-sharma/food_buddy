@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Order Details | FlavorFlow</title>
+    <title>Select Table | FlavorFlow</title>
     <style>
         * {
             margin: 0;
@@ -13,608 +13,1034 @@
         }
 
         body {
-            background: #f5f5f4;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
+            background: #f8fafc;
+            color: #0f172a;
         }
 
-        /* Main Container */
-        .container {
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        /* Header with Navigation */
+        /* Professional Header */
         .header {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: #eab308;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .header-actions {
+            display: flex;
             gap: 1rem;
-        }
-
-        .back-home {
-            display: flex;
             align-items: center;
-            gap: 0.5rem;
-            color: #57534e;
-            text-decoration: none;
-            font-size: 0.95rem;
-            padding: 0.5rem 1rem;
-            background: white;
-            border-radius: 30px;
-            transition: all 0.2s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
-        .back-home:hover {
-            background: #eab308;
-            color: #1c1917;
-        }
-
-        .orders-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #1c1917;
-            color: white;
-            padding: 0.5rem 1.2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 0.95rem;
+        .header-btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 100px;
             font-weight: 500;
+            font-size: 0.9rem;
+            text-decoration: none;
             transition: all 0.2s;
-            border: 2px solid #eab308;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .orders-link:hover {
-            background: #eab308;
-            color: #1c1917;
+        .header-btn.outline {
+            border: 1px solid #e2e8f0;
+            color: #475569;
+            background: white;
         }
 
-        .orders-count {
+        .header-btn.outline:hover {
+            background: #f8fafc;
+            border-color: #94a3b8;
+        }
+
+        .header-btn.primary {
             background: #eab308;
-            color: #1c1917;
-            border-radius: 20px;
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        .header-btn.primary:hover {
+            background: #facc15;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(234, 179, 8, 0.2);
+        }
+
+        .badge {
+            background: #eab308;
+            color: #0f172a;
+            border-radius: 100px;
             padding: 0.2rem 0.6rem;
             font-size: 0.8rem;
             font-weight: 600;
             margin-left: 0.3rem;
         }
 
-        /* Main Form Card */
-        .form-card {
-            background: white;
-            width: 100%;
-            padding: 2.5rem 2rem;
-            border-radius: 40px;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-            border: 1px solid #e7e5e4;
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
         }
 
-        /* Responsive padding for mobile */
-        @media (max-width: 480px) {
-            .form-card {
-                padding: 2rem 1.5rem;
-                border-radius: 32px;
-            }
+        /* Progress Bar */
+        .progress-section {
+            margin-bottom: 3rem;
         }
 
-        @media (max-width: 360px) {
-            .form-card {
-                padding: 1.5rem 1rem;
-                border-radius: 24px;
-            }
-        }
-
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.3rem;
-            color: #1c1917;
-            line-height: 1.2;
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-        }
-
-        .sub {
-            color: #57534e;
-            margin-bottom: 2rem;
-            font-size: 1rem;
-            line-height: 1.4;
-        }
-
-        @media (max-width: 480px) {
-            .sub {
-                margin-bottom: 1.5rem;
-                font-size: 0.95rem;
-            }
-        }
-
-        /* Table Selection */
-        .table-selection {
-            margin-bottom: 2rem;
-        }
-
-        .table-presets {
+        .progress-steps {
             display: flex;
-            gap: 0.8rem;
-            margin-bottom: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e2e8f0;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .step {
+            background: white;
+            border: 2px solid #e2e8f0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #94a3b8;
+            position: relative;
+            z-index: 2;
+            background: white;
+        }
+
+        .step.active {
+            background: #eab308;
+            border-color: #eab308;
+            color: #0f172a;
+        }
+
+        .step.completed {
+            background: #22c55e;
+            border-color: #22c55e;
+            color: white;
+        }
+
+        .step-label {
+            position: absolute;
+            top: 45px;
+            font-size: 0.8rem;
+            color: #64748b;
+            white-space: nowrap;
+        }
+
+        /* Main Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Table Categories */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title span {
+            color: #eab308;
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
         }
 
-        .table-preset-btn {
-            background: #f5f5f4;
-            border: 2px solid #e7e5e4;
-            padding: 0.6rem 1.2rem;
-            border-radius: 40px;
-            font-weight: 600;
-            color: #57534e;
+        .category-tab {
+            padding: 0.8rem 1.5rem;
+            border-radius: 100px;
+            font-weight: 500;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: all 0.2s;
-            flex: 1 1 auto;
-            min-width: 60px;
-        }
-
-        .table-preset-btn:hover,
-        .table-preset-btn.active {
-            background: #eab308;
-            border-color: #eab308;
-            color: #1c1917;
-        }
-
-        .input-group {
-            margin-bottom: 2rem;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #292524;
-            font-size: 1rem;
-        }
-
-        .input-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 1.2rem;
-            color: #eab308;
-            font-size: 1.2rem;
-        }
-
-        input[type="number"] {
-            width: 100%;
-            padding: 1.2rem 1.2rem 1.2rem 3rem;
-            font-size: 1.2rem;
-            border: 2px solid #d6d3d1;
-            border-radius: 50px;
-            outline: none;
-            transition: all 0.2s;
+            border: 1px solid #e2e8f0;
             background: white;
+            color: #475569;
+            flex: 1 1 auto;
+            text-align: center;
         }
 
-        input[type="number"]:focus {
+        .category-tab:hover {
             border-color: #eab308;
-            box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.1);
+            color: #0f172a;
         }
 
-        /* Remove spinner arrows for number input */
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
+        .category-tab.active {
+            background: #eab308;
+            border-color: #eab308;
+            color: #0f172a;
+            font-weight: 600;
         }
 
-        input[type="number"] {
-            -moz-appearance: textfield;
-        }
-
-        @media (max-width: 480px) {
-            input[type="number"] {
-                padding: 1rem 1rem 1rem 2.8rem;
-                font-size: 1rem;
-            }
-            
-            .input-icon {
-                left: 1rem;
-                font-size: 1rem;
-            }
-        }
-
-        /* Quick Tips */
-        .quick-tips {
-            background: #fef9e7;
-            border-radius: 30px;
-            padding: 1.2rem;
+        /* Table Grid */
+        .table-grid-section {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            border: 1px solid #e2e8f0;
             margin-bottom: 2rem;
-            border: 2px solid #eab308;
         }
 
-        .quick-tips h4 {
+        .category-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 0.5rem;
-            color: #854d0e;
-            margin-bottom: 0.8rem;
-            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        .quick-tips ul {
-            list-style: none;
+        .category-info h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.3rem;
         }
 
-        .quick-tips li {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #57534e;
+        .category-info p {
+            color: #64748b;
             font-size: 0.9rem;
+        }
+
+        .category-price {
+            background: #f1f5f9;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .table-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .table-item {
+            aspect-ratio: 1;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            color: #475569;
+            position: relative;
+        }
+
+        .table-item:hover {
+            border-color: #eab308;
+            background: #fefce8;
+            transform: translateY(-2px);
+        }
+
+        .table-item.selected {
+            background: #eab308;
+            border-color: #eab308;
+            color: #0f172a;
+        }
+
+        .table-item.booked {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+            color: #94a3b8;
+            cursor: not-allowed;
+            opacity: 0.6;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .table-item.booked::after {
+            content: '×';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            color: #ef4444;
+            opacity: 0.5;
+        }
+
+        .table-number {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .table-capacity {
+            font-size: 0.7rem;
+            color: inherit;
+            opacity: 0.8;
+        }
+
+        /* Booking Summary Card */
+        .summary-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            border: 1px solid #e2e8f0;
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .summary-header h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .summary-header span {
+            color: #eab308;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .selected-table-info {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .selected-table-info .table-icon {
+            font-size: 2.5rem;
             margin-bottom: 0.5rem;
         }
 
-        .quick-tips li:last-child {
-            margin-bottom: 0;
+        .selected-table-info .table-details {
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.3rem;
         }
 
-        /* Action Buttons */
-        .action-btn {
+        .selected-table-info .table-category {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .no-selection {
+            text-align: center;
+            padding: 2rem;
+            color: #94a3b8;
+        }
+
+        .price-breakdown {
+            margin: 1.5rem 0;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            color: #475569;
+        }
+
+        .price-row.total {
+            border-top: 2px solid #e2e8f0;
+            margin-top: 0.5rem;
+            padding-top: 1rem;
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.1rem;
+        }
+
+        .continue-btn {
+            width: 100%;
             background: #eab308;
-            color: #1c1917;
+            color: #0f172a;
             border: none;
             padding: 1.2rem;
-            font-size: 1.2rem;
+            border-radius: 100px;
             font-weight: 600;
-            border-radius: 50px;
-            width: 100%;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.2s;
-            margin-bottom: 1rem;
+            margin-top: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            border: 2px solid transparent;
         }
 
-        .action-btn:hover {
+        .continue-btn:hover:not(:disabled) {
             background: #facc15;
-            transform: scale(1.02);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(234, 179, 8, 0.2);
         }
 
-        .action-btn:active {
-            transform: scale(0.98);
+        .continue-btn:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+            opacity: 0.5;
         }
 
-        @media (max-width: 480px) {
-            .action-btn {
-                padding: 1rem;
-                font-size: 1.1rem;
-            }
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 3rem;
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid #e2e8f0;
         }
 
-        /* Footer Links */
-        .footer-links {
+        .faq-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .faq-item {
+            padding: 1rem;
+            border-radius: 16px;
+            background: #f8fafc;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .faq-item:hover {
+            background: #fefce8;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 1.5rem;
+        }
+
+        .faq-answer {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.expanded .faq-answer {
+            max-height: 200px;
+            margin-top: 0.8rem;
+        }
+
+        .faq-question .arrow {
+            transition: transform 0.2s;
+        }
+
+        .faq-item.expanded .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Features Bar */
+        .features-bar {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 100px;
+            border: 1px solid #e2e8f0;
             flex-wrap: wrap;
             gap: 1rem;
         }
 
-        .back-link {
+        .feature {
             display: flex;
             align-items: center;
-            gap: 0.3rem;
-            color: #57534e;
-            text-decoration: none;
-            font-size: 0.95rem;
-            padding: 0.5rem;
-            transition: color 0.2s;
+            gap: 0.8rem;
+            color: #475569;
         }
 
-        .back-link:hover {
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: #fefce8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #eab308;
+            font-size: 1.2rem;
         }
 
-        .view-orders-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #1c1917;
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border-radius: 40px;
-            text-decoration: none;
+        .feature-text {
             font-weight: 500;
-            transition: all 0.2s;
-            border: 2px solid #eab308;
         }
 
-        .view-orders-link:hover {
-            background: #eab308;
-            color: #1c1917;
+        .feature-subtext {
+            font-size: 0.8rem;
+            color: #94a3b8;
         }
 
-        @media (max-width: 480px) {
-            .footer-links {
-                flex-direction: column-reverse;
-                align-items: stretch;
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
             }
             
-            .back-link, .view-orders-link {
-                justify-content: center;
-                text-align: center;
+            .container {
+                padding: 0 1rem;
             }
-        }
-
-        /* Order Count Badge */
-        .order-count-badge {
-            background: #eab308;
-            color: #1c1917;
-            border-radius: 30px;
-            padding: 0.2rem 0.8rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-left: 0.5rem;
-        }
-
-        /* Recent Orders Preview (if any) */
-        .recent-preview {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 2px dashed #e7e5e4;
-        }
-
-        .recent-preview h4 {
-            color: #57534e;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .recent-order-item {
-            background: #f5f5f4;
-            border-radius: 30px;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.2s;
-        }
-
-        .recent-order-item:hover {
-            background: #e7e5e4;
-        }
-
-        .recent-order-info {
-            display: flex;
-            flex-direction: column;
-            gap: 0.2rem;
-        }
-
-        .recent-order-id {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: #eab308;
-        }
-
-        .recent-order-time {
-            font-size: 0.8rem;
-            color: #a8a29e;
-        }
-
-        .recent-order-price {
-            font-weight: 700;
-            color: #1c1917;
+            
+            .table-grid-section {
+                padding: 1.5rem;
+            }
+            
+            .features-bar {
+                border-radius: 24px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .category-tabs {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+            
+            .category-tab {
+                white-space: nowrap;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Professional Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                FlavorFlow
+                <span class="logo-dot"></span>
+            </a>
+            <div class="header-actions">
+                <a href="my-orders.html" class="header-btn outline">
+                    📋 My Orders
+                    <span class="badge" id="orders-count">0</span>
+                </a>
+                <a href="index.html" class="header-btn outline">
+                    🏠 Home
+                </a>
+            </div>
+        </div>
+    </header>
+
     <div class="container">
-        <!-- Header with Navigation -->
-        <div class="header">
-            <a href="index.html" class="back-home">
-                <span>←</span> Home
-            </a>
-            <a href="my-orders.html" class="orders-link" id="orders-link">
-                <span>📋</span> My Orders
-                <span class="orders-count" id="orders-count">0</span>
-            </a>
+        <!-- Progress Indicator -->
+        <div class="progress-section">
+            <div class="progress-steps">
+                <div class="step active">
+                    1
+                    <span class="step-label">Select Table</span>
+                </div>
+                <div class="step">
+                    2
+                    <span class="step-label">Choose Food</span>
+                </div>
+                <div class="step">
+                    3
+                    <span class="step-label">Review</span>
+                </div>
+                <div class="step">
+                    4
+                    <span class="step-label">Track</span>
+                </div>
+            </div>
         </div>
 
-        <!-- Main Form Card -->
-        <div class="form-card">
-            <h1>Welcome back! 👋</h1>
-            <p class="sub">Please enter your table number to continue</p>
-            
-            <!-- Table Number Presets -->
-            <div class="table-selection">
-                <label>Quick Select</label>
-                <div class="table-presets">
-                    <button class="table-preset-btn" data-table="1">1</button>
-                    <button class="table-preset-btn" data-table="2">2</button>
-                    <button class="table-preset-btn" data-table="3">3</button>
-                    <button class="table-preset-btn" data-table="4">4</button>
-                    <button class="table-preset-btn" data-table="5">5</button>
-                    <button class="table-preset-btn" data-table="6">6</button>
-                    <button class="table-preset-btn" data-table="7">7</button>
-                    <button class="table-preset-btn" data-table="8">8</button>
+        <!-- Features Bar -->
+        <div class="features-bar">
+            <div class="feature">
+                <div class="feature-icon">🪑</div>
+                <div>
+                    <div class="feature-text">Premium Seating</div>
+                    <div class="feature-subtext">Comfort guaranteed</div>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎉</div>
+                <div>
+                    <div class="feature-text">Party Ready</div>
+                    <div class="feature-subtext">Up to 20 guests</div>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">✨</div>
+                <div>
+                    <div class="feature-text">Ambiance</div>
+                    <div class="feature-subtext">Perfect setting</div>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔔</div>
+                <div>
+                    <div class="feature-text">Quick Service</div>
+                    <div class="feature-subtext">30 min guarantee</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="content-grid">
+            <!-- Left Column - Table Selection -->
+            <div>
+                <!-- Category Tabs -->
+                <div class="category-tabs" id="categoryTabs">
+                    <button class="category-tab active" data-category="ac">AC Dining</button>
+                    <button class="category-tab" data-category="non-ac">Non-AC</button>
+                    <button class="category-tab" data-category="party">Party Hall</button>
+                    <button class="category-tab" data-category="candle">Candle Light</button>
+                </div>
+
+                <!-- AC Dining Section -->
+                <div class="table-grid-section category-section active" id="ac-section">
+                    <div class="category-header">
+                        <div class="category-info">
+                            <h3>AC Dining</h3>
+                            <p>Premium air-conditioned comfort • 2-6 persons</p>
+                        </div>
+                        <div class="category-price">₹500 cover</div>
+                    </div>
+                    <div class="table-grid" id="ac-grid">
+                        <!-- Will be populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Non-AC Section -->
+                <div class="table-grid-section category-section" id="non-ac-section">
+                    <div class="category-header">
+                        <div class="category-info">
+                            <h3>Non-AC Dining</h3>
+                            <p>Open air seating • 2-8 persons</p>
+                        </div>
+                        <div class="category-price">₹300 cover</div>
+                    </div>
+                    <div class="table-grid" id="non-ac-grid">
+                        <!-- Will be populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Party Hall Section -->
+                <div class="table-grid-section category-section" id="party-section">
+                    <div class="category-header">
+                        <div class="category-info">
+                            <h3>Party Hall</h3>
+                            <p>Private parties & celebrations • 10-20 persons</p>
+                        </div>
+                        <div class="category-price">₹1500 cover</div>
+                    </div>
+                    <div class="table-grid" id="party-grid">
+                        <!-- Will be populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Candle Light Section -->
+                <div class="table-grid-section category-section" id="candle-section">
+                    <div class="category-header">
+                        <div class="category-info">
+                            <h3>Candle Light</h3>
+                            <p>Romantic dinner setup • 2 persons</p>
+                        </div>
+                        <div class="category-price">₹800 cover</div>
+                    </div>
+                    <div class="table-grid" id="candle-grid">
+                        <!-- Will be populated by JS -->
+                    </div>
                 </div>
             </div>
 
-            <!-- Table Number Input -->
-            <div class="input-group">
-                <label for="table-number">Table Number</label>
-                <div class="input-wrapper">
-                    <span class="input-icon">🔢</span>
-                    <input type="number" id="table-number" min="1" max="50" value="1" placeholder="Enter table number">
+            <!-- Right Column - Booking Summary -->
+            <div>
+                <div class="summary-card">
+                    <div class="summary-header">
+                        <h3>Your Selection</h3>
+                        <span onclick="clearSelection()">Clear</span>
+                    </div>
+                    
+                    <div id="selected-table-display">
+                        <div class="no-selection">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">🪑</div>
+                            <p>No table selected</p>
+                            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Choose a table to continue</p>
+                        </div>
+                    </div>
+
+                    <div class="price-breakdown" id="price-breakdown" style="display: none;">
+                        <div class="price-row">
+                            <span>Cover Charge</span>
+                            <span id="cover-charge">₹0</span>
+                        </div>
+                        <div class="price-row">
+                            <span>GST (5%)</span>
+                            <span id="gst">₹0</span>
+                        </div>
+                        <div class="price-row total">
+                            <span>Total</span>
+                            <span id="total-amount">₹0</span>
+                        </div>
+                    </div>
+
+                    <button class="continue-btn" id="continue-btn" disabled onclick="proceedToMenu()">
+                        Continue to Menu
+                        <span>→</span>
+                    </button>
+
+                    <p style="color: #94a3b8; font-size: 0.8rem; text-align: center; margin-top: 1rem;">
+                        Free cancellation within 10 minutes
+                    </p>
                 </div>
             </div>
+        </div>
 
-            <!-- Quick Tips -->
-            <div class="quick-tips">
-                <h4>
-                    <span>✨</span>
-                    Quick Tips
-                </h4>
-                <ul>
-                    <li>
-                        <span>✅</span>
-                        Your order will be linked to this table
-                    </li>
-                    <li>
-                        <span>⏱️</span>
-                        Average preparation time: 20-30 mins
-                    </li>
-                    <li>
-                        <span>📱</span>
-                        Track order status in real-time
-                    </li>
-                </ul>
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <div class="faq-title">
+                <span>❓</span>
+                Frequently Asked Questions
             </div>
-
-            <!-- Main Action Button -->
-            <button class="action-btn" id="proceed-to-menu">
-                <span>🍽️</span>
-                CONTINUE TO MENU
-                <span>→</span>
-            </button>
-
-            <!-- Footer Links -->
-            <div class="footer-links">
-                <a href="index.html" class="back-link">
-                    <span>←</span>
-                    Back to Home
-                </a>
-                <a href="my-orders.html" class="view-orders-link" id="mobile-view-orders">
-                    <span>📋</span>
-                    View My Orders
-                </a>
-            </div>
-
-            <!-- Recent Orders Preview (shows if there are any orders) -->
-            <div class="recent-preview" id="recent-preview" style="display: none;">
-                <h4>
-                    <span>🕐</span>
-                    Your Recent Orders
-                </h4>
-                <div id="recent-order-item" class="recent-order-item">
-                    <!-- Will be populated by JS -->
+            <div class="faq-grid" id="faq-grid">
+                <div class="faq-item expanded">
+                    <div class="faq-question">
+                        How do I select a table?
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Click on any available table number from the categories above. Selected tables will be highlighted in yellow.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is cover charge?
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Cover charge includes table service, ambiance, and is adjustable against your food bill. Each category has different cover charges.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I change my table?
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, you can change your table selection anytime before proceeding to the menu. Simply click on a different available table.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What if my table is booked?
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Booked tables are marked with a cross (×) and cannot be selected. Please choose from available tables only.
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Update order count in real-time
-        function updateOrderCount() {
-            const orders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
-            const countElements = document.querySelectorAll('#orders-count');
-            countElements.forEach(el => {
-                el.textContent = orders.length;
-            });
-        }
-
-        // Show recent order preview
-        function showRecentOrder() {
-            const orders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
-            if (orders.length > 0) {
-                const recentOrder = orders[orders.length - 1];
-                const previewDiv = document.getElementById('recent-preview');
-                const recentItemDiv = document.getElementById('recent-order-item');
-                
-                recentItemDiv.innerHTML = `
-                    <div class="recent-order-info">
-                        <span class="recent-order-id">${recentOrder.id}</span>
-                        <span class="recent-order-time">${recentOrder.placedTime || 'Just now'}</span>
-                    </div>
-                    <div class="recent-order-price">₹${recentOrder.total}</div>
-                `;
-                
-                recentItemDiv.href = `order-status.html?id=${recentOrder.id}`;
-                recentItemDiv.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.location.href = `order-status.html?id=${recentOrder.id}`;
-                });
-                
-                previewDiv.style.display = 'block';
+        // Table Data
+        const tableCategories = {
+            ac: {
+                name: 'AC Dining',
+                coverCharge: 500,
+                capacity: '2-6 persons',
+                tables: Array.from({ length: 20 }, (_, i) => ({
+                    id: `ac-${i + 1}`,
+                    number: i + 1,
+                    capacity: i % 2 === 0 ? 4 : 6,
+                    booked: [3, 7, 12, 15].includes(i + 1) // Some tables booked
+                }))
+            },
+            nonAc: {
+                name: 'Non-AC',
+                coverCharge: 300,
+                capacity: '2-8 persons',
+                tables: Array.from({ length: 18 }, (_, i) => ({
+                    id: `nonac-${i + 1}`,
+                    number: i + 1,
+                    capacity: i % 3 === 0 ? 8 : 4,
+                    booked: [2, 5, 9, 14].includes(i + 1)
+                }))
+            },
+            party: {
+                name: 'Party Hall',
+                coverCharge: 1500,
+                capacity: '10-20 persons',
+                tables: Array.from({ length: 15 }, (_, i) => ({
+                    id: `party-${i + 1}`,
+                    number: i + 1,
+                    capacity: i % 2 === 0 ? 15 : 20,
+                    booked: [1, 4, 8, 11].includes(i + 1)
+                }))
+            },
+            candle: {
+                name: 'Candle Light',
+                coverCharge: 800,
+                capacity: '2 persons',
+                tables: Array.from({ length: 16 }, (_, i) => ({
+                    id: `candle-${i + 1}`,
+                    number: i + 1,
+                    capacity: 2,
+                    booked: [2, 6, 10, 13].includes(i + 1)
+                }))
             }
-        }
+        };
 
-        // Table preset buttons
-        document.querySelectorAll('.table-preset-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Remove active class from all preset buttons
-                document.querySelectorAll('.table-preset-btn').forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
-                this.classList.add('active');
-                // Set input value
-                const tableNumber = this.dataset.table;
-                document.getElementById('table-number').value = tableNumber;
-            });
-        });
+        let selectedTable = null;
+        let currentCategory = 'ac';
 
-        // Set table 1 as active by default
-        document.querySelector('.table-preset-btn[data-table="1"]').classList.add('active');
-
-        // Proceed to menu
-        document.getElementById('proceed-to-menu').addEventListener('click', function() {
-            const tableNumber = document.getElementById('table-number').value;
-            
-            // Validate
-            if (!tableNumber || tableNumber < 1 || tableNumber > 50) {
-                alert('Please enter a valid table number between 1 and 50');
-                return;
-            }
-
-            // Save table number to localStorage
-            let currentOrder = JSON.parse(localStorage.getItem('currentCustomerOrder')) || {};
-            currentOrder.tableNumber = tableNumber;
-            currentOrder.items = [];
-            currentOrder.status = 'pending';
-            localStorage.setItem('currentCustomerOrder', JSON.stringify(currentOrder));
-
-            // Redirect to menu selection
-            window.location.href = 'food-menu.html';
-        });
-
-        // Initialize
-        updateOrderCount();
-        showRecentOrder();
-
-        // Update order count every 3 seconds
-        setInterval(updateOrderCount, 3000);
-
-        // Make entire recent order item clickable
-        document.addEventListener('click', function(e) {
-            const recentItem = document.getElementById('recent-order-item');
-            if (recentItem && recentItem.contains(e.target)) {
-                const orders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
-                if (orders.length > 0) {
-                    const recentOrder = orders[orders.length - 1];
-                    window.location.href = `order-status.html?id=${recentOrder.id}`;
+        // Initialize tables
+        function initializeTables() {
+            for (const [category, data] of Object.entries(tableCategories)) {
+                const gridId = `${category === 'nonAc' ? 'non-ac' : category}-grid`;
+                const grid = document.getElementById(gridId);
+                
+                if (grid) {
+                    grid.innerHTML = data.tables.map(table => `
+                        <div class="table-item ${table.booked ? 'booked' : ''} ${selectedTable?.id === table.id ? 'selected' : ''}" 
+                             onclick="${table.booked ? '' : `selectTable('${category}', ${table.number}, ${data.coverCharge})`}"
+                             data-table-id="${table.id}">
+                            <div class="table-number">${table.number}</div>
+                            <div class="table-capacity">${table.capacity} pax</div>
+                        </div>
+                    `).join('');
                 }
             }
+        }
+
+        // Select table
+        window.selectTable = function(category, tableNumber, coverCharge) {
+            const tableData = tableCategories[category].tables.find(t => t.number === tableNumber);
+            
+            selectedTable = {
+                id: `${category}-${tableNumber}`,
+                category: category,
+                categoryName: tableCategories[category].name,
+                number: tableNumber,
+                capacity: tableData.capacity,
+                coverCharge: coverCharge
+            };
+
+            // Update UI
+            updateSelectedDisplay();
+            enableContinueButton();
+            
+            // Highlight selected table
+            initializeTables();
+        }
+
+        // Update selected table display
+        function updateSelectedDisplay() {
+            const displayDiv = document.getElementById('selected-table-display');
+            const priceBreakdown = document.getElementById('price-breakdown');
+            
+            if (selectedTable) {
+                const gst = selectedTable.coverCharge * 0.05;
+                const total = selectedTable.coverCharge + gst;
+
+                displayDiv.innerHTML = `
+                    <div class="selected-table-info">
+                        <div class="table-icon">🪑</div>
+                        <div class="table-details">Table ${selectedTable.number}</div>
+                        <div class="table-category">${selectedTable.categoryName} • ${selectedTable.capacity} persons</div>
+                    </div>
+                `;
+
+                document.getElementById('cover-charge').textContent = `₹${selectedTable.coverCharge}`;
+                document.getElementById('gst').textContent = `₹${gst}`;
+                document.getElementById('total-amount').textContent = `₹${total}`;
+                
+                priceBreakdown.style.display = 'block';
+            } else {
+                displayDiv.innerHTML = `
+                    <div class="no-selection">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🪑</div>
+                        <p>No table selected</p>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Choose a table to continue</p>
+                    </div>
+                `;
+                priceBreakdown.style.display = 'none';
+            }
+        }
+
+        // Clear selection
+        window.clearSelection = function() {
+            selectedTable = null;
+            updateSelectedDisplay();
+            disableContinueButton();
+            initializeTables();
+        }
+
+        // Enable continue button
+        function enableContinueButton() {
+            const btn = document.getElementById('continue-btn');
+            btn.disabled = false;
+        }
+
+        function disableContinueButton() {
+            const btn = document.getElementById('continue-btn');
+            btn.disabled = true;
+        }
+
+        // Proceed to menu
+        window.proceedToMenu = function() {
+            if (selectedTable) {
+                // Save table selection to localStorage
+                let currentOrder = JSON.parse(localStorage.getItem('currentCustomerOrder')) || {};
+                currentOrder.tableNumber = selectedTable.number;
+                currentOrder.tableCategory = selectedTable.categoryName;
+                currentOrder.coverCharge = selectedTable.coverCharge;
+                currentOrder.tableCapacity = selectedTable.capacity;
+                currentOrder.items = [];
+                currentOrder.status = 'pending';
+                localStorage.setItem('currentCustomerOrder', JSON.stringify(currentOrder));
+
+                // Redirect to menu
+                window.location.href = 'food-menu.html';
+            }
+        }
+
+        // Category switching
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Update active tab
+                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                // Show corresponding section
+                const category = this.dataset.category;
+                document.querySelectorAll('.category-section').forEach(section => {
+                    section.classList.remove('active');
+                    section.style.display = 'none';
+                });
+                
+                const sectionId = category === 'non-ac' ? 'non-ac-section' : 
+                                 category === 'ac' ? 'ac-section' :
+                                 category === 'party' ? 'party-section' : 'candle-section';
+                
+                const activeSection = document.getElementById(sectionId);
+                activeSection.style.display = 'block';
+                activeSection.classList.add('active');
+            });
         });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.toggle('expanded');
+            });
+        });
+
+        // Update order count
+        function updateOrderCount() {
+            const orders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
+            document.getElementById('orders-count').textContent = orders.length;
+        }
+
+        // Initialize
+        initializeTables();
+        updateOrderCount();
+        
+        // Show only AC section initially
+        document.querySelectorAll('.category-section').forEach(section => {
+            if (section.id !== 'ac-section') {
+                section.style.display = 'none';
+            }
+        });
+
+        // Set interval for order count
+        setInterval(updateOrderCount, 3000);
     </script>
 </body>
 </html>

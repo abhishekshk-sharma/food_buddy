@@ -23,7 +23,7 @@
 
         .review-card {
             background: white;
-            max-width: 550px;
+            max-width: 600px;
             width: 100%;
             padding: 2.5rem;
             border-radius: 48px;
@@ -36,6 +36,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            color: #1c1917;
         }
 
         .subtitle {
@@ -43,19 +44,69 @@
             margin-bottom: 2rem;
         }
 
-        .detail-row {
-            background: #f5f5f4;
-            padding: 1rem;
+        /* Table Info Card */
+        .table-info-card {
+            background: linear-gradient(135deg, #fef9e7 0%, #fef3c7 100%);
             border-radius: 30px;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid #eab308;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .table-details h3 {
+            color: #854d0e;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .table-details p {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1c1917;
+        }
+
+        .table-badge {
+            background: #1c1917;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+        }
+
+        /* Items List */
+        .items-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1c1917;
+        }
+
+        .item-count {
+            background: #eab308;
+            color: #1c1917;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
         }
 
         .items-list {
-            margin-bottom: 1.5rem;
-            border: 1px solid #e7e5e4;
+            background: #f5f5f4;
             border-radius: 30px;
             padding: 1.5rem;
         }
@@ -63,32 +114,149 @@
         .item-row {
             display: flex;
             justify-content: space-between;
-            padding: 0.5rem 0;
-            border-bottom: 1px dashed #e7e5e4;
+            padding: 0.8rem 0;
+            border-bottom: 1px dashed #d6d3d1;
+        }
+
+        .item-row:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-weight: 500;
+            color: #1c1917;
+        }
+
+        .item-price {
+            font-weight: 600;
+            color: #eab308;
+        }
+
+        /* Special Instructions Section */
+        .instructions-section {
+            margin-bottom: 2rem;
+        }
+
+        .instructions-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+            color: #1c1917;
+            font-weight: 600;
+        }
+
+        .instructions-label span {
+            font-size: 1.2rem;
+        }
+
+        .instructions-input {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid #e7e5e4;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: all 0.2s;
+            resize: none;
+            font-family: 'Inter', sans-serif;
+            background: #fafaf9;
+        }
+
+        .instructions-input:focus {
+            outline: none;
+            border-color: #eab308;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(234, 179, 8, 0.1);
+        }
+
+        .char-count {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: #a8a29e;
+        }
+
+        .char-count.warning {
+            color: #eab308;
+        }
+
+        .char-count.danger {
+            color: #ef4444;
+        }
+
+        /* Preview Card */
+        .preview-card {
+            background: #fafaf9;
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 2px dashed #eab308;
+            display: none;
+        }
+
+        .preview-card.visible {
+            display: block;
+        }
+
+        .preview-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #854d0e;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .preview-text {
+            color: #1c1917;
+            font-style: italic;
+            background: white;
+            padding: 0.8rem;
+            border-radius: 16px;
+            border-left: 4px solid #eab308;
+        }
+
+        /* Total Section */
+        .total-section {
+            background: #1c1917;
+            border-radius: 30px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            color: white;
         }
 
         .total-row {
             display: flex;
             justify-content: space-between;
-            font-size: 1.5rem;
+            align-items: center;
+            font-size: 1.3rem;
             font-weight: 700;
-            margin: 1.5rem 0;
-            padding-top: 1rem;
-            border-top: 3px solid #1c1917;
         }
 
+        .total-row span:last-child {
+            color: #eab308;
+            font-size: 1.8rem;
+        }
+
+        /* Action Buttons */
         .place-order-btn {
             background: #eab308;
             color: #1c1917;
             border: none;
             padding: 1.2rem;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 600;
             border-radius: 60px;
             width: 100%;
             cursor: pointer;
-            transition: 0.2s;
+            transition: all 0.2s;
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
         .place-order-btn:hover {
@@ -100,7 +268,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
             flex-wrap: wrap;
             gap: 1rem;
         }
@@ -111,9 +279,13 @@
             display: flex;
             align-items: center;
             gap: 0.3rem;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: all 0.2s;
         }
 
         .edit-link:hover {
+            background: #f5f5f4;
             color: #eab308;
         }
 
@@ -134,50 +306,215 @@
         .view-orders-link:hover {
             background: #eab308;
             color: #1c1917;
-            transform: scale(1.05);
         }
 
-        .orders-count {
-            background: #eab308;
-            color: #1c1917;
-            border-radius: 30px;
-            padding: 0.2rem 0.8rem;
+        /* Tip Section */
+        .tip-section {
+            background: #f0f9ff;
+            border-radius: 20px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid #bae6fd;
+        }
+
+        .tip-icon {
+            background: #0ea5e9;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .tip-text {
+            color: #0369a1;
             font-size: 0.9rem;
-            margin-left: 0.5rem;
+        }
+
+        @media (max-width: 480px) {
+            .review-card {
+                padding: 1.5rem;
+            }
+            
+            .table-info-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .total-row span:last-child {
+                font-size: 1.4rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="review-card">
-        <h1>✅ Review Order</h1>
-        <p class="subtitle">Please confirm your order details</p>
+        <h1>✨ Review Order</h1>
+        <p class="subtitle">Please check your order details before placing</p>
         
-        <div class="detail-row">
-            <span>Table Number:</span>
-            <span id="review-table" style="font-weight: 700;">--</span>
+        <!-- Table Information Card -->
+        <div class="table-info-card">
+            <div class="table-details">
+                <h3>Table Assignment</h3>
+                <p id="table-display">Table -- • --</p>
+            </div>
+            <div class="table-badge" id="table-category">AC Dining</div>
         </div>
 
-        <div class="items-list" id="review-items">
-            <!-- JS will populate -->
+        <!-- Order Items -->
+        <div class="items-section">
+            <div class="section-header">
+                <h2>Selected Items</h2>
+                <span class="item-count" id="item-count">0 items</span>
+            </div>
+            <div class="items-list" id="items-list">
+                <!-- JS will populate -->
+            </div>
         </div>
 
-        <div class="total-row" id="review-total">
-            <span>Total Amount</span>
-            <span>₹0</span>
+        <!-- Special Instructions Section -->
+        <div class="instructions-section">
+            <div class="instructions-label">
+                <span>📝</span>
+                <span>Special Instructions (Optional)</span>
+            </div>
+            <textarea 
+                class="instructions-input" 
+                id="special-instructions" 
+                placeholder="e.g., Extra spicy biryani, No onions in salad, Jain food, etc."
+                maxlength="100"
+                rows="2"
+            ></textarea>
+            <div class="char-count" id="char-count">0/100 characters</div>
         </div>
 
-        <button class="place-order-btn" id="place-order-btn">✅ PLACE ORDER</button>
+        <!-- Live Preview Card -->
+        <div class="preview-card" id="preview-card">
+            <div class="preview-title">
+                <span>👀</span>
+                <span>Kitchen will see:</span>
+            </div>
+            <div class="preview-text" id="preview-text">
+                Your special instructions will appear here
+            </div>
+        </div>
+
+        <!-- Total Amount -->
+        <div class="total-section">
+            <div class="total-row">
+                <span>Total Amount</span>
+                <span id="total-amount">₹0</span>
+            </div>
+        </div>
+
+        <!-- Place Order Button -->
+        <button class="place-order-btn" id="place-order-btn">
+            <span>✅</span>
+            PLACE ORDER
+            <span>→</span>
+        </button>
         
+        <!-- Action Links -->
         <div class="action-links">
-            <a href="food-menu.html" class="edit-link">← Edit Items</a>
-            <a href="my-orders.html" class="view-orders-link" id="view-orders-link">
-                <span>📋</span> View My Orders
-                <span class="orders-count" id="orders-count">0</span>
+            <a href="food-menu.html" class="edit-link">
+                <span>←</span> Edit Items
             </a>
+            <a href="my-orders.html" class="view-orders-link" id="view-orders-link">
+                <span>📋</span> My Orders
+                <span class="badge" id="orders-count">0</span>
+            </a>
+        </div>
+
+        <!-- Tip Section -->
+        <div class="tip-section">
+            <div class="tip-icon">💡</div>
+            <div class="tip-text">
+                Special instructions will be highlighted in the kitchen panel for faster service
+            </div>
         </div>
     </div>
 
     <script>
+        // Load order from storage
+        const currentOrder = JSON.parse(localStorage.getItem('currentCustomerOrder')) || {};
+        
+        // Check if order exists
+        if (!currentOrder.items || currentOrder.items.length === 0) {
+            alert('No order found. Redirecting to menu.');
+            window.location.href = 'food-menu.html';
+        }
+
+        // Display table information
+        const tableCategory = currentOrder.tableCategory || 'Dining';
+        const tableNumber = currentOrder.tableNumber || '1';
+        document.getElementById('table-display').textContent = `Table ${tableNumber} • ${tableCategory}`;
+        document.getElementById('table-category').textContent = tableCategory;
+
+        // Display items
+        const itemsContainer = document.getElementById('items-list');
+        const itemCount = document.getElementById('item-count');
+        
+        itemsContainer.innerHTML = currentOrder.items.map(item => `
+            <div class="item-row">
+                <span class="item-name">${item.name}</span>
+                <span class="item-price">₹${item.price}</span>
+            </div>
+        `).join('');
+        
+        itemCount.textContent = `${currentOrder.items.length} item${currentOrder.items.length > 1 ? 's' : ''}`;
+
+        // Display total
+        document.getElementById('total-amount').textContent = `₹${currentOrder.total || 0}`;
+
+        // Special Instructions Handler
+        const instructionsInput = document.getElementById('special-instructions');
+        const charCount = document.getElementById('char-count');
+        const previewCard = document.getElementById('preview-card');
+        const previewText = document.getElementById('preview-text');
+
+        // Load saved instructions if any
+        const savedInstructions = localStorage.getItem('orderInstructions') || '';
+        instructionsInput.value = savedInstructions;
+        updateCharCount();
+        updatePreview();
+
+        instructionsInput.addEventListener('input', function() {
+            updateCharCount();
+            updatePreview();
+            
+            // Save to localStorage
+            localStorage.setItem('orderInstructions', this.value);
+        });
+
+        function updateCharCount() {
+            const length = instructionsInput.value.length;
+            charCount.textContent = `${length}/100 characters`;
+            
+            charCount.classList.remove('warning', 'danger');
+            if (length > 80) {
+                charCount.classList.add('warning');
+            }
+            if (length >= 100) {
+                charCount.classList.add('danger');
+            }
+        }
+
+        function updatePreview() {
+            const text = instructionsInput.value.trim();
+            if (text) {
+                previewCard.classList.add('visible');
+                previewText.textContent = text;
+            } else {
+                previewCard.classList.remove('visible');
+            }
+        }
+
         // Update order count
         function updateOrderCount() {
             const orders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
@@ -187,65 +524,46 @@
             }
         }
 
-        // Load order from storage
-        const currentOrder = JSON.parse(localStorage.getItem('currentCustomerOrder')) || {};
-        
-        // Check if order exists and has items
-        if (!currentOrder.items || currentOrder.items.length === 0) {
-            alert('No order found. Redirecting to menu.');
-            window.location.href = 'food-menu.html';
-        }
-
-        // Display table
-        document.getElementById('review-table').textContent = currentOrder.tableNumber || '1';
-
-        // Display items
-        const itemsContainer = document.getElementById('review-items');
-        itemsContainer.innerHTML = currentOrder.items.map(item => `
-            <div class="item-row">
-                <span>${item.name}</span>
-                <span>₹${item.price}</span>
-            </div>
-        `).join('');
-
-        // Display total
-        const totalSpan = document.getElementById('review-total').querySelector('span:last-child');
-        totalSpan.textContent = `₹${currentOrder.total?.toFixed(2) || '0'}`;
-
         // Handle Place Order
         document.getElementById('place-order-btn').addEventListener('click', function() {
-            // Create a final order object with timestamp and unique ID
+            // Create final order with special instructions
             const finalOrder = {
                 id: 'ORD-' + Date.now() + '-' + Math.floor(Math.random() * 1000),
                 tableNumber: currentOrder.tableNumber,
+                tableCategory: currentOrder.tableCategory,
+                tableCapacity: currentOrder.tableCapacity,
                 items: currentOrder.items,
                 total: currentOrder.total,
+                coverCharge: currentOrder.coverCharge || 0,
                 status: 'pending',
                 placedTime: new Date().toLocaleString(),
                 estimatedTime: '...',
+                specialInstructions: instructionsInput.value.trim() || 'No special instructions',
                 customerAcknowledged: false
             };
 
-            // Get existing orders from localStorage
+            // Get existing orders
             const allOrders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
             allOrders.push(finalOrder);
             localStorage.setItem('kitchenOrders', JSON.stringify(allOrders));
 
-            // Save as active order for immediate viewing
+            // Save as active order
             localStorage.setItem('activeCustomerOrder', JSON.stringify(finalOrder));
 
-            // Clear the temporary order
+            // Clear temporary data
             localStorage.removeItem('currentCustomerOrder');
+            localStorage.removeItem('orderInstructions');
 
             // Show success message
-            alert('Order placed successfully! Redirecting to order status...');
+            alert('Order placed successfully! Special instructions have been sent to the kitchen.');
             
-            // Redirect to status page with order ID
+            // Redirect to status page
             window.location.href = `order-status.html?id=${finalOrder.id}`;
         });
 
         // Initial update
         updateOrderCount();
+        setInterval(updateOrderCount, 3000);
     </script>
 </body>
 </html>

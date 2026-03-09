@@ -32,8 +32,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
         }
 
         .logo {
@@ -167,6 +165,10 @@
             border-bottom: 1px solid #d6d3d1;
         }
 
+        .item-row:last-child {
+            border-bottom: none;
+        }
+
         .total-row {
             display: flex;
             justify-content: space-between;
@@ -175,6 +177,66 @@
             margin-top: 1rem;
             padding-top: 1rem;
             border-top: 2px solid #1c1917;
+        }
+
+        /* Special Instructions Card - Shows only once */
+        .special-instructions-card {
+            background: #fef9e7;
+            border: 2px solid #eab308;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            animation: softPulse 3s infinite;
+        }
+
+        .instructions-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .instructions-header span:first-child {
+            font-size: 1.5rem;
+        }
+
+        .instructions-header span:last-child {
+            font-weight: 700;
+            color: #854d0e;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .instructions-content {
+            background: white;
+            border-radius: 16px;
+            padding: 1.2rem;
+            color: #1c1917;
+            font-style: italic;
+            font-size: 1rem;
+            line-height: 1.6;
+            border-left: 4px solid #eab308;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .instructions-confirmation {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+            color: #16a34a;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        @keyframes softPulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 0 4px rgba(234, 179, 8, 0.1);
+            }
         }
 
         .status-badge {
@@ -210,12 +272,6 @@
             animation: pulse 2s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        /* Action Buttons - Fixed and Visible */
         .action-buttons {
             display: flex;
             gap: 1rem;
@@ -247,7 +303,6 @@
         .action-btn.primary:hover {
             background: #facc15;
             transform: scale(1.05);
-            box-shadow: 0 10px 20px -5px rgba(234, 179, 8, 0.3);
         }
 
         .action-btn.secondary {
@@ -272,6 +327,11 @@
             color: white;
         }
 
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -290,15 +350,6 @@
                 width: 100%;
             }
         }
-
-        @media(max-width: 400px){
-            .nav-link{
-                    gap: 1px;
-                    margin-left: -5px;
-            }
-        }
-
-        
     </style>
 </head>
 <body>
@@ -307,13 +358,13 @@
             <a href="index.html" class="logo">FlavorFlow</a>
             <div class="nav-links">
                 <a href="my-orders.html" class="nav-link highlight">
-                    <span>📋</span>
+                    <span>📋</span> My Orders
                 </a>
                 <a href="order-details.html" class="nav-link">
-                    <span>🛵</span>
+                    <span>🍽️</span> Order Now
                 </a>
                 <a href="index.html" class="nav-link">
-                    <span>🏠</span>
+                    <span>🏠</span> Home
                 </a>
             </div>
         </div>
@@ -350,6 +401,9 @@
                 </div>
             </div>
 
+            <!-- Special Instructions Section - Shows once after items -->
+            <div id="special-instructions-container"></div>
+
             <!-- Status Badge -->
             <div style="text-align: center;">
                 <span class="status-badge" id="status-badge">Pending</span>
@@ -358,64 +412,25 @@
             <!-- Refresh Note -->
             <div class="refresh-note">
                 <span class="dot"></span>
-                <span>Auto-refreshes every 5 seconds </span>
-                
+                <span>Auto-refreshes every 5 seconds</span>
             </div>
 
-            <!-- Action Buttons - These will always be visible -->
+            <!-- Action Buttons -->
             <div class="action-buttons">
                 <a href="order-details.html" class="action-btn primary">
-                    <span>🔄</span> <span class="span1">New Order</span>
+                    <span>🔄</span> New Order
                 </a>
                 <a href="my-orders.html" class="action-btn secondary">
-                    <span>📋</span> <span class="span1">My Orders</span>
+                    <span>📋</span> My Orders
                 </a>
                 <a href="index.html" class="action-btn outline">
-                    <span>🏠</span> <span class="span1">Home</span>
+                    <span>🏠</span> Home
                 </a>
             </div>
         </div>
     </div>
 
     <script>
-
-        
-
-        const mq = window.matchMedia("(max-width: 500px)");
-
-        function updateNav() {
-            // Check current state (on load + whenever it changes)
-            const links = document.querySelectorAll(".span1");
-
-            if (mq.matches) {
-                // alert("not matched")
-                // Screen ≤ 500px → hide / clear / modify links
-                links.forEach(link => {
-                    // Option 1: Completely hide each link
-                    link.style.display = "none";
-
-                    // Option 2: Clear text content (if that's what you wanted)
-                    // link.textContent = "";
-
-                    // Option 3: Remove value if it's an input (very unlikely for nav links)
-                    // if (link.tagName === 'INPUT') link.value = "";
-                });
-            } else {
-                // Screen > 500px → show / restore links
-                links.forEach(link => {
-                    link.style.display = "";          // reset to default (usually block/inline)
-                    // or link.style.display = "block"; / "inline-block" depending on your CSS
-                });
-            }
-        }
-
-        // Run once when page loads
-        updateNav();
-
-        // Listen for screen size changes (resize, orientation change, etc.)
-        mq.addEventListener("change", updateNav);
-
-
         function getOrderIdFromUrl() {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get('id');
@@ -434,7 +449,7 @@
             }
 
             if (!order) {
-                // Show error state with buttons
+                // Show error state
                 document.querySelector('.status-card').innerHTML = `
                     <h2 style="color: #ef4444; margin-bottom: 1rem;">Order Not Found</h2>
                     <p style="color: #57534e; margin-bottom: 2rem;">We couldn't find your order. Please place a new order.</p>
@@ -459,7 +474,7 @@
             const timeValue = document.getElementById('estimated-time');
             timeValue.textContent = order.estimatedTime && order.estimatedTime !== '...' ? order.estimatedTime : 'Waiting for kitchen';
             
-            // Update items
+            // Update items - ONLY the items, no special instructions here
             const itemsContainer = document.getElementById('items-container');
             itemsContainer.innerHTML = order.items.map(item => `
                 <div class="item-row">
@@ -480,6 +495,29 @@
             } else {
                 statusBadge.textContent = 'Pending · Waiting for kitchen';
                 statusBadge.classList.remove('preparing');
+            }
+
+            // Show special instructions - ONLY ONCE, after all items
+            const instructionsContainer = document.getElementById('special-instructions-container');
+            
+            if (order.specialInstructions && order.specialInstructions !== 'No special instructions' && order.specialInstructions.trim() !== '') {
+                instructionsContainer.innerHTML = `
+                    <div class="special-instructions-card">
+                        <div class="instructions-header">
+                            <span>📝</span>
+                            <span>Special Request</span>
+                        </div>
+                        <div class="instructions-content">
+                            "${order.specialInstructions}"
+                        </div>
+                        <div class="instructions-confirmation">
+                            <span>✓</span>
+                            <span>Kitchen has received your instructions</span>
+                        </div>
+                    </div>
+                `;
+            } else {
+                instructionsContainer.innerHTML = ''; // Clear if no instructions
             }
         }
 
