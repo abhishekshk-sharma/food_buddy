@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Order Details | FlavorFlow</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
@@ -21,26 +21,154 @@
             padding: 1rem;
         }
 
+        /* Main Container */
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Header with Navigation */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .back-home {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #57534e;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            background: white;
+            border-radius: 30px;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .back-home:hover {
+            background: #eab308;
+            color: #1c1917;
+        }
+
+        .orders-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #1c1917;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 2px solid #eab308;
+        }
+
+        .orders-link:hover {
+            background: #eab308;
+            color: #1c1917;
+        }
+
+        .orders-count {
+            background: #eab308;
+            color: #1c1917;
+            border-radius: 20px;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.3rem;
+        }
+
+        /* Main Form Card */
         .form-card {
             background: white;
-            max-width: 500px;
             width: 100%;
-            padding: 2.5rem;
-            border-radius: 48px;
+            padding: 2.5rem 2rem;
+            border-radius: 40px;
             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
             border: 1px solid #e7e5e4;
         }
 
+        /* Responsive padding for mobile */
+        @media (max-width: 480px) {
+            .form-card {
+                padding: 2rem 1.5rem;
+                border-radius: 32px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .form-card {
+                padding: 1.5rem 1rem;
+                border-radius: 24px;
+            }
+        }
+
         h1 {
             font-size: 2.2rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
             color: #1c1917;
+            line-height: 1.2;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
         }
 
         .sub {
             color: #57534e;
             margin-bottom: 2rem;
             font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 480px) {
+            .sub {
+                margin-bottom: 1.5rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Table Selection */
+        .table-selection {
+            margin-bottom: 2rem;
+        }
+
+        .table-presets {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .table-preset-btn {
+            background: #f5f5f4;
+            border: 2px solid #e7e5e4;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #57534e;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex: 1 1 auto;
+            min-width: 60px;
+        }
+
+        .table-preset-btn:hover,
+        .table-preset-btn.active {
+            background: #eab308;
+            border-color: #eab308;
+            color: #1c1917;
         }
 
         .input-group {
@@ -52,35 +180,114 @@
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: #292524;
+            font-size: 1rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1.2rem;
+            color: #eab308;
+            font-size: 1.2rem;
         }
 
         input[type="number"] {
             width: 100%;
-            padding: 1rem 1.2rem;
+            padding: 1.2rem 1.2rem 1.2rem 3rem;
             font-size: 1.2rem;
             border: 2px solid #d6d3d1;
-            border-radius: 30px;
+            border-radius: 50px;
             outline: none;
-            transition: border 0.2s;
+            transition: all 0.2s;
+            background: white;
         }
 
         input[type="number"]:focus {
             border-color: #eab308;
+            box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.1);
         }
 
+        /* Remove spinner arrows for number input */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        @media (max-width: 480px) {
+            input[type="number"] {
+                padding: 1rem 1rem 1rem 2.8rem;
+                font-size: 1rem;
+            }
+            
+            .input-icon {
+                left: 1rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* Quick Tips */
+        .quick-tips {
+            background: #fef9e7;
+            border-radius: 30px;
+            padding: 1.2rem;
+            margin-bottom: 2rem;
+            border: 2px solid #eab308;
+        }
+
+        .quick-tips h4 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #854d0e;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .quick-tips ul {
+            list-style: none;
+        }
+
+        .quick-tips li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #57534e;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-tips li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Action Buttons */
         .action-btn {
             background: #eab308;
             color: #1c1917;
             border: none;
-            padding: 1rem;
-            font-size: 1.3rem;
+            padding: 1.2rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            border-radius: 40px;
+            border-radius: 50px;
             width: 100%;
             cursor: pointer;
             transition: all 0.2s;
             margin-bottom: 1rem;
-            border: 2px solid #eab308;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: 2px solid transparent;
         }
 
         .action-btn:hover {
@@ -88,54 +295,325 @@
             transform: scale(1.02);
         }
 
+        .action-btn:active {
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 480px) {
+            .action-btn {
+                padding: 1rem;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Footer Links */
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
         .back-link {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
             color: #57534e;
             text-decoration: none;
-            margin-top: 1rem;
+            font-size: 0.95rem;
+            padding: 0.5rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #eab308;
+        }
+
+        .view-orders-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #1c1917;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 2px solid #eab308;
+        }
+
+        .view-orders-link:hover {
+            background: #eab308;
+            color: #1c1917;
+        }
+
+        @media (max-width: 480px) {
+            .footer-links {
+                flex-direction: column-reverse;
+                align-items: stretch;
+            }
+            
+            .back-link, .view-orders-link {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+
+        /* Order Count Badge */
+        .order-count-badge {
+            background: #eab308;
+            color: #1c1917;
+            border-radius: 30px;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        /* Recent Orders Preview (if any) */
+        .recent-preview {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px dashed #e7e5e4;
+        }
+
+        .recent-preview h4 {
+            color: #57534e;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .recent-order-item {
+            background: #f5f5f4;
+            border-radius: 30px;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+        }
+
+        .recent-order-item:hover {
+            background: #e7e5e4;
+        }
+
+        .recent-order-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .recent-order-id {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #eab308;
+        }
+
+        .recent-order-time {
+            font-size: 0.8rem;
+            color: #a8a29e;
+        }
+
+        .recent-order-price {
+            font-weight: 700;
+            color: #1c1917;
         }
     </style>
 </head>
 <body>
-    <div class="form-card">
-        <h1>Your details</h1>
-        <p class="sub">We'll get your order ready</p>
-
-        <div class="input-group">
-            <label for="table-number">Table Number</label>
-            <input type="number" id="table-number" min="1" value="1" placeholder="e.g., 5">
+    <div class="container">
+        <!-- Header with Navigation -->
+        <div class="header">
+            <a href="index.html" class="back-home">
+                <span>←</span> Home
+            </a>
+            <a href="my-orders.html" class="orders-link" id="orders-link">
+                <span>📋</span> My Orders
+                <span class="orders-count" id="orders-count">0</span>
+            </a>
         </div>
 
-        <button class="action-btn" id="proceed-to-menu">PROCEED TO MENU</button>
-        <a href="index.html" class="back-link">← Back to Home</a>
-    </div>
+        <!-- Main Form Card -->
+        <div class="form-card">
+            <h1>Welcome back! 👋</h1>
+            <p class="sub">Please enter your table number to continue</p>
+            
+            <!-- Table Number Presets -->
+            <div class="table-selection">
+                <label>Quick Select</label>
+                <div class="table-presets">
+                    <button class="table-preset-btn" data-table="1">1</button>
+                    <button class="table-preset-btn" data-table="2">2</button>
+                    <button class="table-preset-btn" data-table="3">3</button>
+                    <button class="table-preset-btn" data-table="4">4</button>
+                    <button class="table-preset-btn" data-table="5">5</button>
+                    <button class="table-preset-btn" data-table="6">6</button>
+                    <button class="table-preset-btn" data-table="7">7</button>
+                    <button class="table-preset-btn" data-table="8">8</button>
+                </div>
+            </div>
 
-    <!-- Add this after the form card or in the header -->
-    <div style="text-align: center; margin-top: 1rem;">
-        <a href="my-orders.html" style="color: #57534e; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem;">
-            <span>📋</span> View My Orders
-        </a>
+            <!-- Table Number Input -->
+            <div class="input-group">
+                <label for="table-number">Table Number</label>
+                <div class="input-wrapper">
+                    <span class="input-icon">🔢</span>
+                    <input type="number" id="table-number" min="1" max="50" value="1" placeholder="Enter table number">
+                </div>
+            </div>
+
+            <!-- Quick Tips -->
+            <div class="quick-tips">
+                <h4>
+                    <span>✨</span>
+                    Quick Tips
+                </h4>
+                <ul>
+                    <li>
+                        <span>✅</span>
+                        Your order will be linked to this table
+                    </li>
+                    <li>
+                        <span>⏱️</span>
+                        Average preparation time: 20-30 mins
+                    </li>
+                    <li>
+                        <span>📱</span>
+                        Track order status in real-time
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Main Action Button -->
+            <button class="action-btn" id="proceed-to-menu">
+                <span>🍽️</span>
+                CONTINUE TO MENU
+                <span>→</span>
+            </button>
+
+            <!-- Footer Links -->
+            <div class="footer-links">
+                <a href="index.html" class="back-link">
+                    <span>←</span>
+                    Back to Home
+                </a>
+                <a href="my-orders.html" class="view-orders-link" id="mobile-view-orders">
+                    <span>📋</span>
+                    View My Orders
+                </a>
+            </div>
+
+            <!-- Recent Orders Preview (shows if there are any orders) -->
+            <div class="recent-preview" id="recent-preview" style="display: none;">
+                <h4>
+                    <span>🕐</span>
+                    Your Recent Orders
+                </h4>
+                <div id="recent-order-item" class="recent-order-item">
+                    <!-- Will be populated by JS -->
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
+        // Update order count in real-time
+        function updateOrderCount() {
+            const orders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
+            const countElements = document.querySelectorAll('#orders-count');
+            countElements.forEach(el => {
+                el.textContent = orders.length;
+            });
+        }
+
+        // Show recent order preview
+        function showRecentOrder() {
+            const orders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
+            if (orders.length > 0) {
+                const recentOrder = orders[orders.length - 1];
+                const previewDiv = document.getElementById('recent-preview');
+                const recentItemDiv = document.getElementById('recent-order-item');
+                
+                recentItemDiv.innerHTML = `
+                    <div class="recent-order-info">
+                        <span class="recent-order-id">${recentOrder.id}</span>
+                        <span class="recent-order-time">${recentOrder.placedTime || 'Just now'}</span>
+                    </div>
+                    <div class="recent-order-price">₹${recentOrder.total}</div>
+                `;
+                
+                recentItemDiv.href = `order-status.html?id=${recentOrder.id}`;
+                recentItemDiv.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = `order-status.html?id=${recentOrder.id}`;
+                });
+                
+                previewDiv.style.display = 'block';
+            }
+        }
+
+        // Table preset buttons
+        document.querySelectorAll('.table-preset-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all preset buttons
+                document.querySelectorAll('.table-preset-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                // Set input value
+                const tableNumber = this.dataset.table;
+                document.getElementById('table-number').value = tableNumber;
+            });
+        });
+
+        // Set table 1 as active by default
+        document.querySelector('.table-preset-btn[data-table="1"]').classList.add('active');
+
+        // Proceed to menu
         document.getElementById('proceed-to-menu').addEventListener('click', function() {
             const tableNumber = document.getElementById('table-number').value;
             
             // Validate
-            if (!tableNumber || tableNumber < 1) {
-                alert('Please enter a valid table number.');
+            if (!tableNumber || tableNumber < 1 || tableNumber > 50) {
+                alert('Please enter a valid table number between 1 and 50');
                 return;
             }
 
             // Save table number to localStorage
             let currentOrder = JSON.parse(localStorage.getItem('currentCustomerOrder')) || {};
             currentOrder.tableNumber = tableNumber;
-            currentOrder.items = []; // Reset items if any
+            currentOrder.items = [];
             currentOrder.status = 'pending';
             localStorage.setItem('currentCustomerOrder', JSON.stringify(currentOrder));
 
             // Redirect to menu selection
             window.location.href = 'food-menu.html';
+        });
+
+        // Initialize
+        updateOrderCount();
+        showRecentOrder();
+
+        // Update order count every 3 seconds
+        setInterval(updateOrderCount, 3000);
+
+        // Make entire recent order item clickable
+        document.addEventListener('click', function(e) {
+            const recentItem = document.getElementById('recent-order-item');
+            if (recentItem && recentItem.contains(e.target)) {
+                const orders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
+                if (orders.length > 0) {
+                    const recentOrder = orders[orders.length - 1];
+                    window.location.href = `order-status.html?id=${recentOrder.id}`;
+                }
+            }
         });
     </script>
 </body>
