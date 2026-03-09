@@ -114,7 +114,7 @@
             min-height: 600px;
             height: 100vh;
             background: linear-gradient(rgba(0, 0, 0, 0.574), rgba(0, 0, 0, 0.537)), 
-                        url('/images/hero1.jpg');
+                        url('images/hero1.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -613,7 +613,7 @@
             <div class="nav-actions">
                 <a href="my-orders.html" class="nav-btn">
                     My Orders
-                    <span class="badge" id="orders-count">0</span>
+                    <!-- <span class="badge" id="orders-count">0</span> -->
                 </a>
                 <a href="order-details.html" class="nav-btn primary">
                     Reserve Table
@@ -771,10 +771,10 @@
         let isLoading = true;
         let currentCategory = 'all';
 
-        function updateOrderCount() {
-            const orders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
-            document.getElementById('orders-count').textContent = orders.length;
-        }
+        // function updateOrderCount() {
+        //     const orders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
+        //     document.getElementById('orders-count').textContent = orders.length;
+        // }
 
         function loadMenu(category = 'all') {
             const container = document.getElementById('food-grid-container');

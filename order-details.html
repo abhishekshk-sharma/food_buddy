@@ -596,7 +596,7 @@
             <div class="header-actions">
                 <a href="my-orders.html" class="header-btn">
                     My Orders
-                    <span class="badge" id="orders-count">0</span>
+                    <!-- <span class="badge" id="orders-count">0</span> -->
                 </a>
                 
                 <a href="cook.html" class="header-btn primary">
@@ -979,10 +979,10 @@
         });
 
         // Update order count
-        function updateOrderCount() {
-            const orders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
-            document.getElementById('orders-count').textContent = orders.length;
-        }
+        // function updateOrderCount() {
+        //     const orders = JSON.parse(localStorage.getItem('kitchenOrders')) || [];
+        //     document.getElementById('orders-count').textContent = orders.length;
+        // }
 
         // Initialize
         initializeTables();
