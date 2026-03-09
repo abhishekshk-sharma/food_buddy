@@ -22,7 +22,6 @@
             background: white;
             border-bottom: 1px solid #e2e8f0;
             position: sticky;
-            width: 100vw;
             top: 0;
             z-index: 100;
             padding: 1rem 0;
@@ -35,6 +34,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+            }
         }
 
         .logo {
@@ -57,7 +62,7 @@
 
         .header-actions {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             align-items: center;
         }
 
@@ -71,6 +76,16 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 480px) {
+            .header-btn span:not(.badge) {
+                display: none;
+            }
+            .header-btn {
+                padding: 0.6rem 1rem;
+            }
         }
 
         .header-btn.outline {
@@ -90,12 +105,6 @@
             font-weight: 600;
         }
 
-        .header-btn.primary:hover {
-            background: #facc15;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(234, 179, 8, 0.2);
-        }
-
         .badge {
             background: #eab308;
             color: #0f172a;
@@ -109,22 +118,32 @@
         /* Main Container */
         .container {
             max-width: 1200px;
-            margin: 2rem auto;
+            margin: 1.5rem auto;
             padding: 0 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+                margin: 1rem auto;
+            }
         }
 
         /* Progress Bar */
         .progress-section {
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+            -webkit-overflow-scrolling: touch;
         }
 
         .progress-steps {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            min-width: 500px;
             max-width: 600px;
             margin: 0 auto;
-            margin-left: 20px;
             position: relative;
         }
 
@@ -154,6 +173,7 @@
             position: relative;
             z-index: 2;
             background: white;
+            flex-shrink: 0;
         }
 
         .step.active {
@@ -162,72 +182,167 @@
             color: #0f172a;
         }
 
-        .step.completed {
-            background: #22c55e;
-            border-color: #22c55e;
-            color: white;
-        }
-
         .step-label {
             position: absolute;
             top: 45px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #64748b;
             white-space: nowrap;
         }
 
-        /* Main Content Grid */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
+        /* Features Bar - Scrollable on Mobile */
+        .features-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 100px;
+            border: 1px solid #e2e8f0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
         }
 
         @media (max-width: 768px) {
-            .content-grid {
-                grid-template-columns: 1fr;
+            .features-bar {
+                border-radius: 30px;
+                padding: 0.8rem;
+                gap: 0.8rem;
             }
         }
 
-        /* Table Categories */
-        .section-title {
+        .features-bar::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        .features-bar::-webkit-scrollbar-track {
+            background: #e2e8f0;
+        }
+
+        .features-bar::-webkit-scrollbar-thumb {
+            background: #eab308;
+            border-radius: 10px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #475569;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .feature-icon {
+            width: 36px;
+            height: 36px;
+            background: #fefce8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #eab308;
+            font-size: 1.1rem;
+        }
+
+        .feature-text {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* Main Content Grid - Mobile First */
+        .content-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .content-grid {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 2rem;
+                align-items: start;
+            }
+        }
+
+        /* Table Categories - Mobile Optimized */
+        .table-selection-section {
+            background: white;
+            border-radius: 30px;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .table-selection-section {
+                padding: 1.2rem;
+            }
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .section-header h2 {
             font-size: 1.3rem;
             font-weight: 600;
-            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .section-title span {
+        .section-header h2 span {
             color: #eab308;
         }
 
+        .capacity-info {
+            background: #f1f5f9;
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: #475569;
+        }
+
+        /* Category Tabs - Horizontal Scroll */
         .category-tabs {
             display: flex;
             gap: 0.5rem;
             margin-bottom: 2rem;
-            flex-wrap: wrap;
+            overflow-x: auto;
+            padding: 0.2rem 0 1rem;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+        }
+
+        .category-tabs::-webkit-scrollbar {
+            height: 3px;
         }
 
         .category-tab {
-            padding: 0.8rem 1.5rem;
+            padding: 0.7rem 1.5rem;
             border-radius: 100px;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.2s;
             border: 1px solid #e2e8f0;
             background: white;
             color: #475569;
-            flex: 1 1 auto;
-            text-align: center;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
-        .category-tab:hover {
-            border-color: #eab308;
-            color: #0f172a;
+        .category-tab:active {
+            transform: scale(0.96);
         }
 
         .category-tab.active {
@@ -237,16 +352,17 @@
             font-weight: 600;
         }
 
-        /* Table Grid */
-        .table-grid-section {
-            background: white;
-            border-radius: 24px;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-            border: 1px solid #e2e8f0;
-            margin-bottom: 2rem;
+        /* Category Sections */
+        .category-section {
+            display: none;
+            width: 100%;
         }
 
+        .category-section.active {
+            display: block;
+        }
+
+        /* Category Header */
         .category-header {
             display: flex;
             justify-content: space-between;
@@ -254,6 +370,8 @@
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .category-info h3 {
@@ -270,17 +388,27 @@
 
         .category-price {
             background: #f1f5f9;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1.2rem;
             border-radius: 100px;
             font-weight: 600;
             color: #0f172a;
+            font-size: 1rem;
+            white-space: nowrap;
         }
 
+        /* Table Grid - Fully Responsive */
         .table-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 0.8rem;
+            width: 100%;
+        }
+
+        @media (max-width: 480px) {
+            .table-grid {
+                grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+                gap: 0.6rem;
+            }
         }
 
         .table-item {
@@ -297,12 +425,23 @@
             font-weight: 600;
             color: #475569;
             position: relative;
+            width: 100%;
+            padding: 0.3rem;
+        }
+
+        @media (max-width: 480px) {
+            .table-item {
+                border-radius: 12px;
+            }
+        }
+
+        .table-item:active {
+            transform: scale(0.96);
         }
 
         .table-item:hover {
             border-color: #eab308;
             background: #fefce8;
-            transform: translateY(-2px);
         }
 
         .table-item.selected {
@@ -327,31 +466,48 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: #ef4444;
             opacity: 0.5;
         }
 
         .table-number {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
         }
 
+        @media (max-width: 480px) {
+            .table-number {
+                font-size: 0.9rem;
+            }
+        }
+
         .table-capacity {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: inherit;
             opacity: 0.8;
         }
 
-        /* Booking Summary Card */
+        /* Booking Summary Card - Mobile Optimized */
         .summary-card {
             background: white;
-            border-radius: 24px;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            border-radius: 30px;
+            padding: 1.5rem;
             border: 1px solid #e2e8f0;
-            position: sticky;
-            top: 100px;
+            width: 100%;
+        }
+
+        @media (min-width: 1024px) {
+            .summary-card {
+                position: sticky;
+                top: 100px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .summary-card {
+                padding: 1.2rem;
+            }
         }
 
         .summary-header {
@@ -374,11 +530,22 @@
             font-weight: 600;
             font-size: 0.9rem;
             cursor: pointer;
+            padding: 0.3rem 0.8rem;
+            border-radius: 100px;
+            transition: all 0.2s;
+        }
+
+        .summary-header span:hover {
+            background: #fefce8;
+        }
+
+        .summary-header span:active {
+            transform: scale(0.96);
         }
 
         .selected-table-info {
             background: #f8fafc;
-            border-radius: 16px;
+            border-radius: 20px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
             text-align: center;
@@ -393,6 +560,7 @@
             font-weight: 600;
             color: #0f172a;
             margin-bottom: 0.3rem;
+            font-size: 1.1rem;
         }
 
         .selected-table-info .table-category {
@@ -402,8 +570,14 @@
 
         .no-selection {
             text-align: center;
-            padding: 2rem;
+            padding: 2rem 1rem;
             color: #94a3b8;
+        }
+
+        .no-selection .table-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
         }
 
         .price-breakdown {
@@ -415,6 +589,7 @@
             justify-content: space-between;
             padding: 0.8rem 0;
             color: #475569;
+            font-size: 0.95rem;
         }
 
         .price-row.total {
@@ -444,10 +619,12 @@
             gap: 0.5rem;
         }
 
+        .continue-btn:active {
+            transform: scale(0.98);
+        }
+
         .continue-btn:hover:not(:disabled) {
             background: #facc15;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(234, 179, 8, 0.2);
         }
 
         .continue-btn:disabled {
@@ -456,12 +633,19 @@
             opacity: 0.5;
         }
 
+        .cancellation-note {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
         /* FAQ Section */
         .faq-section {
-            margin-top: 3rem;
+            margin-top: 2rem;
             background: white;
-            border-radius: 24px;
-            padding: 2rem;
+            border-radius: 30px;
+            padding: 1.5rem;
             border: 1px solid #e2e8f0;
         }
 
@@ -476,20 +660,26 @@
 
         .faq-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .faq-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .faq-item {
             padding: 1rem;
-            border-radius: 16px;
+            border-radius: 20px;
             background: #f8fafc;
             cursor: pointer;
             transition: all 0.2s;
         }
 
-        .faq-item:hover {
-            background: #fefce8;
+        .faq-item:active {
+            transform: scale(0.99);
         }
 
         .faq-question {
@@ -499,11 +689,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-size: 0.95rem;
         }
 
         .faq-answer {
             color: #64748b;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             line-height: 1.5;
             max-height: 0;
             overflow: hidden;
@@ -515,83 +706,34 @@
             margin-top: 0.8rem;
         }
 
-        .faq-question .arrow {
+        .arrow {
             transition: transform 0.2s;
+            font-size: 0.8rem;
         }
 
         .faq-item.expanded .arrow {
             transform: rotate(180deg);
         }
 
-        /* Features Bar */
-        .features-bar {
-            display: flex;
-            justify-content: space-around;
-            margin: 2rem 0;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 100px;
-            border: 1px solid #e2e8f0;
-            flex-wrap: wrap;
-            gap: 1rem;
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #64748b;
         }
 
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            color: #475569;
-        }
-
-        .feature-icon {
-            width: 40px;
-            height: 40px;
-            background: #fefce8;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #eab308;
-            font-size: 1.2rem;
-        }
-
-        .feature-text {
-            font-weight: 500;
-        }
-
-        .feature-subtext {
-            font-size: 0.8rem;
-            color: #94a3b8;
-        }
-
-        /* Responsive Design */
+        /* Touch-friendly adjustments */
         @media (max-width: 768px) {
-            .header-content {
-                padding: 0 1rem;
-            }
-            
-            .container {
-                padding: 0 1rem;
-            }
-            
-            .table-grid-section {
-                padding: 1.5rem;
-            }
-            
-            .features-bar {
-                border-radius: 24px;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .category-tabs {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                padding-bottom: 0.5rem;
+            .table-item {
+                min-height: 60px;
             }
             
             .category-tab {
-                white-space: nowrap;
+                padding: 0.6rem 1.2rem;
+            }
+            
+            .continue-btn {
+                padding: 1rem;
             }
         }
     </style>
@@ -606,11 +748,13 @@
             </a>
             <div class="header-actions">
                 <a href="my-orders.html" class="header-btn outline">
-                    📋 My Orders
+                    <span>📋</span>
+                    <span>Orders</span>
                     <span class="badge" id="orders-count">0</span>
                 </a>
                 <a href="index.html" class="header-btn outline">
-                    🏠 Home
+                    <span>🏠</span>
+                    <span>Home</span>
                 </a>
             </div>
         </div>
@@ -639,43 +783,43 @@
             </div>
         </div>
 
-        <!-- Features Bar -->
+        <!-- Features Bar - Scrollable -->
         <div class="features-bar">
             <div class="feature">
                 <div class="feature-icon">🪑</div>
-                <div>
-                    <div class="feature-text">Premium Seating</div>
-                    <div class="feature-subtext">Comfort guaranteed</div>
-                </div>
+                <div class="feature-text">Premium Seating</div>
             </div>
             <div class="feature">
                 <div class="feature-icon">🎉</div>
-                <div>
-                    <div class="feature-text">Party Ready</div>
-                    <div class="feature-subtext">Up to 20 guests</div>
-                </div>
+                <div class="feature-text">Party Ready</div>
             </div>
             <div class="feature">
                 <div class="feature-icon">✨</div>
-                <div>
-                    <div class="feature-text">Ambiance</div>
-                    <div class="feature-subtext">Perfect setting</div>
-                </div>
+                <div class="feature-text">Ambiance</div>
             </div>
             <div class="feature">
                 <div class="feature-icon">🔔</div>
-                <div>
-                    <div class="feature-text">Quick Service</div>
-                    <div class="feature-subtext">30 min guarantee</div>
-                </div>
+                <div class="feature-text">Quick Service</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🌿</div>
+                <div class="feature-text">Fresh Food</div>
             </div>
         </div>
 
         <!-- Main Content Grid -->
         <div class="content-grid">
             <!-- Left Column - Table Selection -->
-            <div>
-                <!-- Category Tabs -->
+            <div class="table-selection-section">
+                <div class="section-header">
+                    <h2>
+                        <span>🪑</span>
+                        Select Your Table
+                    </h2>
+                    <span class="capacity-info">2-20 guests</span>
+                </div>
+
+                <!-- Category Tabs - Horizontal Scroll -->
                 <div class="category-tabs" id="categoryTabs">
                     <button class="category-tab active" data-category="ac">AC Dining</button>
                     <button class="category-tab" data-category="non-ac">Non-AC</button>
@@ -684,58 +828,58 @@
                 </div>
 
                 <!-- AC Dining Section -->
-                <div class="table-grid-section category-section active" id="ac-section">
+                <div class="category-section active" id="ac-section">
                     <div class="category-header">
                         <div class="category-info">
                             <h3>AC Dining</h3>
-                            <p>Premium air-conditioned comfort • 2-6 persons</p>
+                            <p>Premium air-conditioned comfort</p>
                         </div>
-                        <div class="category-price">₹500 cover</div>
+                        <div class="category-price">₹500</div>
                     </div>
                     <div class="table-grid" id="ac-grid">
-                        <!-- Will be populated by JS -->
+                        <!-- Populated by JS -->
                     </div>
                 </div>
 
                 <!-- Non-AC Section -->
-                <div class="table-grid-section category-section" id="non-ac-section">
+                <div class="category-section" id="non-ac-section">
                     <div class="category-header">
                         <div class="category-info">
                             <h3>Non-AC Dining</h3>
-                            <p>Open air seating • 2-8 persons</p>
+                            <p>Open air seating</p>
                         </div>
-                        <div class="category-price">₹300 cover</div>
+                        <div class="category-price">₹300</div>
                     </div>
                     <div class="table-grid" id="non-ac-grid">
-                        <!-- Will be populated by JS -->
+                        <!-- Populated by JS -->
                     </div>
                 </div>
 
                 <!-- Party Hall Section -->
-                <div class="table-grid-section category-section" id="party-section">
+                <div class="category-section" id="party-section">
                     <div class="category-header">
                         <div class="category-info">
                             <h3>Party Hall</h3>
-                            <p>Private parties & celebrations • 10-20 persons</p>
+                            <p>Private parties & celebrations</p>
                         </div>
-                        <div class="category-price">₹1500 cover</div>
+                        <div class="category-price">₹1500</div>
                     </div>
                     <div class="table-grid" id="party-grid">
-                        <!-- Will be populated by JS -->
+                        <!-- Populated by JS -->
                     </div>
                 </div>
 
                 <!-- Candle Light Section -->
-                <div class="table-grid-section category-section" id="candle-section">
+                <div class="category-section" id="candle-section">
                     <div class="category-header">
                         <div class="category-info">
                             <h3>Candle Light</h3>
-                            <p>Romantic dinner setup • 2 persons</p>
+                            <p>Romantic dinner setup</p>
                         </div>
-                        <div class="category-price">₹800 cover</div>
+                        <div class="category-price">₹800</div>
                     </div>
                     <div class="table-grid" id="candle-grid">
-                        <!-- Will be populated by JS -->
+                        <!-- Populated by JS -->
                     </div>
                 </div>
             </div>
@@ -750,7 +894,7 @@
                     
                     <div id="selected-table-display">
                         <div class="no-selection">
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">🪑</div>
+                            <div class="table-icon">🪑</div>
                             <p>No table selected</p>
                             <p style="font-size: 0.9rem; margin-top: 0.5rem;">Choose a table to continue</p>
                         </div>
@@ -776,7 +920,7 @@
                         <span>→</span>
                     </button>
 
-                    <p style="color: #94a3b8; font-size: 0.8rem; text-align: center; margin-top: 1rem;">
+                    <p class="cancellation-note">
                         Free cancellation within 10 minutes
                     </p>
                 </div>
@@ -796,7 +940,7 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="faq-answer">
-                        Click on any available table number from the categories above. Selected tables will be highlighted in yellow.
+                        Click on any available table number. Selected tables will be highlighted in yellow.
                     </div>
                 </div>
                 <div class="faq-item">
@@ -805,7 +949,7 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="faq-answer">
-                        Cover charge includes table service, ambiance, and is adjustable against your food bill. Each category has different cover charges.
+                        Cover charge includes table service and is adjustable against your food bill.
                     </div>
                 </div>
                 <div class="faq-item">
@@ -814,16 +958,16 @@
                         <span class="arrow">▼</span>
                     </div>
                     <div class="faq-answer">
-                        Yes, you can change your table selection anytime before proceeding to the menu. Simply click on a different available table.
+                        Yes, simply click on a different available table before proceeding.
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        What if my table is booked?
+                        What if table is booked?
                         <span class="arrow">▼</span>
                     </div>
                     <div class="faq-answer">
-                        Booked tables are marked with a cross (×) and cannot be selected. Please choose from available tables only.
+                        Booked tables show a cross (×) and cannot be selected.
                     </div>
                 </div>
             </div>
@@ -836,18 +980,16 @@
             ac: {
                 name: 'AC Dining',
                 coverCharge: 500,
-                capacity: '2-6 persons',
                 tables: Array.from({ length: 20 }, (_, i) => ({
                     id: `ac-${i + 1}`,
                     number: i + 1,
                     capacity: i % 2 === 0 ? 4 : 6,
-                    booked: [3, 7, 12, 15].includes(i + 1) // Some tables booked
+                    booked: [3, 7, 12, 15].includes(i + 1)
                 }))
             },
             nonAc: {
                 name: 'Non-AC',
                 coverCharge: 300,
-                capacity: '2-8 persons',
                 tables: Array.from({ length: 18 }, (_, i) => ({
                     id: `nonac-${i + 1}`,
                     number: i + 1,
@@ -858,7 +1000,6 @@
             party: {
                 name: 'Party Hall',
                 coverCharge: 1500,
-                capacity: '10-20 persons',
                 tables: Array.from({ length: 15 }, (_, i) => ({
                     id: `party-${i + 1}`,
                     number: i + 1,
@@ -869,7 +1010,6 @@
             candle: {
                 name: 'Candle Light',
                 coverCharge: 800,
-                capacity: '2 persons',
                 tables: Array.from({ length: 16 }, (_, i) => ({
                     id: `candle-${i + 1}`,
                     number: i + 1,
@@ -880,7 +1020,6 @@
         };
 
         let selectedTable = null;
-        let currentCategory = 'ac';
 
         // Initialize tables
         function initializeTables() {
@@ -894,7 +1033,7 @@
                              onclick="${table.booked ? '' : `selectTable('${category}', ${table.number}, ${data.coverCharge})`}"
                              data-table-id="${table.id}">
                             <div class="table-number">${table.number}</div>
-                            <div class="table-capacity">${table.capacity} pax</div>
+                            <div class="table-capacity">${table.capacity}</div>
                         </div>
                     `).join('');
                 }
@@ -914,11 +1053,8 @@
                 coverCharge: coverCharge
             };
 
-            // Update UI
             updateSelectedDisplay();
             enableContinueButton();
-            
-            // Highlight selected table
             initializeTables();
         }
 
@@ -935,19 +1071,19 @@
                     <div class="selected-table-info">
                         <div class="table-icon">🪑</div>
                         <div class="table-details">Table ${selectedTable.number}</div>
-                        <div class="table-category">${selectedTable.categoryName} • ${selectedTable.capacity} persons</div>
+                        <div class="table-category">${selectedTable.categoryName} • ${selectedTable.capacity} guests</div>
                     </div>
                 `;
 
                 document.getElementById('cover-charge').textContent = `₹${selectedTable.coverCharge}`;
-                document.getElementById('gst').textContent = `₹${gst}`;
-                document.getElementById('total-amount').textContent = `₹${total}`;
+                document.getElementById('gst').textContent = `₹${gst.toFixed(2)}`;
+                document.getElementById('total-amount').textContent = `₹${total.toFixed(2)}`;
                 
                 priceBreakdown.style.display = 'block';
             } else {
                 displayDiv.innerHTML = `
                     <div class="no-selection">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🪑</div>
+                        <div class="table-icon">🪑</div>
                         <p>No table selected</p>
                         <p style="font-size: 0.9rem; margin-top: 0.5rem;">Choose a table to continue</p>
                     </div>
@@ -964,7 +1100,6 @@
             initializeTables();
         }
 
-        // Enable continue button
         function enableContinueButton() {
             const btn = document.getElementById('continue-btn');
             btn.disabled = false;
@@ -978,7 +1113,6 @@
         // Proceed to menu
         window.proceedToMenu = function() {
             if (selectedTable) {
-                // Save table selection to localStorage
                 let currentOrder = JSON.parse(localStorage.getItem('currentCustomerOrder')) || {};
                 currentOrder.tableNumber = selectedTable.number;
                 currentOrder.tableCategory = selectedTable.categoryName;
@@ -987,8 +1121,6 @@
                 currentOrder.items = [];
                 currentOrder.status = 'pending';
                 localStorage.setItem('currentCustomerOrder', JSON.stringify(currentOrder));
-
-                // Redirect to menu
                 window.location.href = 'food-menu.html';
             }
         }
@@ -996,24 +1128,19 @@
         // Category switching
         document.querySelectorAll('.category-tab').forEach(tab => {
             tab.addEventListener('click', function() {
-                // Update active tab
                 document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
 
-                // Show corresponding section
                 const category = this.dataset.category;
                 document.querySelectorAll('.category-section').forEach(section => {
                     section.classList.remove('active');
-                    section.style.display = 'none';
                 });
                 
                 const sectionId = category === 'non-ac' ? 'non-ac-section' : 
                                  category === 'ac' ? 'ac-section' :
                                  category === 'party' ? 'party-section' : 'candle-section';
                 
-                const activeSection = document.getElementById(sectionId);
-                activeSection.style.display = 'block';
-                activeSection.classList.add('active');
+                document.getElementById(sectionId).classList.add('active');
             });
         });
 
@@ -1033,15 +1160,6 @@
         // Initialize
         initializeTables();
         updateOrderCount();
-        
-        // Show only AC section initially
-        document.querySelectorAll('.category-section').forEach(section => {
-            if (section.id !== 'ac-section') {
-                section.style.display = 'none';
-            }
-        });
-
-        // Set interval for order count
         setInterval(updateOrderCount, 3000);
     </script>
 </body>
