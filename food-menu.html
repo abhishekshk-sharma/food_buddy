@@ -754,7 +754,35 @@
 
     <script>
         // Get menu from localStorage
-        const menu = JSON.parse(localStorage.getItem('restaurantMenu')) || [];
+        const menu = [
+            { id: 'f1', name: 'Butter Chicken', price: 450, category: 'indian', description: 'Tender chicken in rich, creamy tomato gravy with butter and aromatic spices', image: 'images/butter_chicken.jpeg', time: '25-30 min', spice: 'Medium', rating: '4.9' },
+            { id: 'f2', name: 'Hyderabadi Biryani', price: 420, category: 'indian', description: 'Fragrant basmati rice with spiced meat, saffron, and fried onions', image: 'images/biryani.jpeg', time: '30-35 min', spice: 'Hot', rating: '5.0' },
+            { id: 'f3', name: 'Paneer Tikka', price: 380, category: 'indian', description: 'Grilled cottage cheese marinated in spiced yogurt and tandoori masala', image: 'images/paneer-tikka-skewers.jpg', time: '20-25 min', spice: 'Mild', rating: '4.7' },
+            { id: 'f4', name: 'Dal Makhani', price: 320, category: 'indian', description: 'Creamy black lentils simmered overnight with butter and cream', image: 'images/dalmakhni.jpeg', time: '20-25 min', spice: 'Mild', rating: '4.6' },
+            { id: 'f5', name: 'Tandoori Chicken', price: 480, category: 'indian', description: 'Whole chicken marinated in yogurt and spices, roasted in clay oven', image: 'images/tanduri_chicken.jpeg', time: '35-40 min', spice: 'Hot', rating: '4.8' },
+            { id: 'f6', name: 'Palak Paneer', price: 350, category: 'indian', description: 'Fresh cottage cheese in smooth spinach gravy with garlic and cream', image: 'images/palak_tofu_paneer_1.jpg', time: '20-25 min', spice: 'Mild', rating: '4.5' },
+            { id: 'f7', name: 'Rogan Josh', price: 520, category: 'indian', description: 'Kashmiri lamb curry with fennel, ginger, and aromatic spices', image: 'images/rogan_josh.jpeg', time: '35-40 min', spice: 'Hot', rating: '4.9' },
+            { id: 'f8', name: 'Manchow Soup', price: 220, category: 'chinese', description: 'Hot and spicy vegetable soup with fried noodles', image: 'images/manchow_soup.webp', time: '10-15 min', spice: 'Medium', rating: '4.4' },
+            { id: 'f9', name: 'Schezwan Noodles', price: 280, category: 'chinese', description: 'Stir-fried noodles with vegetables in spicy Schezwan sauce', image: 'images/schezwan_noodles.jpeg', time: '15-20 min', spice: 'Hot', rating: '4.7' },
+            { id: 'f10', name: 'Chilli Chicken', price: 320, category: 'chinese', description: 'Crispy chicken tossed in tangy chilli sauce with bell peppers', image: 'images/chilli_chicken.jpg', time: '20-25 min', spice: 'Hot', rating: '4.8' },
+            { id: 'f11', name: 'Spring Rolls', price: 210, category: 'chinese', description: 'Crispy rolls stuffed with vegetables and glass noodles', image: 'images/spring-rolls.jpg', time: '15-20 min', spice: 'Mild', rating: '4.5' },
+            { id: 'f12', name: 'Kung Pao Chicken', price: 380, category: 'chinese', description: 'Diced chicken with peanuts and vegetables in Szechuan sauce', image: 'images/Kung-Pao-Chicken.jpg', time: '20-25 min', spice: 'Hot', rating: '4.7' },
+            { id: 'f13', name: 'Margherita Pizza', price: 390, category: 'italian', description: 'Classic pizza with tomato sauce, fresh mozzarella, and basil', image: 'images/pizza.jpeg', time: '20-25 min', spice: 'Mild', rating: '4.8' },
+            { id: 'f14', name: 'Pasta Carbonara', price: 420, category: 'italian', description: 'Creamy pasta with eggs, pecorino cheese, and crispy pancetta', image: 'images/pasta.jpeg', time: '20-25 min', spice: 'Mild', rating: '4.9' },
+            { id: 'f15', name: 'Lasagna', price: 480, category: 'italian', description: 'Layered pasta with rich meat sauce, béchamel, and melted cheese', image: 'images/lasagna.jpeg', time: '30-35 min', spice: 'Mild', rating: '4.8' },
+            { id: 'f16', name: 'Mushroom Risotto', price: 450, category: 'italian', description: 'Creamy arborio rice with mushrooms and parmesan cheese', image: 'images/risotto.jpeg', time: '25-30 min', spice: 'Mild', rating: '4.6' },
+            { id: 'f17', name: 'Grilled Salmon', price: 680, category: 'continental', description: 'Fresh Atlantic salmon with lemon butter sauce and seasonal vegetables', image: 'images/grilled_salmon.jpeg', time: '25-30 min', spice: 'Mild', rating: '4.9' },
+            { id: 'f18', name: 'Ribeye Steak', price: 890, category: 'continental', description: 'Premium grilled steak with mushroom sauce and mashed potatoes', image: 'images/steak.jpeg', time: '30-35 min', spice: 'Mild', rating: '5.0' },
+            { id: 'f19', name: 'Caesar Salad', price: 280, category: 'continental', description: 'Crisp romaine lettuce with parmesan, croutons, and Caesar dressing', image: 'images/caeser_salad.jpeg', time: '10-15 min', spice: 'Mild', rating: '4.5' },
+            { id: 'f20', name: 'Fish & Chips', price: 390, category: 'continental', description: 'Beer-battered cod with crispy fries and tartar sauce', image: 'images/fish-em-chips-noruega.jpg', time: '20-25 min', spice: 'Mild', rating: '4.6' },
+            { id: 'f21', name: 'Gulab Jamun', price: 180, category: 'desserts', description: 'Soft milk solids dumplings soaked in rose-cardamom syrup', image: 'images/gulab-jamun.jpg', time: '10-15 min', spice: 'Sweet', rating: '4.9' },
+            { id: 'f22', name: 'Tiramisu', price: 320, category: 'desserts', description: 'Classic Italian dessert with coffee-soaked ladyfingers and mascarpone', image: 'images/tiramishu.jpeg', time: '10-15 min', spice: 'Sweet', rating: '4.8' },
+            { id: 'f23', name: 'Chocolate Lava', price: 280, category: 'desserts', description: 'Warm chocolate cake with molten center and vanilla ice cream', image: 'images/chocolate_lave.jpeg', time: '15-20 min', spice: 'Sweet', rating: '4.9' },
+            { id: 'f24', name: 'Masala Chai', price: 120, category: 'beverages', description: 'Traditional Indian tea with cardamom, ginger, and aromatic spices', image: 'images/masala_chai.jpeg', time: '5-10 min', spice: 'Mild', rating: '4.8' },
+            { id: 'f25', name: 'Mango Lassi', price: 150, category: 'beverages', description: 'Sweet yogurt drink with fresh mango pulp and cardamom', image: 'images/mango-lassi.jpg', time: '5-10 min', spice: 'Sweet', rating: '4.9' },
+            { id: 'f26', name: 'Fresh Lime Soda', price: 110, category: 'beverages', description: 'Refreshing lime juice with sparkling water and mint', image: 'images/fresh_lime.jpeg', time: '5-10 min', spice: 'Mild', rating: '4.5' },
+            { id: 'f27', name: 'Cold Coffee', price: 180, category: 'beverages', description: 'Chilled coffee with vanilla ice cream and chocolate syrup', image: 'images/cold_coffe.jpeg', time: '5-10 min', spice: 'Sweet', rating: '4.7' }
+        ];
         
         // Get current order data
         let currentOrder = JSON.parse(localStorage.getItem('currentCustomerOrder')) || { tableNumber: 'N/A', items: [] };
